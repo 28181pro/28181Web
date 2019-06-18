@@ -1,0 +1,112 @@
+﻿<!--var roles = ViewBag.AuthRoles as List<Role>;-->
+<!--var notAuth = ViewBag.NotAuthRoles as List<Role>;-->
+<!--var btnRoleProg = PageUtils.CheckPathAccess("Role/RoleProg");-->
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layoutdetail :: htmlhead" th:with="title='程序管理'"></head>
+<body>
+<div class="module-title module-detail">
+    <ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#tab-1"> 菜单明细</a></li>
+        <li class=""><a data-toggle="tab" href="#tab-2"> 已分配角色(<span th:utext="${authRoles.size()}"></span>)</a></li>
+        <li class=""><a data-toggle="tab" href="#tab-3"> 未分配角色(<span th:utext="${notAuthRoles.size()}"></span>)</a></li>
+    </ul>
+    <div class="tab-content">
+        <div id="tab-1" class="tab-pane active">
+            <div class="full-height-scroll table-responsive form-horizontal panel-body module-sub-detail">
+                <table class="table table-bordered">
+                    <tbody>
+                    <tr>
+                        <td class="control-label col-xs-2" align="right" style="width:150px">菜单名称
+                        </td>
+                        <td class="form-control-static col-sm-10 " align="left"><span th:utext="${prog.name}"></span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="control-label col-xs-2" align="right" style="width:150px">菜单地址
+                        </td>
+                        <td class="form-control-static col-sm-10 "><span th:utext="${prog.path}"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="control-label col-xs-2" align="right" style="width:150px">菜单类型
+                        </td>
+                        <td class="form-control-static col-sm-10 "><span
+                                th:utext="${prog.nodetype == 1} ? '功能': '页面'"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="control-label" align="right" style="width:150px">顺序
+                        </td>
+                        <td class="form-control-static col-sm-10 "><span th:utext="${prog.sequence}"></span></td>
+                    </tr>
+                    <tr>
+                        <td class="control-label col-xs-2" align="right" style="width:150px">备注
+                        </td>
+                        <td class="form-control-static col-sm-10 "><span th:utext="${prog.mark}"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div id="tab-2" class="tab-pane">
+            <div class="full-height-scroll table-responsive form-horizontal panel-body">
+                <ul id="divresult" class="role-prog-auth">
+                    <li th:each="role : ${authRoles}" class="clearfix">
+                        <div class="role-item">
+                            <div class="col-sm-9 fl">
+                                <div class="role-icon">
+                                    <i class="fa iconfont icon-shujuquanxian"></i>
+                                </div>
+                                <a class="role-item-title" th:text="${role.name}"></a>
+                                <div class="role-sub-title">
+                                    <em class="margin-tb text-ellipsis info" th:title="${role.mark}" th:text="${role.mark}">
+                                    </em>
+                                </div>
+                            </div>
+                            <div shiro:hasPermission="Role/RoleProg" class="col-sm-3 role-info fl">
+                                <span class="pull-right margin-large-right">
+                                    <i class="fa fa-check-circle pull-left text-green-deep"></i>
+                                    <em class="text-green-deep">已授权</em> |
+                                    <a th:onclick="'authorize('  + ${role.id} + ',\'' + ${role.name} + '\',' + ${prog.id} + ', 0)'">取消</a>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+        <div id="tab-3" class="tab-pane">
+            <div class="full-height-scroll table-responsive form-horizontal panel-body">
+                <ul id="divresult" class="role-prog-auth">
+                    <li th:each="nrole : ${notAuthRoles}" class="clearfix">
+                        <div class="role-item">
+                            <div class="col-sm-9 fl">
+                                <div class="role-icon">
+                                    <i class="iconfont icon-shujuquanxian"></i>
+                                </div>
+                                <a class="role-item-title" th:text="${nrole.name}"></a>
+                                <div class="role-sub-title">
+                                    <em class="margin-tb text-ellipsis info" th:title="${nrole.mark}" th:text="${nrole.mark}">
+                                    </em>
+                                </div>
+                            </div>
+                            <div shiro:hasPermission="Role/RoleProg" class="col-sm-3 role-info fl">
+                                <span class="pull-right margin-large-right">
+                                     <a th:onclick="'authorize('  + ${nrole.id} + ',\'' + ${nrole.name} + '\',' + ${prog.id} + ', 1)'">授权</a>
+                                </span>
+                            </div>
+                        </div>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div th:include="layoutdetail::footer"></div>
+
+</body>
+</html>

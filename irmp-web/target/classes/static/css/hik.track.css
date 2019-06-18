@@ -1,0 +1,212 @@
+﻿.trackbox{ position:absolute; left:10px; top:10px; width:700px; }
+.trackbox #Code{ width:150px !important; height:30px !important; }
+.trackbox button{ height:30px !important;}
+.heatmapbox{ position:absolute; left:10px; top:10px; width:440px; }
+.heatmapbox .inputmac{ width:150px !important; height:30px !important; }
+.heatmapbox button{ height:30px !important;}
+.tracklist {
+    width: 400px;
+    position: absolute;
+    overflow: auto;
+    background-color:white;
+    max-height:750px;
+    top:50px;
+    left:10px;
+    padding:10px;
+}
+.list-content {
+    overflow: hidden;
+    padding: 0;
+}
+.list-view {
+    border: 1px solid #E4E6E7;
+    margin: 0 0 10px;
+    cursor: pointer;
+}
+.list-view-title {
+    color: #666;
+    line-height: 22px;
+    padding: 25px 20px 10px;
+}
+.list-view-label {
+    float: left;
+    width: auto;
+    padding: 0 15px;
+    background: #888;
+    color: #fff;
+    margin-top: -26px;
+    margin-left: -21px;
+    _margin-left: -11px;
+    line-height: 20px;
+}
+.list-view.active .list-view-title {
+    background: #EBF1FB;
+}
+.list-view.active .list-view-label {
+    background: #0C88E8;
+}
+.list-view-arrow {
+    float: right;
+    width: 7px;
+    height: 4px;
+    background-image: url(/Content/images/track.png);
+    background-repeat: no-repeat;
+    background-position: -40px -70px;
+    margin-top: -21px;
+    margin-right: -10px;
+    font-size: 16px;
+}
+
+
+.list-view-arrow:hover {
+    color: #e4393c;
+}
+
+
+.list-view.expand .list-view-arrow {
+    background-position: -54px -70px;
+}
+.list-route {
+    color: #666;
+    padding: 0px;
+    margin:0px;
+   
+}
+
+@media (max-width: 1280px) {
+    .list-route {
+        max-height: 300px;
+        overflow-y: auto;
+    }
+}
+
+.list-route li {
+    padding: 10px;
+    margin:0px;
+    border-bottom: 1px solid #E4E6E7;
+    overflow: hidden;
+}
+.list-route-content {
+    overflow: hidden;
+    display:none;
+}
+.list-route-text {
+    width:300px;
+}
+.list-route-icon{
+    float: right;
+    margin-top:-15px;
+}
+.list-route-marker{
+    margin-right:40px;
+}
+.list-route-video{
+    margin-right:20px;
+}
+.list-route-detail{
+    margin-right:55px;
+}
+.icon-active {
+    color:#1ab394;
+}
+
+
+.btnLit {
+    background-color: White;
+    border: medium none;
+    cursor: pointer;
+    top: 10px;
+    position: absolute;
+    border-bottom: #8ba4dc 1px solid;
+    text-align: center;
+    border-left: #8ba4dc 1px solid;
+    padding-bottom: 2px;
+    line-height: 1.3em;
+    font-variant: normal;
+    font-style: normal;
+    padding-left: 6px;
+    padding-right: 6px;
+    font-family: arial,sans-serif;
+    white-space: nowrap;
+    background: #fff;
+    color: #000;
+    font-size: 12px;
+    border-top: #8ba4dc 1px solid;
+    border-right: #8ba4dc 1px solid;
+    padding-top: 2px;
+    boxshadow: 2px 2px 3px rgba(0, 0, 0, 0.35);
+    borderRadius: 0 3px 3px 0;
+}
+
+.btnVideoLit {
+    right: 85px;
+}
+
+.btnDeviceLit {
+    right: 147px;
+}
+
+.deviceactive { border-right: #37A132 1px solid; border-bottom: #37A132 1px solid; text-align: center; border-left: #37A132 1px solid; padding-bottom: 2px; padding-left: 6px; padding-right: 6px; font: bold 12px/1.3em arial,sans-serif; white-space: nowrap; background: #37A132; color: #fff;  border-top: #37A132 1px solid; padding-top: 2px; boxshadow: 2px 2px 3px rgba(0, 0, 0, 0.35); borderRadius: 3px 0 0 3px; }
+.videoactive { border-right: #F89406 1px solid; border-bottom: #F89406 1px solid; text-align: center; border-left: #F89406 1px solid; padding-bottom: 2px; padding-left: 6px; padding-right: 6px; font: bold 12px/1.3em arial,sans-serif; white-space: nowrap; background: #F89406; color: #fff;  border-top: #F89406 1px solid; padding-top: 2px; boxshadow: 2px 2px 3px rgba(0, 0, 0, 0.35); borderRadius: 3px 0 0 3px; }
+
+.heatmapcolor {
+position:absolute; 
+left:10px; 
+top:10px;
+width:30px; 
+margin-top:20%; 
+}
+.jbkeleyi{ 
+height: 200px; 
+width:25px; 
+background-image: -moz-linear-gradient(top, blue,lime,yellow,red); 
+background-image: -ms-linear-gradient(top,blue,lime,yellow,red); 
+background-image: -webkit-linear-gradient(top,blue,lime,yellow,red);
+filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#00FF00', endColorstr='#FF0000', GradientType='0'); 
+} 
+
+label.BMapLabel{
+    max-width:inherit;
+}
+
+.map-measure  {
+    float: right;
+    margin-right: 6px;
+    box-shadow: 1px 2px 1px rgba(0,0,0,.15);
+}
+
+.map-measure .measure {
+    background-position: -80px -117px;
+}
+
+.map-measure:hover .measure {
+    background-position: -80px -49px;
+}
+
+.map-measure span, .map-measure span {
+    float: left;
+    height: 30px;
+    width: 27px;
+    background-image: url(../images/newtools.png);
+    background-repeat: no-repeat;
+}
+
+
+.map-measure .last {
+    border: 0!important;
+}
+
+.map-measure i {
+    margin-left: 2px;
+    margin-right: 10px;
+    float: left;
+    font-size: 12px;
+    font-style: normal;
+    height: 30px;
+    line-height: 30px;
+    display: inline-block;
+}
+
+.map-measure:hover i {
+    color: #579AFC;
+}

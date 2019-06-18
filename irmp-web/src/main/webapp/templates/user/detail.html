@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='用户明细'"></head>
+<body>
+
+<div class="module-frame module-detail">
+    <div class="form-horizontal">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-xs-2">
+                    <label>登录帐号</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+
+                    <p th:utext="${userinfo.account}"></p>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>姓名</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <p th:utext="${userinfo.name}"></p>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">      <label>性别</label></td>
+                <td class="col-sm-10 form-control-static">
+                    <!--@(Model.Gender == 0 ? "女" : "男")-->
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2"><label>电话</label></td>
+                <td class="col-sm-10 form-control-static">
+                    <!--@Html.DisplayFor(model => model.MobilePhone)-->
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-2"> <label>所属单位</label></td>
+                <td class="col-sm-10 form-control-static">
+                    <!--@Html.DisplayFor(model => model.Corp.Name)-->
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-2"> <label>顺序</label></td>
+                <td class="col-sm-10 form-control-static">
+                    <!--@Html.DisplayFor(model => model.Sequence)-->
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2"> <label>状态</label></td>
+                <td class="col-sm-10 form-control-static">
+                    <!--@(Model.State == 1 ? "启用" : "禁用")-->
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-2"> <label>备注</label></td>
+                <td class="col-sm-10 form-control-static">
+                    <!--@Html.DisplayFor(model => model.Mark)-->
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="hr-line-dashed"></div>
+<div class="module-button">
+    <div class="col-sm-10 col-sm-offset-2">
+        <button class="btn btn-white btn-optclose " type="button">返回列表</button>
+    </div>
+</div>
+<div th:include="layout::footer"></div>
+</body>
+</html>

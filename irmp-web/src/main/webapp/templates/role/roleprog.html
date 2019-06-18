@@ -1,0 +1,96 @@
+﻿
+
+<!--var roleProgIds = ViewBag.RoleProgIds as string;-->
+<!--var roleProgByUser = ViewBag.RoleProgByUser as string;-->
+<!--var roleID = ViewBag.RoleID as int?;-->
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='角色权限'"></head>
+<body>
+
+<form class="form-horizontal" id="signupForm">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="ibox ">
+                    <div class="ibox-content col-xs-5">
+                        <div class="ibox ">
+                            <div class="dd" id="nestableprog">
+                            </div>
+                            <div class="hr-line-dashed"></div>
+                            <div class="control-group">
+                                <div class="col-sm-4 col-sm-offset-2">
+                                    <button class="btn btn-primary " type="submit">保存</button>
+                                    <button class="btn btn-white btn-optclose " type="button">返回列表</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-xs-6">
+                        <div class="ibox ">
+                            <div class="ibox-content" id="divdetail" style="min-height: 412px">
+                                <div class="module-wrap">
+                                    <div class="ibox-title frame-title">
+                                        <h5>参考角色分配</h5>
+                                    </div>
+                                    <div class="fr-clear paddingtop-20">
+                                        <ul id="divresult" class="role-prog-auth"></ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+<script id="template-dd" type="x-tmpl-mustache">
+    <li class="dd-item" data-id="{{id}}">
+        <div class="dd-handle">
+            <span class="label {{iconDisplay}}"><i class="fa {{defaultIcon}}"></i></span>
+            <input type="checkbox" name="chkRoleProg" onclick="checkall(this)" value="{{id}}" {{checked}} />
+            <span>{{name}}</span>
+            <span class="dd-mark">{{mark}}</span>
+        </div>
+    </li>
+</script>
+
+<script id="template-role" type="x-tmpl-mustache">
+    <div class="role-item">
+        <div class="col-sm-9 fl">
+            <div class="role-icon">
+                <i class="iconfont icon-shujuquanxian"></i>
+            </div>
+            <h5 class="role-item-title">{{name}}</h5>
+            <div class="role-sub-title">
+                <p class="margin-tb text-ellipsis info" title="{{mark}}">
+                    {{markDisplay}}
+                </p>
+            </div>
+        </div>
+        <div class="col-sm-3 role-info fl">
+            <span class="pull-right margin-large-right">
+                <a href="javascript: void(0)" url="/role/roleprogpreview/{{id}}" title="权限预览" onclick="{{preview}}">预览</a> | <a onclick="{{operate}}">复制</a>
+            </span>
+        </div>
+    </div>
+</script>
+
+<div th:include="layout::footer"></div>
+<script src="/static/scripts/plugins/mustache/mustache.min.js"></script>
+<script src="/static/scripts/plugins/nestable/jquery.nestable.js"></script>
+<!--<script src="~/Scripts/plugins/layer/extend/layer.ext.js"></script>-->
+
+<script th:inline="javascript">  
+   var roleUserIds = ',' + [[${progids}]] + ',';  
+   var availableProg = ',' +[[${userprogids}]] + ',';  
+   var roleID = [[${role.id}]];  
+</script>
+
+<script src="/static/appjs/role/roleprog.js"></script>
+</body>
+</html>

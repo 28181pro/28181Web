@@ -1,0 +1,57 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='修改用户'"></head>
+<body>
+
+<form class="form-horizontal" id="signupForm">
+    <div class="module-frame module-title">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="code">区域编号 </label>
+                    <input type="hidden" id="id" name="id" th:value="${area.id}">
+                </td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <input class="form-control required" id="code" name="code" type="text" th:value="${area.code}">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="name">区域名称 </label>
+                </td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <input class="form-control required" id="name" name="name" type="text" th:value="${area.name}">
+                </td>
+            </tr>
+            <tr>
+
+                <td class="control-label1 col-sm-2">
+                    <label for="sequence">顺序</label></td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control" id="sequence" name="sequence" type="number" th:value="${area.sequence}">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Mark">备注</label></td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <textarea class="form-control" cols="20" id="Mark" name="Mark" th:value="${area.mark}"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="module-button">
+        <div class="col-sm-4 col-sm-offset-2">
+            <button class="btn btn-primary " type="submit">保存</button>
+            <button class="btn btn-white btn-optclose " type="button">返回列表</button>
+        </div>
+    </div>
+</form>
+<div th:include="layout::footer"></div>
+<script src="/static/appjs/area/edit.js"></script>
+</body>
+</html>

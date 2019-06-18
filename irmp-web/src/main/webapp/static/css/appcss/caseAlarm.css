@@ -1,0 +1,104 @@
+﻿.padding-none{
+    padding:0 !important;
+}
+.padding-3-0{
+    padding-left:3px !important;
+    padding-right:0 !important;
+}
+.paddingtop-none{
+    padding-top: 0;
+}
+.ml15{
+    margin-left:15px;
+}
+.width-fill-parent{
+    width:100% !important;
+}
+.time-box{
+    width:40%;
+    height:auto;
+    display:inline-block;
+    float:left;
+    min-width:400px;
+}
+.unit-box{
+    width:55%;
+    height:auto;
+    right: 0;
+    display:inline-block;
+    float:left;
+    min-width:470px;
+}
+.export-btn-box{
+    display:inline-block;
+    float:right;
+}
+.w220{
+    width:220px;
+}
+.time-connector{
+    width:30px;
+    border: 0 !important;
+}
+.unit-text{
+    width:50px;
+    display:inline-block;
+}
+.unit-value-box{
+    width:300px;
+    display:inline-block;
+    float:left;
+}
+.select2-container .select2-selection--single{
+    height:30px !important;
+}
+.select2-container .select2-selection--single .select2-selection__rendered{
+    font-size:12px;
+}
+label.year-label{
+    width:80px;
+    height:30px;
+    float:left;
+    display:inline-block;
+    line-height:30px;
+    text-align: center;
+    font-weight: 700;
+    font-family: "Helvetica Neue", "Luxi Sans", "DejaVu Sans", Tahoma, "Hiragino Sans GB", STHeiti, "Microsoft YaHei";
+    font-size: 12px;
+}
+select.year-select{
+    width:200px;
+    height:30px;
+    float:left;
+    display:inline-block;
+}
+.data-up-icon {
+    height: 18px;
+    width: 8px;
+    display: inline-block;
+    float: left;
+    background: url('../../images/arrows-up.png') no-repeat;
+}
+.data-up-val{
+    height: 18px;
+    width: auto;
+    display: inline-block;
+    float: left;
+}
+
+.data-down-icon {
+    height: 18px;
+    width: 8px;
+    display: inline-block;
+    float: left;
+    background: url('../../images/arrows-down.png') no-repeat;
+}
+.data-down-val{
+    height: 18px;
+    width: auto;
+    display: inline-block;
+    float: left;
+}
+.table-layout-auto{
+    table-layout:auto !important;
+}

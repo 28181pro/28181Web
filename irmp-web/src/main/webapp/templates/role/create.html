@@ -1,0 +1,41 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='新增角色'"></head>
+<body>
+
+<form class="form-horizontal" id="signupForm">
+    <div class="module-frame module-title">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="name"><span style="color: red"> * </span>角色名称 </label>
+                </td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <input class="form-control required" id="name" name="name" type="text" value="">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2"><label for="Mark">角色说明</label></td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <textarea class="form-control" cols="20" id="Mark" name="Mark" rows="2"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="module-button">
+        <div class="col-sm-4 col-sm-offset-2">
+            <button class="btn btn-primary " type="submit">保存</button>
+            <button class="btn btn-white btn-optclose " type="button">返回列表</button>
+        </div>
+    </div>
+
+</form>
+
+<div th:include="layout::footer"></div>
+<script src="/static/appjs/role/create.js"></script>
+
+</body>
+</html>

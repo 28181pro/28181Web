@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='程序管理'"></head>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight white-bg">
+    <div class="row">
+        <div class="wrapper wrapper-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="ibox ">
+                        <div class="alert alert-warning">
+                            提示：点击菜单名称可进行拖动排序。
+                        </div>
+
+                        <div class="ibox-content col-xs-5">
+                            <div class="row m-b-sm m-t-sm">
+                                <div class="row m-b-sm m-t-sm">
+                                    <div class="col-xs-10">
+                                        <div class="input-append">
+                                            <input id="txtName" class="input-sm form-control" type="text"
+                                                   placeholder="请输入菜单名称">
+                                            <span class="input-group-btn">
+                                                <button class="btn btn-sm btn-primary" type="button" onclick="search()"> 搜索</button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="col-xs-2 text-right">
+                                        <a shiro:hasPermission="prog/create" class="btn btn-primary btn-xs btn-success btn-opt"
+                                           href="javascript://void(0)" url="/prog/create/-1" title="新增"
+                                           style="height: 20px; padding: 5px 10px;"><i class="fa fa-plus"></i> 新增</a>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="dd treetable" id="nestableprog" queryurl="/prog/querylist"
+                                 reseturl="/prog/reset">
+                            </div>
+                        </div>
+
+
+                        <div class="col-md-6">
+                            <div class="ibox ">
+                                <div class="ibox-content detail-placeholder" id="divdetail" style="min-height: 412px">
+                                    <p>点击左侧菜单查看明细</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script id="template-dd" type="x-tmpl-mustache">
+        <li class="dd-item" data-id="{{id}}">
+            <div class="dd-handle" onclick="show({{id}})">
+                <div class="pull-right btn-operation">
+                    <a shiro:hasPermission="prog/create" class="btn btn-mini btn-opt" href="javascript://void(0)" url="/prog/create/{{id}}" title="新增"><i class="fa fa-plus"></i> </a>
+                    <a shiro:hasPermission="prog/edit" class="btn btn-mini btn-opt" href="javascript://void(0)" url="/prog/edit/{{id}}" title="编辑"><i class="fa fa-pencil"></i> </a>
+                    <a shiro:hasPermission="prog/delete" class="btn btn-mini btn-del" href="javascript://void(0)" url="/prog/delete/{{id}}" title="删除"><i class="fa fa-trash-o"></i> </a>
+                </div>
+                <span class="label label-info"><i class="fa {{defaultIcon}}"></i></span> <span class="dd-name">{{name}}</span>
+            </div>
+        </li>
+    </script>
+</div>
+
+<div th:include="layout::footer"></div>
+<script src="/static/scripts/plugins/mustache/mustache.min.js"></script>
+<script src="/static/scripts/plugins/nestable/jquery.nestable.js"></script>
+<script src="/static/scripts/plugins/nestable/jquery.nestable.helper.js"></script>
+<script src="/static/appjs/prog/index.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,139 @@
+﻿
+.detail-container{
+    width:100%;
+    height:100%;
+    display: inline-block;
+    float:left;
+    margin: 0;
+    padding: 0;
+}
+
+.detail-title{
+    width:100%;
+    height:42px;
+    display:inline-block;
+    margin:0;
+    padding:0;
+    font-size: 14px;
+    font-weight:700;
+    font-family:inherit;
+    color:#000000;
+}
+.detail-info{
+    width:100%;
+    height:auto;
+    display:inline-block;
+    margin:0;
+    padding:0;
+    font-size: 14px;
+    font-weight:700;
+    font-family:inherit;
+    color:#000000;
+}
+.title-case{
+    width:auto;
+    height:42px;
+    display:inline-block;
+    margin:0;
+    padding:0;
+    float:left;
+    font-size: 14px;
+    font-weight:700;
+    font-family:inherit;
+    text-indent:26px;
+    color:#000000;
+}
+.title-case-number{
+    width:200px;
+    height:42px;
+    display:inline-block;
+    float:left;
+    margin:0;
+    padding:0;
+    color:#0026ff;
+}
+.container-out{
+    width:100%;
+    height:200px;
+    display:inline-block;
+    float:left;
+    padding:20px 26px 20px 26px ;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.detail-box{
+    width:100%;
+    height:100%;
+    display:inline-block;
+    margin:0;
+    padding:0;
+    background:rgba(24, 144, 221,0.1);
+}
+
+.box-title{
+    width:100%;
+    height:42px;
+    display:inline-block;
+    margin:0;
+    padding:0;
+    float:left;
+    font-size: 14px;
+    font-weight:700;
+    font-family:inherit;
+    text-indent:20px;
+    color:#000000;
+    line-height:42px;
+}
+.table-container{
+    width:100%;
+    height:auto;
+    margin:0;
+    padding: 0 50px 0 50px;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.detail-table{
+    width:100%;
+    height:84px;
+    margin:0;
+    padding:0;
+    font-size: 12px;
+    font-weight:400;
+    font-family:inherit;
+    color:#000000;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+.detail-table>tr{
+    width:100%;
+    height:42px;
+}
+
+.td-name {
+    width:10%;
+    text-align:right;
+}
+.td-value {
+    width:20%;
+    text-align:left;
+    padding:0 0 0 8px;
+}
+.alarm-info-container{
+    width:100%;
+    height:auto;
+    display:inline-block;
+    margin:0;
+    padding:10px 30px 10px 30px;
+    float:left;
+    box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+}
+
+.dashed-special{
+    width:100%;
+    float:left;
+}

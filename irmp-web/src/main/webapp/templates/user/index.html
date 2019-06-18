@@ -1,0 +1,141 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layoutlist :: htmlhead" th:with="title='用户管理'"></head>
+<body>
+<div style="width: 0; height: 0;">
+    <object classid="clsid:5F709CBC-669E-466B-91A3-66A626E987EA" style="display:none;" width="152" height="200" id="dtm"
+            codebase="Fp30Dev_WL.ocx"></object>
+</div>
+<div class="wrapper wrapper-content animated fadeInRight">
+    <div class="ibox-content border-bottom border-left-right ibox-search">
+        <div class="form-horizontal">
+            <div class="control-group">
+                <label class="col-md-1 control-label">姓名</label>
+                <div class="col-xs-4">
+                    <div class="input-append advance-search-label dropup">
+                        <input type="text" id="Name" class="form-control">
+                        <button class="btn btn-primary btn-sm btn-refresh" url="/" title="查询"><span
+                                class="bold"> 查询</span></button>
+                        <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                                aria-haspopup="true" aria-expanded="false" onclick="AdvancedSearch();"><span
+                                class="caret"></span><span class="sr-only"></span></button>
+                    </div>
+                </div>
+
+                <div class="col-md-6 m-b-sm text-right">
+                    <span class="pull-right btn-group" style="margin-left:4px;">
+                        <button class="btn btn-primary btn-sm dropdown-toggle" aria-expanded="false"
+                                data-toggle="dropdown">
+                            <i class="glyphicon glyphicon-list"></i> 选择列 <span class="caret"></span>
+                        </button>
+                        <ul id="ulcols" class="dropdown-menu agile-list" style="padding-bottom:5px;"></ul>
+                    </span>
+                    <button shiro:hasPermission="User/Create" class="btn btn-primary btn-sm btn-success btn-opt"
+                            url="/user/create" title="新增"><i
+                            class="fa fa-plus"></i> <span class="bold"> 新增</span></button>
+                    <button class="btn btn-danger btn-sm btn-zwcj " title="指纹采集" id="btnzwcj" type="button"><i
+                            class=""></i> <span class="bold"> 指纹采集</span></button>
+                    <button shiro:hasPermission="User/Cancel" class="btn btn-primary btn-sm btn-warning btn-cancel"
+                            url="/User/Cancel" title="注销"
+                            opt-type="table" text="注销"><i class="fa fa-times"></i> <span class="bold"> 注销</span>
+                    </button>
+                    <span class="pull-right btn-group" style="margin-left:4px;">
+                        <button class="btn btn-default btn-sm dropdown-toggle" aria-expanded="false"
+                                data-toggle="dropdown">更多
+                            <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <a class="btn btn-white btn-xs btn-opt" href="javascript://void(0)"
+                                   url="/User/UserRole" style="border:0px;" opt-type="table" title="分配角色"><i
+                                        class="fa fa-gear"></i> 分配角色</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-white btn-xs btn-optshow" href="javascript://void(0)"
+                                   url="/User/PasswordReset" style="border:0px;" opt-type="table" showname="重置密码"><i
+                                        class="fa fa-gear"></i> 重置密码</a>
+                            </li>
+                            <li>
+                                <a class="btn btn-white btn-xs btn-trash-o" href="javascript://void(0)"
+                                   url="/user/delete" style="border:0px;" opt-type="table" showname="删除用户"><i
+                                        class="fa fa-trash-o"></i> 删除用户</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="btn btn-white btn-xs btn-export" href="javascript://void(0)" url="/User/Export" style="border:0px;"><i class="glyphicon glyphicon-export"></i> 导出数据</a>
+                            </li>
+                            <li class="divider"></li>
+                            <li>
+                                <a class="btn btn-white btn-xs btn-import" href="javascript://void(0)" url="/User/Import" style="border:0px;">
+                                    <i class="glyphicon glyphicon-import"></i> 导入数据</a>
+                                <div class="div-import hide webuploader-container">
+                                    <div class="webuploader-pick"></div>
+                                    <div id="rt_rt_1cmmme3jgthsnpi4uprksc461" style="position: absolute; top: 0px; left: 0px; width: 1px; height: 1px; overflow: hidden;">
+                                        <input type="file" name="file" class="webuploader-element-invisible" multiple="multiple">
+                                        <label style="opacity: 0; width: 100%; height: 100%; display: block; cursor: pointer; background: rgb(255, 255, 255);"></label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li><a class="btn btn-white btn-xs" href="/Content/file/用户导入模版.xls" style="border:0px;"><i class="glyphicon glyphicon-save"></i> 下载模板</a>
+                            </li>
+                        </ul>
+                    </span>
+                </div>
+            </div>
+            <div class="control-group advance-search ">
+                <label class="col-md-1 control-label">登录账号</label>
+                <div class="col-md-1">
+                    <input type="text" id="Account" class="form-control"/>
+                </div>
+                <label class="col-md-1 control-label">所属单位</label>
+                <div class="col-md-2">
+                    <input type="text" id="Corp_Name" class="form-control"/>
+                </div>
+                <label class="col-md-1 control-label">状态</label>
+                <div class="col-md-2">
+                    <select class="form-control" id="State" name="State">
+                        <option value="">全部...</option>
+                        <option selected="selected" value="1">启用</option>
+                        <option value="0">禁用</option>
+                        <option value="2">待分配单位</option>
+                    </select>
+                </div>
+                <label class="col-md-1 control-label">分配柜子</label>
+                <div class="col-md-2">
+                    <select class="form-control" id="ISAddCupboard" name="ISAddCupboard">
+                        <option selected="selected" value="">全部...</option>
+                        <option value="1">已分配柜子</option>
+                        <option value="0">未分配柜子</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12">
+            <table id="tbDataList" class="table table-striped table-bordered table-hover dataTable"></table>
+        </div>
+    </div>
+
+    <div>
+        <script type="text/javascript">
+            var s_edit_h = 'false';
+            var s_detail_h = 'false';
+        </script>
+    </div>
+    <div shiro:hasPermission="user/edit">
+        <script type="text/javascript">
+            s_edit_h = 'true';
+        </script>
+    </div>
+    <div shiro:hasPermission="user/detail">
+        <script type="text/javascript">
+            s_detail_h = 'true';
+        </script>
+    </div>
+</div>
+<div th:include="layoutlist::footer"></div>
+<script src="/static/appjs/user/index.js"></script>
+</body>
+</html>

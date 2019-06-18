@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head>
+    <title>公安局物联网案管系统</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"/>
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+    <link href="/static/css/responsive.css" rel="stylesheet">
+    <link href="/static/fonts/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+    <link href="/static/css/plugins/toastr/toastr.min.css" rel="stylesheet">
+    <link href="/static/scripts/plugins/fancybox/jquery.fancybox.css" rel="stylesheet">
+    <LINK title="blue" href="/static/themes/dermadefault.css" rel="stylesheet" type="text/css">
+    <LINK href="/static/css/hik.style.css" rel="stylesheet" type="text/css">
+    <!--[if lt IE 9]>
+    <script src="/static/scripts/respond.js" type="text/javascript"></script>
+    <script src="/static/scripts/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+
+</head>
+<body style="overflow:hidden">
+<nav class="nav navbar-default navbar-mystyle">
+    <div class="navbar-header">
+
+        <a class="navbar-brand mystyle-brand" href="javascript:void(0)" title="" target="_blank" style="width: 130px;">
+            <img alt="image" src="/static/images/logo.png" style="width:100px; padding: 0 10px;"/>
+        </a>
+    </div>
+    <div class="collapse navbar-collapse">
+        <ul class="nav navbar-nav navbar-nav-left">
+
+        </ul>
+        <ul class="nav navbar-nav navbar-nav-right">
+            <li class="li-border dropdown">
+                <a data-toggle="dropdown" class="mystyle-color" href="#">
+                    <span class="glyphicon glyphicon-bell"></span>
+                    <span class="topbar-num alarm-num">47</span>
+                </a>
+                <ul class="pull-right navbar-pink dropdown-menu dropdown-caret dropdown-close " style="width: 200px;">
+                    <li class="dropdown-header"><span class="alarm-num-detail">47</span> 条提醒信息</li>
+                    <li>
+
+                        <a href='javascript://void(0)' title="未签收"
+                           onclick="contabs.addTabNotMenu('CaseSign/Index', 100, '未签收')">
+                            <div class="clearfix">
+                                    <span class="pull-left">
+                                        <i class="fa fa-bell-o"></i>
+                                        未签收
+                                    </span>
+                                <span class="pull-right badge badge-danger small-chat-tag">23</span>
+                            </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a href='javascript://void(0)' title="未反馈"
+                           onclick="contabs.addTabNotMenu('CaseToFeedback/Index', 100, '未反馈')">
+                            <div class="clearfix">
+                                    <span class="pull-left">
+                                        <i class="fa fa-bell"></i>
+                                        未反馈
+                                    </span>
+                                <span class="pull-right badge badge-warning-light small-chat-deal">7</span>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+            <li class="dropdown li-border">
+                <a class="dropdown-toggle mystyle-color" href="#" data-toggle="dropdown"> 欢迎您：<strong class="font-bold" th:text="${username}">admin</strong><span
+                        class="fa fa-caret-down"></span></a>
+                <ul class="dropdown-menu">
+                    <li>
+                        <a id="btnChange" title="修改密码" href="javascript://void(0)" url="/HomePage/ChangePassword">
+                            <i class="fa fa-key"></i>
+                            修改密码
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href="javascript://void(0)" onclick="loginOut()">
+                            <i class="fa fa-sign-out"></i>
+                            注销登录
+                        </a>
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        <a href='/Content/file/RFID页面OCX控件.rar'>
+                            <i class="fa fa-download"></i>
+                            读卡器驱动下载
+                        </a>
+                    </li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+</nav>
+
+<div class="down-main ">
+    <div class="left-main left-full">
+        <div class="sidebar-fold">
+            <span class="glyphicon glyphicon-menu-hamburger"></span>
+        </div>
+        <div class="left-subNavBox">
+
+        </div>
+    </div>
+
+    <div id="page-wrapper-content" class="gray-bg dashbard-1 right-product my-index right-full">
+        <div class="content-tabs">
+            <button class="roll-nav roll-left J_tabLeft">
+                <i class="fa fa-backward"></i>
+            </button>
+            <nav class="page-tabs J_menuTabs">
+                <div class="page-tabs-content">
+                    <a class="active J_menuTab" href="javascript:;" data-id="/HomePage/MainIndexShow">首页</a>
+                </div>
+            </nav>
+            <button class="roll-nav roll-right J_tabRight">
+                <i class="fa fa-forward"></i>
+            </button>
+        </div>
+        <div class="J_mainContent" style="z-index: 1">
+            <iframe id="iframe_index" name="iframe0" style="z-index: 1" width="100%" height="100%" class="J_iframe"
+                    src="/403" frameborder="0" data-id="/403" seamless=""></iframe>
+        </div>
+    </div>
+</div>
+
+
+<script src="/static/scripts/jquery-1.10.2.js"></script>
+<script src="/static/scripts/bootstrap.min.js"></script>
+<script src="/static/scripts/plugins/slimscroll/jquery.slimscroll.min.js"></script>
+<script src="/static/scripts/plugins/layer/layer.js"></script>
+<script src="/static/scripts/plugins/layer/layer.helper.js"></script>
+
+<script src="/static/scripts/plugins/toastr/toastr.min.js"></script>
+<script src="/static/scripts/plugins/toastr/toastr.helper.js"></script>
+<script src="/static/scripts/hik.common.js"></script>
+<script src="/static/scripts/hik.tabs.js"></script>
+<script src="/static/scripts/hik.menu.js"></script>
+
+<script src="/static/scripts/plugins/fancybox/jquery.fancybox.js"></script>
+
+<script type="text/javascript">
+    var filters = [];
+    var maxId = 0;
+    var lockMaxId = 0;
+    var areaMaxId = 0;
+    var count = 0;
+    var tag = 0, deal = 0, returnCount = 0, turnOnCount = 0, procuratorCount = 0, xzCaseCount = 0, xsCaseCount = 0,
+        longNotMovecaseCount = 0, caseTransferCount = 0, caseReceives = 0, returnProcuratorCount = 0;
+    $(function () {
+        getMenuDetail();
+
+        $("#btnSearch").on("click", function () {
+            contabs.addTabNotMenu('/Search/Index', 100, '全局搜索', true);
+        })
+
+        windowResize();
+        $(window).resize(function () {
+            windowResize();
+        });
+
+        $("#btnChange").on('click', function (e) {
+            layer.operate.open(e.currentTarget, false);
+        });
+
+        // window.setInterval("RefreshAlarm()", 10 * 1000); //10秒
+        // RefreshAlarm();
+    });
+
+    function windowResize() {
+        var windowHeight = $(window).height();
+        var navbarHeight = $('.navbar-static-top').height();
+        var sidebarFoldHeight = $('.sidebar-fold').height();
+        var wrapperHeight = windowHeight - navbarHeight;
+        var sidebarHeight = wrapperHeight - sidebarFoldHeight - 50;
+        //左导航栏
+        $(".subNavBox").css("height", sidebarHeight + "px");
+
+        //右内容栏
+        $('#page-wrapper-content').css("height", wrapperHeight + "px");
+        var tabsHeight = $('.content-tabs').height();
+        var mainHeight = wrapperHeight - tabsHeight;
+        //iframe内容栏
+        $('#iframe_index').css("height", mainHeight + "px");
+    }
+
+
+    function loginOut() {
+        layer.confirm('确定要退出吗？', {
+            btn: ['退出', '取消']
+        }, function () {
+            window.location.href = '/logout';
+        }, function () {
+        });
+    }
+
+    function RefreshAlarm() {
+        count = tag + deal;//+ returnCount + turnOnCount + procuratorCount + xzCaseCount + xsCaseCount + longNotMovecaseCount + caseTransferCount + caseReceives + returnProcuratorCount;
+        $.ajax({
+            type: "GET",
+            url: '/HomePage/QueryAlarm?dc=' + new Date().getTime(),
+            data: {maxId: maxId, lockMaxId: lockMaxId, areaMaxId: areaMaxId},
+            success: function (data) {
+                if (data != null) {
+                    if (data.MaxID > maxId) {
+                        maxId = data.MaxID;
+                    }
+                    if (data.LockMaxId > lockMaxId) {
+                        lockMaxId = data.LockMaxId;
+                    }
+                    if (data.AreaMaxId > areaMaxId) {
+                        areaMaxId = data.AreaMaxId;
+                    }
+                }
+                if (data != null) {
+
+                    //未签收
+                    if (data.NoSigned > 0) {
+                        tag = data.NoSigned;
+                        $(".small-chat-tag").html(tag);
+                    }
+                    else {
+                        $(".small-chat-tag").html('');
+                    }
+
+                    //未反馈
+                    if (data.NoFeedback > 0) {
+                        deal = data.NoFeedback;
+                        $(".small-chat-deal").html(deal);
+                    }
+                    else {
+
+                        $(".small-chat-deal").html('');
+                    }
+
+                    var totalCount = parseInt(data.NoSigned) + parseInt(data.NoFeedback);//+ parseInt(data.Casereturns) + parseInt(data.Caseturnonts) + parseInt(data.CaseProcurators) + parseInt(data.CaseOrdinarys) + parseInt(data.CaseCriminals) + parseInt(data.CaseNotMoves) + parseInt(data.CaseTransfers) + parseInt(data.CaseReceives) + parseInt(data.CaseRetProcurators);
+                    $(".alarm-num").html(totalCount > 99 ? "99+" : totalCount);
+                    //$(".alarm-num").html(0);
+                    $(".alarm-num-detail").html(totalCount);
+                    if (totalCount > 0 && totalCount > count)
+                        toastr.showWarning("提醒消息", "您有 " + totalCount + " 条提醒消息,请注意查看！");
+                }
+            },
+            error: function (jqXHR, textStatus, msg) {
+            }
+        });
+
+    }
+
+    function getMenuDetail() {
+        $.ajax({
+            type: "GET",
+            url: '/prog/getMenu',
+            data: {},
+            success: function (htmlData) {
+                getRootMenus(htmlData.data);
+                bindMenuEvent();
+                initMenu();
+            },
+            error: function (jqXHR, textStatus, msg) {
+            }
+        });
+    };
+</script>
+</body>
+</html>

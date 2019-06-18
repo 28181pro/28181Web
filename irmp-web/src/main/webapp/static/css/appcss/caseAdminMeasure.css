@@ -1,0 +1,33 @@
+﻿
+.time-box{
+    width:40%;
+    height:auto;
+    display:inline-block;
+    float:left;
+    min-width:400px;
+}
+.search-box{
+    width:55%;
+    height:auto;
+    right: 0;
+    display:inline-block;
+    float:left;
+    min-width:470px;
+}
+.export-btn-box{
+    display:inline-block;
+    float:right;
+}
+
+.search-text{
+    width:50px;
+    display:inline-block;
+}
+.search-value-box{
+    width:300px;
+    display:inline-block;
+    float:left;
+}
+.table-layout-auto{
+    table-layout:auto !important;
+}

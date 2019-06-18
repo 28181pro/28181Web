@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>公安局物联网案管系统</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/fonts/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <!--<link href="/Content/css/style.min.css" rel="stylesheet">-->
+    <link href="/static/css/hik.login.css" rel="stylesheet">
+
+</head>
+<body class="signin" style="background: url('/static/images/login-bg.png');height: auto; color: rgba(255, 255, 255, 0.90);-webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; ">
+<div class="middle_pic"></div>
+<div class="title" style="width:800px;height: 100px;margin-left:200px;margin-top:80px;">
+    <div class="title_png" style="width:100px;height:100px;float:left">
+        <img src="/static/images/login-logo.png" style="width:90px;height:90px" />
+    </div>
+    <div style="float:left;">
+        <div class="hktitle" style="width: 640px;font-family: MicrosoftYaHei;font-size: 46px;color: #FFFFFF;text-align: left;text-shadow: 0 2px 4px rgba(0,0,0,0.40);font-weight:bold; margin-top:20px">
+            沭阳县公安局物联网案管系统
+        </div>
+        <div class="hktitle_en" style="width: 640px;font-family: MicrosoftYaHei;font-size: 24px;color: #FFFFFF; margin-top:20px">
+            Shuyang Internet of Things Case Management System
+        </div>
+    </div>
+</div>
+<div class="signinpanel">
+    <form method="post">
+        <div class="widget-content">
+            <div>
+                <input type="text" id="account" class="user" value="admin" placeholder="请输入用户名">
+            </div>
+            <div style="margin-top: 25px">
+                <input type="password" id="password" class="password m-b" value="Hq8ks1CChl8=" placeholder="请输入密码">
+            </div>
+        </div>
+        <div class="form-group">
+            <div style="width: 320px;height:60px;">
+                <input type="button" id="btnLogin" class="btn btn-primary btn-login" style="width: 320px;border: 0;border-radius: 2px;height: 40px;background-color:#2BA3F8" value="系   统   登   录" />
+            </div>
+        </div>
+    </form>
+</div>
+<div class="copyright" style="position:fixed;left :0;right:0;bottom:10px;font-family: PingFangSC-Regular;font-size: 14px;color: #FFFFFF;text-align: center;">Copyrighit © 2018 中电海康集团有限公司</div>
+
+<script src="/static/scripts/jquery-1.10.2.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $("#btnLogin").on('click', function (e) {
+
+            var account = $("#account").val();
+            var password = $("#password").val();
+
+            if (account == "" || password == "") {
+                alert('请填写用户名和密码');
+                return false;
+            }
+
+            $.ajax({
+                type : "post",
+                url : "../doLogin",
+                dataType : "json",
+                data : {"account":account,
+                    "password":password,
+                },
+                success : function(data) {
+                    location.href="/index";
+                },
+                error:function (xhr) {
+                    alert(xhr);
+                }
+            });
+        });
+        if (window != parent.window) {
+            parent.window.location.href = location.href;
+        }
+    });
+</script>
+</body>
+
+</html>

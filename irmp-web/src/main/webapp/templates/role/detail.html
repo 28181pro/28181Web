@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layoutdetail :: htmlhead" th:with="title='角色明细'"></head>
+<body>
+<div class="module-frame module-detail">
+    <div class="form-horizontal">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-sm-3">
+                    <label>角色名称</label>
+                </td>
+                <td class="col-sm-9 form-control-static">
+                    <span th:utext="${role.name}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-3">
+                    <label>角色说明</label>
+                </td>
+                <td class="col-sm-9 form-control-static">
+                    <span th:utext="${role.mark}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-3">
+                    <label>已分配用户</label>
+                </td>
+                <td class="col-sm-9 form-control-static">
+                    <a href="javascript: void(0)" url="/Role/RoleUser" th:onclick="'openAuthPage(this,' +  ${role.id} + ')'" title="已分配用户">
+                        <u>
+                            <span class="fl text-gray-white" style="color:#18a689; font-size: 18px;" th:text="${usersize}"> </span>
+                        </u>
+                    </a>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-3">
+                    <label>已分配菜单</label>
+                </td>
+                <td class="col-sm-9 form-control-static">
+                    <a href="javascript: void(0)" url="/Role/RoleProg" th:onclick="'openAuthPage(this,' +  ${role.id} + ')'"title="分配菜单">
+                        <u>
+                            <span class="fl text-gray-white" style="color:#18a689; font-size: 18px;" th:text="${progsize}"> </span>
+                        </u>
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:include="layoutdetail::footer"></div>
+
+</body>
+</html>

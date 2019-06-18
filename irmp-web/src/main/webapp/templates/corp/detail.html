@@ -1,0 +1,79 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layoutdetail :: htmlhead" th:with="title='区域明细'"></head>
+<body>
+<div class="module-frame module-detail">
+    <div class="form-horizontal">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>单位编号</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <span th:utext="${corp.code}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>单位名称</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <span th:utext="${corp.name}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>所属区域编号</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <span th:utext="${corp.areacode}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>所属区域名称</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <span th:utext="${corp.areaname}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>标签类型</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <span th:utext="${corp.epctype} == 1 ? '单标签' : '双标签'";></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>单位地址</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <span th:utext="${corp.address}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>排序</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <span th:utext="${corp.sequence}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label>备注</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <span th:utext="${corp.mark}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:include="layoutdetail::footer"></div>
+</body>
+</html>

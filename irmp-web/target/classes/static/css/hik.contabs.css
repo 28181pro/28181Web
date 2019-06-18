@@ -1,0 +1,88 @@
+﻿
+.content-tabs {
+	background: rgb(250, 250, 250); height: 42px; line-height: 40px; position: relative;
+}
+.content-tabs .roll-nav {
+	top: 0px; width: 40px; height: 40px; text-align: center; color: rgb(153, 153, 153); position: absolute; z-index: 2;
+}
+.page-tabs-list {
+	top: 0px; width: 40px; height: 40px; text-align: center; color: rgb(153, 153, 153); position: absolute; z-index: 2;
+}
+.content-tabs .roll-left {
+	left: 0px; border-right-color: rgb(238, 238, 238); border-right-width: 1px; border-right-style: solid;
+}
+.content-tabs .roll-right {
+	right: 0px; border-left-color: rgb(238, 238, 238); border-left-width: 1px; border-left-style: solid;
+}
+.content-tabs button {
+	background: rgb(255, 255, 255); outline: 0px; border: 0px currentColor; width: 40px; height: 40px;
+}
+.content-tabs button:hover {
+	background: rgb(250, 250, 250);
+}
+nav.page-tabs {
+	width: 100000px; height: 40px; overflow: hidden; margin-left: 40px;
+}
+nav.page-tabs .page-tabs-content {
+	float: left;
+}
+.page-tabs a {
+	padding: 0px 15px; border-right-color: rgb(238, 238, 238); border-right-width: 1px; border-right-style: solid; float: left; display: block;
+}
+.page-tabs a i:hover {
+	color: rgb(204, 0, 0);
+}
+.content-tabs .roll-nav:hover {
+	background: rgb(242, 242, 242); color: rgb(119, 119, 119); cursor: pointer;
+}
+.page-tabs a:hover {
+	background: rgb(242, 242, 242); color: rgb(119, 119, 119); cursor: pointer;
+}
+.J_tabRight.roll-right {
+	right: 0px;
+}
+.J_tabClose.roll-right {
+	width: 80px; right: 60px;
+}
+.J_tabExit.roll-right {
+	background: rgb(255, 255, 255); outline: 0px; width: 60px; height: 40px;
+}
+.dropdown-menu-right {
+	left: auto;
+}
+#content-main {
+	height: calc(100% - 140px);
+}
+.page-tabs a {
+	color: rgb(153, 153, 153);
+}
+.page-tabs a i {
+	color: rgb(204, 204, 204);
+}
+.page-tabs a.active {
+	background: rgb(47, 64, 80); color: rgb(167, 177, 194);
+}
+.page-tabs a.active i:hover {
+	background: rgb(41, 56, 70); color: rgb(255, 255, 255);
+}
+.page-tabs a.active:hover {
+	background: rgb(41, 56, 70); color: rgb(255, 255, 255);
+}
+.content-tabs {
+	border-bottom-color: rgb(47, 64, 80); border-bottom-width: 2px; border-bottom-style: solid;
+}
+.page-tabs a {
+	color: rgb(153, 153, 153);
+}
+.page-tabs a i {
+	color: rgb(204, 204, 204);
+}
+.page-tabs a.active {
+	background: rgb(47, 64, 80); color: rgb(167, 177, 194);
+}
+.page-tabs a.active i:hover {
+	background: rgb(41, 56, 70); color: rgb(255, 255, 255);
+}
+.page-tabs a.active:hover {
+	background: rgb(41, 56, 70); color: rgb(255, 255, 255);
+}

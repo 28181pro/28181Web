@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layoutlist :: htmlhead" th:with="title='标签读写管理'"></head>
+<body>
+        <div class="wrapper wrapper-content animated fadeInRight white-bg">
+            <div class="module-detail" style="max_width:100%;">
+
+                <div class="tab-content">
+                    <table class="module-content table table-bordered">
+                        <tbody>
+                        <tr>
+                            <td colspan="2" class="control-label col-sm-1" style="width:5%;"><label for="AJLB">案件类别</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <select id="selCaseType" style="width:95%"></select><span style="color:red">*</span>
+                                <input type="hidden" id="AJLB" name="AJLB" />
+                                <input type="hidden" id="AJLBMC" name="AJLBMC" />
+                                <span class="field-validation-valid" data-valmsg-for="AJLB" data-valmsg-replace="true"></span>
+                            </td>
+                            <td class="control-label col-sm-1" style="width: 6%;"> <label for="AJMC">案件名称</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <input class="form-control" data-val="true" data-val-required="&#39;案件名称&#39;必填" id="AJMC" name="AJMC" type="text" value="" /><span style="color:red">*</span>
+                                <span class="field-validation-valid" data-valmsg-for="AJMC" data-valmsg-replace="true"></span>
+                            </td>
+                            <td class="control-label col-sm-1" style="width:6%;"><label for="AJFAB">案件副案别</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <select id="selAJFAB"></select>
+                                <input type="hidden" id="AJFAB" name="AJFAB" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="control-label col-sm-1"> <label for="AJLY">案件来源</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selAJLY" style="width:100%"></select>
+                                <input type="hidden" id="AJLY" name="AJLY" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="AJZT">案件状态</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selAJZT" name="selAJZT" style="width:90%"></select><span style="color:red">*</span>
+                                <span class="field-validation-valid" data-valmsg-for="AJZT" data-valmsg-replace="true"></span>
+                                <input type="hidden" id="AJZT" name="AJZT" />
+                            </td>
+                            <td class="control-label col-sm-1" style="width:6%;"><label for="ZABJ">是否专案</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selZABJ" style="width:100%">
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                                <input type="hidden" id="ZABJ" name="ZABJ" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="DBJB">督办级别</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selDBJB" style="width:100%"></select>
+                                <input type="hidden" id="DBJB" name="DBJB" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="SLFS">受理方式</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selSLFS" style="width:100%"></select>
+                                <input type="hidden" id="SLFS" name="SLFS" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="ZSAJ">直属案件</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selZSAJ" style="width:100%">
+                                    <option value="0">否</option>
+                                    <option value="1">是</option>
+                                </select>
+                                <input type="hidden" id="ZSAJ" name="ZSAJ" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="control-label col-sm-1"><label for="AJBH">案件编号</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <input class="form-control" data-val="true" data-val-required="&#39;案件编号&#39;必填" id="AJBH" maxlength="20" minlength="20" name="AJBH" type="text" value="" /><span style="color:red">*</span>
+                                <span class="field-validation-valid" data-valmsg-for="AJBH" data-valmsg-replace="true"></span>
+                            </td>
+                            <td class="control-label col-sm-1"><label for="LASJDate">立案时间</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <input type="text" id="LASJDate" name="LASJDate" class="laydate-icon form-control layer-datetime" style="width:50%;" value="2019-04-23 09:26:29" />
+
+                            </td>
+                            <td class="control-label col-sm-1"><label for="FXSJDate">发现时间</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <input type="text" id="FXSJDate" name="FXSJDate" class="laydate-icon form-control layer-datetime" style="width:50%;" value="2019-04-23 09:26:29" />
+
+                            </td>
+
+                        </tr>
+                        <tr>
+                            <td rowspan="2" class="control-label col-sm-1" style="width:3%;"><label for>报</label><br /><label for>案</label><br /><label for>人</label> </td>
+                            <td class="control-label col-sm-1"><label for="BARXM">报案人姓名</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <input class="form-control txtstyle" id="BARXM" name="BARXM" type="text" value="" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="BARXB">报案人性别</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selBARXB" style="width:100%">
+                                    <option value="1">男</option>
+                                    <option value="2">女</option>
+                                </select>
+                                <input type="hidden" id="BARXB" name="BARXB" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="BARCSRQDate">报案人出生日期</label></td>
+                            <td colspan="2" class="col-sm-1 form-control-static">
+                                <input type="text" id="BARCSRQDate" name="BARCSRQDate" class="laydate-icon form-control layer-date" style="width:50%;" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="BARZJZL">报案人证件种类</label></td>
+                            <td colspan="2" class="col-sm-1 form-control-static">
+                                <select id="selBARZJZL" style="width:100%"></select>
+                                <input type="hidden" id="BARZJZL" name="BARZJZL" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="BARZJHM">报案人证件号码</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <input class="form-control txtstyle" id="BARZJHM" name="BARZJHM" type="text" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="control-label col-sm-1"><label for="BARDW">报案人单位</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <input class="form-control" id="BARDW" name="BARDW" type="text" value="" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="BARLXFS">报案人联系方式</label></td>
+                            <td colspan="2" class="col-sm-1 form-control-static">
+                                <input class="form-control" id="BARLXFS" name="BARLXFS" type="text" value="" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="BARZZ">报案人住址</label></td>
+                            <td colspan="2" class="col-sm-1 form-control-static">
+                                <input class="form-control" id="BARZZ" name="BARZZ" type="text" value="" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="BARBMJB">报案人保密级别</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selBARBMJB" style="width:100%"></select>
+                                <input type="hidden" id="BARBMJB" name="BARBMJB" />
+                            </td>
+                        </tr>
+
+                        <tr>
+                            <td colspan="2" class="control-label col-sm-1"><label for="SLSJDate">受理时间</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <input type="text" id="SLSJDate" name="SLSJDate" class="laydate-icon form-control layer-datetime" style="width:50%;" value="2019-04-23 09:26:29" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="SLDWMC">受理单位名称</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <select id="selSLDWMC" style="width:80%"></select>
+                                <input type="hidden" id="SLDWMC" name="SLDWMC" />
+                                <input type="hidden" id="SLDW" name="SLDW" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="SLR">受理人</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <select id="selSLR" style="width:80%"></select>
+                                <input type="hidden" id="SLR" name="SLR" />
+                                <input type="hidden" id="SLRXM" name="SLRXM" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="SLDWDH">受理单位电话</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <input class="form-control txtstyle" id="SLDWDH" name="SLDWDH" type="text" value="" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="control-label col-sm-1"><label for="CorpName">承办单位</label></td>
+                            <td colspan="3" class="col-sm-1 form-control-static">
+                                <select id="selCorpID" style="width:80%"></select><span style="color:red">*</span>
+                                <span class="field-validation-valid" data-valmsg-for="ZBDW" data-valmsg-replace="true"></span>
+                                <input type="hidden" id="CorpID" name="CorpID" />
+                                <input type="hidden" id="CorpName" name="CorpName" />
+                                <input type="hidden" id="ZBDW" name="ZBDW" />
+                                <input type="hidden" id="ZBDWMC" name="ZBDWMC" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="ZBRYMC">主办人员</label></td>
+                            <td colspan="2" class="col-sm-1 form-control-static">
+                                <select id="selZBRYID" style="width:80%"></select><span style="color:red">*</span>
+                                <span class="field-validation-valid" data-valmsg-for="ZBR" data-valmsg-replace="true"></span>
+                                <input type="hidden" id="ZBRYID" name="ZBRYID" />
+                                <input type="hidden" id="ZBRYMC" name="ZBRYMC" />
+                                <input type="hidden" id="ZBRXM" name="ZBRXM" />
+                                <input type="hidden" id="ZBR" name="ZBR" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="XBRXM">协办人姓名</label></td>
+                            <td colspan="2" class="col-sm-1 form-control-static">
+                                <select id="selXBRXM" style="width:80%"></select>
+                                <input type="hidden" id="XBRYID" name="XBRYID" />
+                                <input type="hidden" id="XBRXM" name="XBRXM" />
+                                <input type="hidden" id="XBRYMC" name="XBRYMC" />
+                                <input type="hidden" id="XBR" name="XBR" />
+                            </td>
+                            <td class="control-label col-sm-1"><label for="ZBRDH">主办人电话</label></td>
+                            <td class="col-sm-1 form-control-static">
+                                <input class="form-control txtstyle" id="ZBRDH" name="ZBRDH" type="text" value="" />
+                                <input type="hidden" id="Mark" name="Mark" />
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2" class="control-label col-sm-1"><label for="JYAQ">简要案情</label></td>
+                            <td colspan="11" class="col-sm-10 form-control-static">
+                        <textarea class="form-control" cols="20" id="JYAQ" name="JYAQ" rows="2">
+                        </textarea>
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            <div class="hr-line-dashed"></div>
+            <div class="module-button">
+                <div class="col-sm-4 col-sm-offset-2">
+                    <button class='btn btn-primary ' type='submit' >保存</button>
+                    <button class='btn btn-white btn-optclose ' type='button' >返回列表</button>
+                </div>
+            </div>
+        </div>
+
+        <script src="/Scripts/jquery-1.10.0.js"></script>
+        <script src="/Scripts/bootstrap.min.js"></script>
+
+        <script src="/Scripts/plugins/layer/layer.js"></script>
+        <script src="/Scripts/plugins/layer/layer.helper.js"></script>
+        <script src="/Scripts/plugins/laydate/laydate.js"></script>
+        <script src="/Scripts/plugins/laydate/laydate.helper.js"></script>
+        <script src="/Scripts/plugins/jasny/jasny-bootstrap.min.js"></script>
+
+        <script src="/Scripts/common.js"></script>
+        <script src="/Scripts/plugins/bootstrapiconpicker/iconset-fontawesome-4.2.0.min.js"></script>
+        <script src="/Scripts/plugins/bootstrapiconpicker/bootstrap-iconpicker.min.js"></script>
+        <script src="/Scripts/plugins/select2/js/select2.js"></script>
+        <script src="/Scripts/plugins/select2/js/pinyin.js"></script>
+        <script src="/Scripts/plugins/select2/js/i18n/zh-CN.js"></script>
+
+
+        <script type="text/javascript">
+
+
+        </script>
+
+        <script type="text/javascript">
+
+
+        </script>
+
+
+        <script type="text/javascript">
+            var GISImageType = '1' == 0 ? "jpg" : "png";
+
+
+        </script>
+        </body>
+        </html>
+    </form>
+</div>
+
+<script src="/Scripts/jquery-1.10.0.js"></script>
+<script src="/Scripts/bootstrap.min.js"></script>
+<script src="/Scripts/plugins/layer/layer.js"></script>
+<script src="/Scripts/plugins/layer/layer.helper.js"></script>
+<script src="/Scripts/plugins/laydate/laydate.js"></script>
+<script src="/Scripts/plugins/laydate/laydate.helper.js"></script>
+<script src="/Scripts/plugins/jasny/jasny-bootstrap.min.js"></script>
+<script src="/Scripts/common.js"></script>
+<script src="/Scripts/plugins/bootstrapiconpicker/iconset-fontawesome-4.2.0.min.js"></script>
+<script src="/Scripts/plugins/bootstrapiconpicker/bootstrap-iconpicker.min.js"></script>
+<script src="/Scripts/plugins/select2/js/select2.js"></script>
+<script src="/Scripts/plugins/select2/js/pinyin.js"></script>
+<script src="/Scripts/plugins/select2/js/i18n/zh-CN.js"></script>
+<script src="/Scripts/plugins/select2/js/select2.min.js"></script>
+<script src="/Scripts/plugins/select2/js/i18n/zh-CN.js"></script>
+
+<script type="text/javascript">
+
+
+</script>
+
+
+<script type="text/javascript">
+
+
+</script>
+
+
+</body>
+
+</html>

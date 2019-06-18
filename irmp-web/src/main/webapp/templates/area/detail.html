@@ -1,0 +1,44 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layoutdetail :: htmlhead" th:with="title='区域明细'"></head>
+<body>
+<div class="module-frame module-detail">
+    <div class="form-horizontal">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-xs-3">
+                    <label>区域编号</label>
+                </td>
+                <td class="col-sm-9 form-control-static">
+                    <span th:utext="${area.code}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-3">
+                    <label>区域名称</label>
+                </td>
+                <td class="col-sm-9 form-control-static">
+                    <span th:utext="${area.name}"></span>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-3"><label>顺序</label></td>
+                <td class="col-sm-9  form-control-static">
+                    <span th:utext="${area.sequence}"></span>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-3"><label>备注</label></td>
+                <td class="col-sm-9  form-control-static">
+                    <span th:utext="${area.mark}"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<div th:include="layoutdetail::footer"></div>
+</body>
+</html>

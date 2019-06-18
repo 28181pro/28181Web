@@ -1,0 +1,133 @@
+<head th:fragment="htmlhead">
+    <meta charset="utf-8"></meta>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge"></meta>
+    <meta name="renderer" content="webkit" />
+    <meta name="description" content=""></meta>
+    <meta name="author" content="cethik"></meta>
+    <meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1"></meta>
+    <link rel="icon" href="/images/logo.png" type="image/x-icon" />
+    <link rel="shortcut icon" href="/images/logo.png" type="image/x-icon" />
+    <link rel="Bookmark" th:href="@{/images/logo.png}" type="image/x-icon" />
+    <title>公安局物联网案管系统</title>
+
+    <link href="/static/css/bootstrap.css" rel="stylesheet">
+
+    <link href="/static/fonts/font-awesome-4.2.0/css/font-awesome.min.css" rel="stylesheet" />
+    <link href="/static/fonts/font-hik/iconfont.css" rel="stylesheet" />
+    <link href="/static/css/responsive.css" rel="stylesheet">
+
+    <link href="/static/css/plugins/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/static/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <link href="/static/css/hik.bootstrap.css" rel="stylesheet"/>
+    <link href="/static/css/hik.style.css" rel="stylesheet"/>
+
+    <link href="/static/scripts/plugins/select2/css/select2.min.css" rel="stylesheet" />
+
+    <!--[if lt IE 9]>
+    <script src="/static/scripts/respond.js" type="text/javascript"></script>
+    <script src="/static/scripts/html5shiv.min.js" type="text/javascript"></script>
+    <![endif]-->
+</head>
+
+<div th:fragment="footer">
+    <script src="/static/scripts/jquery-1.10.2.js"></script>
+    <script src="/static/scripts/bootstrap.min.js"></script>
+
+    <script src="/static/scripts/plugins/layer/layer.js"></script>
+    <script src="/static/scripts/plugins/layer/layer.helper.js"></script>
+    <script src="/static/scripts/plugins/laydate/laydate.js"></script>
+    <script src="/static/scripts/plugins/laydate/laydate.helper.js"></script>
+    <script src="/static/scripts/plugins/jasny/jasny-bootstrap.min.js"></script>
+    <script src="/static/scripts/hik.common.js"></script>
+    <script src="/static/scripts/plugins/bootstrapiconpicker/iconset-fontawesome-4.2.0.min.js"></script>
+    <script src="/static/scripts/plugins/bootstrapiconpicker/bootstrap-iconpicker.min.js"></script>
+    <script src="/static/scripts/plugins/select2/js/select2.js"></script>
+    <script src="/static/scripts/plugins/select2/js/pinyin.js"></script>
+    <script src="/static/scripts/plugins/select2/js/i18n/zh-CN.js"></script>
+
+    <script src="/static/scripts/plugins/dataTables/jquery.dataTables.js"></script>
+    <script src="/static/scripts/plugins/dataTables/dataTables.bootstrap.js"></script>
+    <script src="/static/scripts/plugins/dataTables/jquery.dataTables.helper.js"></script>
+    <script src="/static/scripts/plugins/iCheck/icheck.min.js"></script>
+    <script src="/static/scripts/plugins/webuploader/webuploader.nolog.min.js"></script>
+
+    <script type="text/javascript">
+        var file_index;
+        $(function () {
+            if (window.refresh) {
+                $(".btn-refresh").on('click', function (e) {
+                    window.refresh.call();
+                });
+            }
+            $(".btn-export").on('click', function (e) {
+                var url = $(e.currentTarget).attr("url") + getUrlParams();
+                window.open(url, "_blank");
+            });
+
+            if ($(".div-import").length > 0) {
+
+                var url = $('.btn-import').attr("url");
+                var uploader = WebUploader.create({
+                    auto: true,
+                    pick: {
+                        id: '.div-import'
+                    },
+                    swf: '/Scripts/plugins/webuploader/Uploader.swf',
+                    server: url
+                });
+
+                uploader.onFileQueued = function (file) {
+                    file_index = layer.load(2, {
+                        shade: [0.1, '#fff']
+                    });
+                };
+
+                uploader.on('uploadSuccess', function (file, response) {
+                    layer.close(file_index);
+                    layer.alert("导入成功." + response.error);
+                    refresh();
+                });
+
+                uploader.onError = function (code) {
+
+                    layer.close(file_index);
+                    layer.alert("导入失败");
+                };
+
+                uploader.on('uploadAccept', function (file, response) {
+                    if (response.code == 100) {
+                        layer.close(file_index);
+                        layer.alert("请检查数据格式！");
+                        return false;
+                    }
+                    if (response.code == 101) {
+                        layer.close(file_index);
+                        layer.alert(response.error);
+                        return false;
+                    }
+                    if (response.code == 102) {
+                        layer.close(file_index);
+                        layer.alert("请检查表名！");
+                        return false;
+                    }
+                    return true;
+                });
+
+                $('.btn-import').click(function (e) {
+
+                    e.preventDefault();
+                    $('input[type="file"]').click();
+                });
+            }
+        });
+        function AdvancedSearch() {
+            $(".control-group.advance-search").each(function (index, elment) {
+                $(this).toggleClass("hidden");
+            });
+            $(".advance-search-label").each(function (index, element) {
+                $(this).toggleClass("dropup");
+            });
+        }
+    </script>
+</div>

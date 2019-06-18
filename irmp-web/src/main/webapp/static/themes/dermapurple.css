@@ -1,0 +1,66 @@
+.navbar-mystyle {
+	color: rgb(255, 255, 255); background-color: rgb(135, 117, 167);
+}
+.mystyle-brand {
+	display: block; background-color: rgb(135, 117, 167); border-right: 1px solid rgb(135, 133, 177);
+}
+.navbar-mystyle .navbar-nav li .mystyle-color:hover {
+	color: rgb(255, 255, 255); background-color: rgb(135, 99, 132);
+}
+.navbar-default .navbar-nav > li > a {
+	color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-nav > li > a:focus {
+	color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-brand {
+	color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-nav > .open > a {
+	color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-nav > .open > a:focus {
+	color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-nav > .open > a:hover {
+	color: rgb(0, 0, 0); background-color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-brand:hover {
+	color: rgb(255, 255, 255);
+}
+.navbar-default .dropdown-menu {
+	border-width: 0; border-style: solid none none; border-color: rgb(229, 229, 229) currentColor currentColor; border-image: none; width: 100%; min-width: 1px; margin-top: 2px;
+}
+.navbar-default .navbar-toggle {
+	border-color: rgb(255, 255, 255);
+}
+.navbar-default .navbar-toggle .icon-bar {
+	background-color: rgb(255, 255, 255);
+}
+.topbar-num {
+	background: rgb(255, 153, 0); padding: 2px 5px; border-radius: 5px; text-align: center; color: rgb(255, 255, 255); line-height: 16px; font-size: 12px; vertical-align: top; display: inline-block;
+}
+.li-border {
+	border-right-color: rgb(135, 133, 177); border-right-width: 0px; border-right-style: solid;
+}
+.sBox ul .active {
+	background-color: rgb(135, 117, 167);
+}
+.dropdown .search-dropdown {
+	padding: 0px; border: 2px solid rgb(135, 133, 177); border-image: none; left: auto; width: 280px; right: 0px;
+}
+.dropdown .search-dropdown .form-control {
+	border: 0px currentColor; border-image: none;
+}
+.dropdown .search-dropdown .btn {
+	padding: 7px 12px; border-radius: 0px; border: 0px currentColor; border-image: none; color: rgb(255, 255, 255); background-color: rgb(135, 133, 177);
+}
+.time-title .year-month {
+	padding: 10px; height: 100%; color: rgb(255, 255, 255); background-color: rgb(135, 117, 167);
+}
+.time-title .hour-minute {
+	color: rgb(135, 117, 167); line-height: 70px; padding-right: 10px; padding-left: 10px; background-color: rgb(255, 255, 255);
+}
+.btn-mystyle {
+	color: rgb(255, 255, 255); background-color: rgb(135, 117, 167);
+}

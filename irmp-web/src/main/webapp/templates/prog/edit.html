@@ -1,0 +1,129 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='修改用户'"></head>
+<body>
+
+<form class="form-horizontal" id="signupForm">
+    <div class="module-frame module-title">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Account"><span style="color: red"> * </span>登录帐号 </label>
+                    <input type="hidden" id="id" name="id" th:value="${userinfo.id}">
+                </td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <input class="form-control required" id="Account" name="Account" type="text" th:value="${userinfo.account}">
+
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Name"><span style="color: red"> * </span>姓名 </label>
+                </td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <input class="form-control required" id="Name" name="Name" type="text"  th:value="${userinfo.name}">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Password"><span style="color: red"> * </span>用户密码 </label>
+                </td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+
+                    <div class="input-group">
+                        <input class="form-control" id="Password" name="Password" type="password"
+                               value="abc123">
+                        <span class="input-group-btn">
+                                <button class="btn-link" type="button" data-container="body" data-toggle="popover"
+                                        data-placement="top" data-html="true"
+                                        data-content="默认密码: <font class='yellow-fg'>abc123</font>" data-trigger="hover"
+                                        data-original-title="" title="">
+                                    <i class="iconfont icon-wenhao"></i>
+                                </button>
+                            </span>
+                    </div>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Gender">性别</label>
+                </td>
+                <td class="col-sm-4 form-control-static">
+                    <select class="form-control" id="Gender" name="Gender">
+                        <option value="1">男</option>
+                        <option value="0">女</option>
+                    </select>
+                    <span class="field-validation-valid" data-valmsg-for="Gender" data-valmsg-replace="true"></span>
+                </td>
+                <td class="control-label1 col-sm-2">
+                    <label for="MobilePhone">电话</label>
+                </td>
+                <td class="col-sm-4 form-control-static">
+                    <input class="form-control" id="MobilePhone" name="MobilePhone" type="text" value="">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-2">
+                        <label for="CorpID"><span style="color: red"> * </span>所属单位 </label>
+                </td>
+                <td class="col-sm-4 form-control-static">
+                    <div class="input-append">
+                        <input class="form-control" id="CorpName" name="CorpName" readonly="readonly" type="text"
+                               value="">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-sm btn-choose" type="button" url="/Corp/Choose"
+                                    title="单位选择">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <input id="CorpID" name="CorpID" type="hidden" value="">
+                </td>
+                <td class="control-label1 col-sm-2">
+                    <label for="UserType">用户类型</label>
+                </td>
+                <td class="col-sm-4 form-control-static">
+                    <select class="form-control" id="UserType" name="UserType" onchange="btnUserTypeChange(this)">
+                        <option value="0">普通民警</option>
+                        <option value="1">管理员</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2"><label for="State">状态</label></td>
+                <td class="col-sm-4 form-control-static">
+                    <select class="form-control" id="State" name="State">
+                        <option selected="selected" value="1">启用</option>
+                        <option value="0">禁用</option>
+                    </select>
+                </td>
+                <td class="control-label1 col-sm-2"><label for="Sequence">顺序</label></td>
+                <td class="col-sm-4 form-control-static">
+                    <input class="form-control" id="Sequence" name="Sequence" type="number" value="">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-2"><label for="Mark">备注</label></td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <textarea class="form-control" cols="20" id="Mark" name="Mark" rows="2"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="module-button">
+        <div class="col-sm-4 col-sm-offset-2">
+            <button class="btn btn-primary " type="submit">保存</button>
+            <button class="btn btn-white btn-optclose " type="button">返回列表</button>
+        </div>
+    </div>
+</form>
+<div th:include="layout::footer"></div>
+<script src="/static/appjs/user/edit.js"></script>
+</body>
+</html>

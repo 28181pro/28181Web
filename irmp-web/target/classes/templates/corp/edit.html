@@ -1,0 +1,111 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="layout :: htmlhead" th:with="title='修改用户'"></head>
+<body>
+
+<form class="form-horizontal" id="signupForm">
+    <div class="module-frame module-title">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="code">单位编号</label>
+                    <input type="hidden" id="id" name="id" th:value="${corp.id}">
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control"  id="code" name="code" type="text" th:value="${corp.code}">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="type">单位类型</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <select class="form-control" id="type" name="type">
+                        <option value="1">公安局</option>
+                        <option value="0">派出所</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="name">单位名称</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control" id="name" name="name" type="text" th:value="${corp.name}">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="AreaCode">所属区域编号</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <div class="input-append">
+                        <input class="form-control" id="areacode" name="areacode" readonly="True" type="text" th:value="${corp.areacode}">
+                        <span class="input-group-btn">
+                            <button class="btn btn-primary btn-sm btn-choose" type="button" url="/Area/Choose" title="区域选择">
+                                <i class="fa fa-search"></i>
+                            </button>
+                        </span>
+                    </div>
+                    <input id="areaid" name="areaid" type="hidden" th:value="${corp.areaid}">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="areaname">所属区域名称</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control"  id="areaname" name="areaname" readonly="True" type="text" th:value="${corp.areaname}">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="address">单位地址</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control" id="address" name="address" type="text" th:value="${corp.address}">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="epctype">标签类型</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <select class="form-control" id="epctype" name="epctype">
+                        <option value="0">双标签</option>
+                        <option value="1">单标签</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="sequence">排序</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control" id="sequence" name="sequence" type="text" th:value="${corp.sequence}">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="mark">备注</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <textarea class="form-control" cols="20" id="mark" name="mark" rows="2" th:value="${corp.mark}"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="module-button">
+        <div class="col-sm-4 col-sm-offset-2">
+            <button class="btn btn-primary " type="submit">保存</button>
+            <button class="btn btn-white btn-optclose " type="button">返回列表</button>
+        </div>
+    </div>
+</form>
+<div th:include="layout::footer"></div>
+<script src="/static/appjs/corp/edit.js"></script>
+</body>
+</html>

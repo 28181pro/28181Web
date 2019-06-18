@@ -1,0 +1,13 @@
+﻿.padding-none{
+    padding:0 !important;
+}
+.padding-3-0{
+    padding-left:3px !important;
+    padding-right:0 !important;
+}
+.ml15{
+    margin-left:15px;
+}
+.width-fill-parent{
+    width:100% !important;
+}

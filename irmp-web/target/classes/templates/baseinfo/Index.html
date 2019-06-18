@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layoutlist :: htmlhead" th:with="title='标签读写管理'"></head>
+<body>
+<div class="wrapper wrapper-content animated fadeInRight white-bg">
+    <div class="wrapper wrapper-content animated fadeInRight">
+        <div class="ibox-content border-bottom border-left-right ibox-search">
+            <div class="form-horizontal">
+                <div class="control-group">
+                    <label class="col-xs-1 control-label">案件信息</label>
+                    <div class="col-md-5">
+                        <div class="input-append advance-search-label">
+                            <input type="text" id="Keyword" class="form-control " placeholder="请输入案件编号/案件名称进行查询"/>
+                            <button class="btn btn-primary btn-sm btn-refresh" url="/" title="查询"><span
+                                    class="bold"> 查询</span></button>
+                            <button class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                                    aria-haspopup="true" aria-expanded="false" onclick="AdvancedSearch();"><span
+                                    class="caret"></span><span class="sr-only"></span></button>
+                        </div>
+                    </div>
+                    <div class="col-xs-5 m-b-sm text-right">
+                        <button class="btn btn-primary btn-sm btn-success btn-opt" url="/casereadwritetag/create"
+                                title="新增案件"><i class="fa fa-plus"></i> <span class="bold"> 新增案件</span></button>
+                        <button class="btn btn-primary btn-sm btn-success btn-opt" url="/CaseReadWriteTag/Edit"
+                                title="编辑案件" opt-type="table"><i class="fa fa-edit"></i> <span class="bold"> 编辑案件</span>
+                        </button>
+                        <button class="btn btn-primary btn-sm btn-white btn-export" url="/CaseReadWriteTag/Export"
+                                title="导出数据"><i class="glyphicon glyphicon-export"></i> <span class="bold"> 导出数据</span>
+                        </button>
+                        <span class="pull-right btn-group" style="margin-left:4px;">
+                            <button class="btn btn-primary btn-sm dropdown-toggle" aria-expanded="false"
+                                    data-toggle="dropdown">
+                                <i class="glyphicon glyphicon-list"></i> 选择列 <span class="caret"></span>
+                            </button>
+                            <ul id="ulcols" class="dropdown-menu agile-list" style="padding-bottom:5px;">
+                            </ul>
+                        </span>
+                    </div>
+                </div>
+                <div class="control-group advance-search1  ">
+                    <label class="col-xs-1 control-label">承办单位</label>
+                    <div class="col-xs-2">
+                        <select id="selCorpName" style="width:100%"></select>
+                        <input type="hidden" id="CorpName" name="CorpName"/>
+                        <input type="hidden" id="CorpID" name="CorpID"/>
+                    </div>
+                    <label class="col-xs-1 control-label">主办人</label>
+                    <div class="col-xs-2">
+                        <input type="text" id="OrganiserName" class="form-control"/>
+                    </div>
+                    <label class="col-xs-1 control-label">受理时间</label>
+                    <div class="col-xs-4">
+                        <div class="input-group">
+                            <div class="input-daterange input-group">
+                                <input type="text" id="StartReceptionDate" class="laydate-icon form-control layer-date"
+                                       style="width:25%;"/>
+                                <span class="input-group-addon">到</span>
+                                <input type="text" id="EndReceptionDate" class="laydate-icon form-control layer-date"
+                                       style="width:25%;"/>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="control-group advance-search hidden ">
+
+                    <label class="col-xs-1 control-label">犯罪嫌疑人</label>
+                    <div class="col-xs-2">
+                        <input type="text" id="Suspect" class="form-control"/>
+                    </div>
+                    <label class="col-xs-1 control-label">案件关联嫌疑人</label>
+                    <div class="col-xs-2">
+                        <input type="text" id="RelationSuspect" class="form-control"/>
+                    </div>
+                    <label class="col-xs-1 control-label">标签状态</label>
+                    <div class="col-xs-2">
+                        <select class="form-control" id="SFTBQCond" name="SFTBQCond">
+                            <option value="" selected="selected">全部</option>
+                            <option value="1">已贴标签</option>
+                            <option value="0">未贴标签</option>
+                        </select>
+                    </div>
+                    <label class="col-xs-1 control-label">案件状态</label>
+                    <div class="col-xs-2">
+                        <select id="selCaseState" name="selCaseState" style="width:100%"></select>
+                        <input type="hidden" id="CaseState" name="CaseState" value=""/>
+                    </div>
+                </div>
+                <div class="control-group advance-search  hidden ">
+
+                    <label class="col-xs-1 control-label">案件类别</label>
+                    <div class="col-xs-5">
+                        <select id="selCaseType" style="width:100%"></select>
+                        <input type="hidden" id="CaseTypeID" name="CaseTypeID" value="" class="form-control hidajlb"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-12" style="overflow-x: auto">
+                <table id="tbDataList" class="table table-striped table-bordered table-hover dataTable"></table>
+            </div>
+        </div>
+
+        <div>
+            <script type="text/javascript">
+                var s_edit_h = 'false';
+                var s_detail_h = 'false';
+            </script>
+        </div>
+        <div shiro:hasPermission="caseinfo/edit">
+            <script type="text/javascript">
+                s_edit_h = 'true';
+            </script>
+        </div>
+        <div shiro:hasPermission="caseinfo/detail">
+            <script type="text/javascript">
+                s_detail_h = 'true';
+            </script>
+        </div>
+    </div>
+</div>
+<div th:include="layoutlist::footer"></div>
+<script src="/static/appjs/common/getdata.js"></script>
+<script src="/static/appjs/casereadwritetag/index.js"></script>
+</body>
+</html>

@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:shiro="http://www.pollix.at/thymeleaf/shiro">
+<head th:include="layout :: htmlhead" th:with="title='新增程序'"></head>
+<body>
+
+<form class="form-horizontal" id="signupForm">
+    <input data-val="true" id="pid" name="pid" type="hidden" th:value="${pid}">
+    <div class="module-frame module-title">
+        <table class="module-content table table-bordered">
+            <tbody>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Name"><span style="color: red"> * </span>菜单名称 </label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control required" id="Name" name="Name" type="text" value="">
+                </td>
+            </tr>
+
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Controller">控制器</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control" id="Controller" name="Controller" type="text" value="">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Action">方法名</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control" id="Action" name="Action" type="text" value="">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="nodetype">菜单类型</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <select class="form-control" id="nodetype" name="nodetype">
+                        <option value="0">页面</option>
+                        <option value="1">功能</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Sequence">顺序</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <input class="form-control" id="sequence" name="sequence" type="text" value="">
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2">
+                    <label for="Icon">图标</label>
+                </td>
+                <td class="col-sm-10 form-control-static">
+                    <div class="input-group">
+                        <span class="input-group-btn">
+                            <button id="target" class="btn btn-primary btn-sm iconpicker" data-iconset="fontawesome" data-placement="right" data-unselected-class="btn-primary" role="iconpicker" data-icon=""><i></i><input type="hidden"><span class="caret"></span></button>
+                        </span>
+                        <input class="text-box single-line" id="Icon" name="Icon" type="text" value="">
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td class="control-label1 col-sm-2"><label for="Mark">备注</label></td>
+                <td class="col-sm-10 form-control-static" colspan="3">
+                    <textarea class="form-control" cols="20" id="Mark" name="Mark" rows="2"></textarea>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="hr-line-dashed"></div>
+    <div class="module-button">
+        <div class="col-sm-4 col-sm-offset-2">
+            <button class="btn btn-primary " type="submit">保存</button>
+            <button class="btn btn-white btn-optclose " type="button">返回列表</button>
+        </div>
+    </div>
+
+</form>
+
+<div th:include="layout::footer"></div>
+<script src="/static/appjs/prog/create.js"></script>
+
+</body>
+</html>
