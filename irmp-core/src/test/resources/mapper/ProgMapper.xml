@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cethik.irmp.mapper.ProgMapper">
+    <resultMap id="BaseResultMap" type="com.cethik.irmp.model.Prog">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="controller" jdbcType="VARCHAR" property="controller"/>
+        <result column="action" jdbcType="VARCHAR" property="action"/>
+        <result column="path" jdbcType="VARCHAR" property="path"/>
+        <result column="nodetype" jdbcType="INTEGER" property="nodetype"/>
+        <result column="pid" jdbcType="INTEGER" property="pid"/>
+        <result column="sequence" jdbcType="INTEGER" property="sequence"/>
+        <result column="nodepath" jdbcType="VARCHAR" property="nodepath"/>
+        <result column="mark" jdbcType="VARCHAR" property="mark"/>
+    </resultMap>
+    <insert id="create" parameterType="com.cethik.irmp.model.Prog">
+        insert into prog (id, name, controller, action, params, path, nodetype, parentid, nodepath, sequence, icon)
+        values (#{id}, #{name}, #{controller}, #{action}, #{params}, #{path}, #{nodetype}, #{pid}, #{nodepath}, #{sequence}, #{icon})
+    </insert>
+    <update id="edit" parameterType="com.cethik.irmp.model.Prog">
+        update prog
+        set name = #{name},
+        parentid = #{parentid},
+        sequence = #{sequence},
+        nodepath = #{nodepath}
+        where id = #{id}
+    </update>
+    <update id="sort" parameterType="com.cethik.irmp.model.Prog">
+        update prog
+        set name = #{name},
+        parentid = #{pid},
+        sequence = #{sequence},
+        nodepath = #{nodepath}
+        where id = #{id}
+    </update>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from prog
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, name, controller, action, path, nodetype, parentid as pid, nodepath, prog.icon
+        from prog
+        order by sequence
+    </select>
+    <select id="detail" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select prog.id, prog.name, prog.path, prog.nodetype, prog.parentid as pid, prog.nodepath, prog.icon, prog.sequence, prog.mark
+        from prog
+        where prog.id = #{id}
+    </select>
+
+    <select id="selectByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select prog.id, prog.name, prog.path
+    from role, prog, roleprog
+    where prog.id = roleprog.progid
+          and role.id = roleprog.roleid
+          and role.id = #{roleId,jdbcType=INTEGER}
+  </select>
+
+    <select id="selectByUserId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select p.id, p.name, p.path, p.controller, p.action, p.path, p.nodetype, p.parentid as pid, p.nodepath, p.icon
+    from prog p
+    join roleprog rp on p.id = rp.progid
+    join role r on rp.roleid = r.id
+    join userrole ur on r.id = ur.roleid
+    join userinfo u on ur.userid = u.id
+    where u.id = #{userId,jdbcType=INTEGER}
+    order by p.sequence
+  </select>
+</mapper>

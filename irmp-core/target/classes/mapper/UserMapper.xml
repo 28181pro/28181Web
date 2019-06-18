@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cethik.irmp.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="com.cethik.irmp.model.UserInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="usertype" jdbcType="INTEGER" property="usertype"/>
+        <result column="corpid" jdbcType="INTEGER" property="corpid"/>
+        <result column="corpname" jdbcType="VARCHAR" property="corpname"/>
+        <result column="gender" jdbcType="INTEGER" property="gender"/>
+        <result column="mobilephone" jdbcType="VARCHAR" property="mobilephone"/>
+        <result column="createtime" jdbcType="DATE" property="createTime"/>
+        <result column="modifytime" jdbcType="DATE" property="modifytime"/>
+    </resultMap>
+    <resultMap id="CurrentUserMap" type="com.cethik.irmp.vmodel.CurrentUser">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="account" jdbcType="VARCHAR" property="account"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="usertype" jdbcType="INTEGER" property="usertype"/>
+        <result column="roleid" jdbcType="INTEGER" property="roleid"/>
+        <result column="corpid" jdbcType="INTEGER" property="corpid"/>
+        <result column="corptype" jdbcType="INTEGER" property="corptype"/>
+        <result column="corpname" jdbcType="VARCHAR" property="corpname"/>
+    </resultMap>
+    <insert id="create" parameterType="com.cethik.irmp.model.UserInfo">
+        insert into userinfo (id, account, name, password, usertype, gender, mobilephone)
+        values (#{id}, #{account}, #{name}, #{password}, #{usertype}, #{gender}, #{mobilephone})
+    </insert>
+    <update id="edit" parameterType="com.cethik.irmp.model.UserInfo">
+        update userinfo
+        set account = #{account},
+        name = #{name}
+        where id = #{id}
+    </update>
+
+    <select id="detail" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select u.id, u.account, u.name, u.usertype, u.corpid, c.name as corpname, u.gender, u.mobilephone, u.createtime, u.modifytime
+        from userinfo u left join corp c on u.corpid = c.id
+        where u.id = #{id}
+    </select>
+
+    <delete id="deleteByAccount" parameterType="java.lang.String">
+        delete from userinfo
+        where account = #{account}
+    </delete>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from userinfo
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select u.id, u.account, u.name, u.usertype, u.corpid, c.name as corpname, u.gender, u.mobilephone, u.createtime, u.modifytime
+        from userinfo u left join corp c on u.corpid = c.id
+    </select>
+    <select id="selectByRoleId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select u.id, u.name, u.account
+        from userinfo u
+        join userrole ur on u.id = ur.userid
+        and ur.roleid = #{roleid,jdbcType=INTEGER}
+      </select>
+
+    <select id="findByUsernameAndPassword" parameterType="com.cethik.irmp.model.UserInfo" resultMap="BaseResultMap">
+        select account, password, createtime, modifytime
+        from userinfo
+        where account = #{account}
+        and password = #{password}
+    </select>
+    <select id="selectByAccount" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select ID, NAME, ACCOUNT, PASSWORD
+    from userinfo
+    where ACCOUNT = #{account,jdbcType=VARCHAR}
+  </select>
+    <select id="loginByAccount" parameterType="java.lang.String" resultMap="CurrentUserMap">
+    select u.id, u.name, u.account, u.password, r.id as roleid, u.usertype, u.corpid, c.type, c.name as corpname
+    from userinfo u
+    left join userrole ur on u.id = ur.userid
+    left join role r on ur.roleid = r.id
+    left join corp c on u.corpid = c.id
+    where ACCOUNT = #{account,jdbcType=VARCHAR}
+  </select>
+</mapper>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cethik.irmp.mapper.DictionaryInfoMapper">
+    <resultMap id="BaseResultMap" type="com.cethik.irmp.model.DictionaryInfo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="mark" jdbcType="VARCHAR" property="mark"/>
+    </resultMap>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select d.id, d.code, d.name, d.mark
+        from dictionaryinfo d
+    </select>
+    <select id="selectByCode" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select d.id, d.code, d.name, d.mark
+        from dictionaryinfo d
+        where code = #{code,jdbcType=VARCHAR}
+    </select>
+</mapper>

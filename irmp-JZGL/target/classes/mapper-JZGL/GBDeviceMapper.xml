@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cethik.irmp.mapper.GBDeviceMapper">
+  <resultMap id="BaseResultMap" type="com.cethik.irmp.model.GBDevice">
+    <id column="ID" jdbcType="INTEGER" property="ID" />
+    <result column="gbcode" jdbcType="VARCHAR" property="gbcode" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="channelSum" jdbcType="INTEGER" property="channelSum" />
+    <result column="ip" jdbcType="VARCHAR" property="ip" />
+    <result column="port" jdbcType="VARCHAR" property="port" />
+    <result column="creator" jdbcType="VARCHAR" property="creator" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+  </resultMap>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, gbcode,name,channelSum,ip,port, creator, createtime
+    from gbdevice
+  </select>
+
+</mapper>

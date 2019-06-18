@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+< namespace="com.cethik.irmp.mapper.CaseinfoMapper">
+  <resultMap id="BaseResultMap" type="com.cethik.irmp.model.Caseinfo">
+    <id column="ID" jdbcType="INTEGER" property="id" />
+    <result column="CASETYPEID" jdbcType="VARCHAR" property="casetypeid" />
+    <result column="CASETYPENAME" jdbcType="VARCHAR" property="casetypename" />
+    <result column="CASENAME" jdbcType="VARCHAR" property="casename" />
+    <result column="CASEATTRIBUTE" jdbcType="VARCHAR" property="caseattribute" />
+    <result column="CASESTATE" jdbcType="VARCHAR" property="casestate" />
+    <result column="CASESTATENAME" jdbcType="VARCHAR" property="casestatename" />
+    <result column="CASENUMBER" jdbcType="VARCHAR" property="casenumber" />
+    <result column="CASENATURE" jdbcType="VARCHAR" property="casenature" />
+    <result column="CASENATURENAME" jdbcType="VARCHAR" property="casenaturename" />
+    <result column="CASESOURCE" jdbcType="VARCHAR" property="casesource" />
+    <result column="CASESOURCENAME" jdbcType="VARCHAR" property="casesourcename" />
+    <result column="CORPID" jdbcType="INTEGER" property="corpid" />
+    <result column="CORPNAME" jdbcType="VARCHAR" property="corpname" />
+    <result column="ORGANISERID" jdbcType="INTEGER" property="organiserid" />
+    <result column="ORGANISERNAME" jdbcType="VARCHAR" property="organisername" />
+    <result column="COORGANISERID" jdbcType="VARCHAR" property="coorganiserid" />
+    <result column="COORGANISERNAME" jdbcType="VARCHAR" property="coorganisername" />
+    <result column="REVIEWMATURITYDATE" jdbcType="TIMESTAMP" property="reviewmaturitydate" />
+    <result column="REVIEWDATE" jdbcType="TIMESTAMP" property="reviewdate" />
+    <result column="DISCOVERYDATE" jdbcType="TIMESTAMP" property="discoverydate" />
+    <result column="CASEUPPERDATE" jdbcType="TIMESTAMP" property="caseupperdate" />
+    <result column="CASELOWERDATE" jdbcType="TIMESTAMP" property="caselowerdate" />
+    <result column="RECEPTIONDATE" jdbcType="TIMESTAMP" property="receptiondate" />
+    <result column="FILINGDATE" jdbcType="TIMESTAMP" property="filingdate" />
+    <result column="TRANSFERDATE" jdbcType="TIMESTAMP" property="transferdate" />
+    <result column="RECEIVINGDATE" jdbcType="TIMESTAMP" property="receivingdate" />
+    <result column="DETECTIONAPPROVALDATE" jdbcType="TIMESTAMP" property="detectionapprovaldate" />
+    <result column="ARCHIVINGDATE" jdbcType="TIMESTAMP" property="archivingdate" />
+    <result column="REPORTBIRTHDAYDATE" jdbcType="TIMESTAMP" property="reportbirthdaydate" />
+    <result column="REVOCATIONDATE" jdbcType="TIMESTAMP" property="revocationdate" />
+    <result column="DETECTIONDATE" jdbcType="TIMESTAMP" property="detectiondate" />
+    <result column="CLOSINGDATE" jdbcType="TIMESTAMP" property="closingdate" />
+    <result column="CABINETNUM" jdbcType="VARCHAR" property="cabinetnum" />
+    <result column="DEVICEID" jdbcType="INTEGER" property="deviceid" />
+    <result column="CABINETCELL" jdbcType="INTEGER" property="cabinetcell" />
+    <result column="CELLNUMBER" jdbcType="INTEGER" property="cellnumber" />
+    <result column="BOXID" jdbcType="INTEGER" property="boxid" />
+    <result column="BOXNUM" jdbcType="VARCHAR" property="boxnum" />
+    <result column="BOXFLOORID" jdbcType="INTEGER" property="boxfloorid" />
+    <result column="BOXFLOORNUM" jdbcType="VARCHAR" property="boxfloornum" />
+    <result column="BOXEPC" jdbcType="VARCHAR" property="boxepc" />
+    <result column="BOXLOCATION" jdbcType="INTEGER" property="boxlocation" />
+    <result column="ISPASTEEPC" jdbcType="INTEGER" property="ispasteepc" />
+    <result column="ISCABINET" jdbcType="INTEGER" property="iscabinet" />
+    <result column="CABINETINOUTDATE" jdbcType="TIMESTAMP" property="cabinetinoutdate" />
+    <result column="ISTURNONBOX" jdbcType="INTEGER" property="isturnonbox" />
+    <result column="ISBOX" jdbcType="INTEGER" property="isbox" />
+    <result column="TURNONINDATE" jdbcType="TIMESTAMP" property="turnonindate" />
+    <result column="EPC" jdbcType="VARCHAR" property="epc" />
+    <result column="ISPROCURATORATE" jdbcType="INTEGER" property="isprocuratorate" />
+    <result column="ISBORROWED" jdbcType="INTEGER" property="isborrowed" />
+    <result column="BORROWEDDATE" jdbcType="TIMESTAMP" property="borroweddate" />
+    <result column="RETURNDATE" jdbcType="TIMESTAMP" property="returndate" />
+    <result column="STATE" jdbcType="INTEGER" property="state" />
+    <result column="NOWSTATE" jdbcType="INTEGER" property="nowstate" />
+    <result column="AJJBXXID" jdbcType="INTEGER" property="ajjbxxid" />
+    <result column="CREATOR" jdbcType="INTEGER" property="creator" />
+    <result column="MODIFIER" jdbcType="INTEGER" property="modifier" />
+    <result column="CREATETIME" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="MODIFYTIME" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="MARK" jdbcType="VARCHAR" property="mark" />
+    <result column="REPORTDATE" jdbcType="TIMESTAMP" property="reportdate" />
+    <result column="CORPNUM" jdbcType="VARCHAR" property="corpnum" />
+    <result column="ORGANISERPOLICECODE" jdbcType="VARCHAR" property="organiserpolicecode" />
+    <result column="COORGANISERPOLICECODE" jdbcType="VARCHAR" property="coorganiserpolicecode" />
+    <result column="PROCURATORATEDATE" jdbcType="TIMESTAMP" property="procuratoratedate" />
+    <result column="USERPOLICEID" jdbcType="VARCHAR" property="userpoliceid" />
+    <result column="LATEBB" jdbcType="VARCHAR" property="latebb" />
+    <result column="COORGANISERNUM" jdbcType="VARCHAR" property="coorganisernum" />
+    <result column="RELEGATIONCORPNAME" jdbcType="VARCHAR" property="relegationcorpname" />
+    <result column="RELEGATIONCORPID" jdbcType="INTEGER" property="relegationcorpid" />
+    <result column="RELEGATIONCORPNUM" jdbcType="VARCHAR" property="relegationcorpnum" />
+    <result column="ISCASEARCHIVES" jdbcType="INTEGER" property="iscasearchives" />
+    <result column="CASEARCHIVESDATE" jdbcType="TIMESTAMP" property="casearchivesdate" />
+    <result column="CASEBRIEF" jdbcType="VARCHAR" property="casebrief" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from CASEINFO
+    where ID = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.cethik.irmp.model.Caseinfo">
+    insert into CASEINFO (ID, CASETYPEID, CASETYPENAME, 
+      CASENAME, CASEATTRIBUTE, CASESTATE, 
+      CASESTATENAME, CASENUMBER, CASENATURE, 
+      CASENATURENAME, CASESOURCE, CASESOURCENAME, 
+      CORPID, CORPNAME, ORGANISERID, 
+      ORGANISERNAME, COORGANISERID, COORGANISERNAME, 
+      REVIEWMATURITYDATE, REVIEWDATE, DISCOVERYDATE, 
+      CASEUPPERDATE, CASELOWERDATE, RECEPTIONDATE, 
+      FILINGDATE, TRANSFERDATE, RECEIVINGDATE, 
+      DETECTIONAPPROVALDATE, ARCHIVINGDATE, 
+      REPORTBIRTHDAYDATE, REVOCATIONDATE, 
+      DETECTIONDATE, CLOSINGDATE, CABINETNUM, 
+      DEVICEID, CABINETCELL, CELLNUMBER, 
+      BOXID, BOXNUM, BOXFLOORID, 
+      BOXFLOORNUM, BOXEPC, BOXLOCATION, 
+      ISPASTEEPC, ISCABINET, CABINETINOUTDATE, 
+      ISTURNONBOX, ISBOX, TURNONINDATE, 
+      EPC, ISPROCURATORATE, ISBORROWED, 
+      BORROWEDDATE, RETURNDATE, STATE, 
+      NOWSTATE, AJJBXXID, CREATOR, 
+      MODIFIER, CREATETIME, MODIFYTIME, 
+      MARK, REPORTDATE, CORPNUM, 
+      ORGANISERPOLICECODE, COORGANISERPOLICECODE, 
+      PROCURATORATEDATE, USERPOLICEID, LATEBB, 
+      COORGANISERNUM, RELEGATIONCORPNAME, RELEGATIONCORPID, 
+      RELEGATIONCORPNUM, ISCASEARCHIVES, CASEARCHIVESDATE, 
+      CASEBRIEF)
+    values (#{id,jdbcType=INTEGER}, #{casetypeid,jdbcType=VARCHAR}, #{casetypename,jdbcType=VARCHAR}, 
+      #{casename,jdbcType=VARCHAR}, #{caseattribute,jdbcType=VARCHAR}, #{casestate,jdbcType=VARCHAR}, 
+      #{casestatename,jdbcType=VARCHAR}, #{casenumber,jdbcType=VARCHAR}, #{casenature,jdbcType=VARCHAR}, 
+      #{casenaturename,jdbcType=VARCHAR}, #{casesource,jdbcType=VARCHAR}, #{casesourcename,jdbcType=VARCHAR}, 
+      #{corpid,jdbcType=INTEGER}, #{corpname,jdbcType=VARCHAR}, #{organiserid,jdbcType=INTEGER}, 
+      #{organisername,jdbcType=VARCHAR}, #{coorganiserid,jdbcType=VARCHAR}, #{coorganisername,jdbcType=VARCHAR}, 
+      #{reviewmaturitydate,jdbcType=TIMESTAMP}, #{reviewdate,jdbcType=TIMESTAMP}, #{discoverydate,jdbcType=TIMESTAMP}, 
+      #{caseupperdate,jdbcType=TIMESTAMP}, #{caselowerdate,jdbcType=TIMESTAMP}, #{receptiondate,jdbcType=TIMESTAMP}, 
+      #{filingdate,jdbcType=TIMESTAMP}, #{transferdate,jdbcType=TIMESTAMP}, #{receivingdate,jdbcType=TIMESTAMP}, 
+      #{detectionapprovaldate,jdbcType=TIMESTAMP}, #{archivingdate,jdbcType=TIMESTAMP}, 
+      #{reportbirthdaydate,jdbcType=TIMESTAMP}, #{revocationdate,jdbcType=TIMESTAMP}, 
+      #{detectiondate,jdbcType=TIMESTAMP}, #{closingdate,jdbcType=TIMESTAMP}, #{cabinetnum,jdbcType=VARCHAR}, 
+      #{deviceid,jdbcType=INTEGER}, #{cabinetcell,jdbcType=INTEGER}, #{cellnumber,jdbcType=INTEGER}, 
+      #{boxid,jdbcType=INTEGER}, #{boxnum,jdbcType=VARCHAR}, #{boxfloorid,jdbcType=INTEGER}, 
+      #{boxfloornum,jdbcType=VARCHAR}, #{boxepc,jdbcType=VARCHAR}, #{boxlocation,jdbcType=INTEGER}, 
+      #{ispasteepc,jdbcType=INTEGER}, #{iscabinet,jdbcType=INTEGER}, #{cabinetinoutdate,jdbcType=TIMESTAMP}, 
+      #{isturnonbox,jdbcType=INTEGER}, #{isbox,jdbcType=INTEGER}, #{turnonindate,jdbcType=TIMESTAMP}, 
+      #{epc,jdbcType=VARCHAR}, #{isprocuratorate,jdbcType=INTEGER}, #{isborrowed,jdbcType=INTEGER}, 
+      #{borroweddate,jdbcType=TIMESTAMP}, #{returndate,jdbcType=TIMESTAMP}, #{state,jdbcType=INTEGER}, 
+      #{nowstate,jdbcType=INTEGER}, #{ajjbxxid,jdbcType=INTEGER}, #{creator,jdbcType=INTEGER}, 
+      #{modifier,jdbcType=INTEGER}, #{createtime,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=TIMESTAMP}, 
+      #{mark,jdbcType=VARCHAR}, #{reportdate,jdbcType=TIMESTAMP}, #{corpnum,jdbcType=VARCHAR}, 
+      #{organiserpolicecode,jdbcType=VARCHAR}, #{coorganiserpolicecode,jdbcType=VARCHAR}, 
+      #{procuratoratedate,jdbcType=TIMESTAMP}, #{userpoliceid,jdbcType=VARCHAR}, #{latebb,jdbcType=VARCHAR}, 
+      #{coorganisernum,jdbcType=VARCHAR}, #{relegationcorpname,jdbcType=VARCHAR}, #{relegationcorpid,jdbcType=INTEGER}, 
+      #{relegationcorpnum,jdbcType=VARCHAR}, #{iscasearchives,jdbcType=INTEGER}, #{casearchivesdate,jdbcType=TIMESTAMP}, 
+      #{casebrief,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.cethik.irmp.model.Caseinfo">
+    update CASEINFO
+    set CASETYPEID = #{casetypeid,jdbcType=VARCHAR},
+      CASETYPENAME = #{casetypename,jdbcType=VARCHAR},
+      CASENAME = #{casename,jdbcType=VARCHAR},
+      CASEATTRIBUTE = #{caseattribute,jdbcType=VARCHAR},
+      CASESTATE = #{casestate,jdbcType=VARCHAR},
+      CASESTATENAME = #{casestatename,jdbcType=VARCHAR},
+      CASENUMBER = #{casenumber,jdbcType=VARCHAR},
+      CASENATURE = #{casenature,jdbcType=VARCHAR},
+      CASENATURENAME = #{casenaturename,jdbcType=VARCHAR},
+      CASESOURCE = #{casesource,jdbcType=VARCHAR},
+      CASESOURCENAME = #{casesourcename,jdbcType=VARCHAR},
+      CORPID = #{corpid,jdbcType=INTEGER},
+      CORPNAME = #{corpname,jdbcType=VARCHAR},
+      ORGANISERID = #{organiserid,jdbcType=INTEGER},
+      ORGANISERNAME = #{organisername,jdbcType=VARCHAR},
+      COORGANISERID = #{coorganiserid,jdbcType=VARCHAR},
+      COORGANISERNAME = #{coorganisername,jdbcType=VARCHAR},
+      REVIEWMATURITYDATE = #{reviewmaturitydate,jdbcType=TIMESTAMP},
+      REVIEWDATE = #{reviewdate,jdbcType=TIMESTAMP},
+      DISCOVERYDATE = #{discoverydate,jdbcType=TIMESTAMP},
+      CASEUPPERDATE = #{caseupperdate,jdbcType=TIMESTAMP},
+      CASELOWERDATE = #{caselowerdate,jdbcType=TIMESTAMP},
+      RECEPTIONDATE = #{receptiondate,jdbcType=TIMESTAMP},
+      FILINGDATE = #{filingdate,jdbcType=TIMESTAMP},
+      TRANSFERDATE = #{transferdate,jdbcType=TIMESTAMP},
+      RECEIVINGDATE = #{receivingdate,jdbcType=TIMESTAMP},
+      DETECTIONAPPROVALDATE = #{detectionapprovaldate,jdbcType=TIMESTAMP},
+      ARCHIVINGDATE = #{archivingdate,jdbcType=TIMESTAMP},
+      REPORTBIRTHDAYDATE = #{reportbirthdaydate,jdbcType=TIMESTAMP},
+      REVOCATIONDATE = #{revocationdate,jdbcType=TIMESTAMP},
+      DETECTIONDATE = #{detectiondate,jdbcType=TIMESTAMP},
+      CLOSINGDATE = #{closingdate,jdbcType=TIMESTAMP},
+      CABINETNUM = #{cabinetnum,jdbcType=VARCHAR},
+      DEVICEID = #{deviceid,jdbcType=INTEGER},
+      CABINETCELL = #{cabinetcell,jdbcType=INTEGER},
+      CELLNUMBER = #{cellnumber,jdbcType=INTEGER},
+      BOXID = #{boxid,jdbcType=INTEGER},
+      BOXNUM = #{boxnum,jdbcType=VARCHAR},
+      BOXFLOORID = #{boxfloorid,jdbcType=INTEGER},
+      BOXFLOORNUM = #{boxfloornum,jdbcType=VARCHAR},
+      BOXEPC = #{boxepc,jdbcType=VARCHAR},
+      BOXLOCATION = #{boxlocation,jdbcType=INTEGER},
+      ISPASTEEPC = #{ispasteepc,jdbcType=INTEGER},
+      ISCABINET = #{iscabinet,jdbcType=INTEGER},
+      CABINETINOUTDATE = #{cabinetinoutdate,jdbcType=TIMESTAMP},
+      ISTURNONBOX = #{isturnonbox,jdbcType=INTEGER},
+      ISBOX = #{isbox,jdbcType=INTEGER},
+      TURNONINDATE = #{turnonindate,jdbcType=TIMESTAMP},
+      EPC = #{epc,jdbcType=VARCHAR},
+      ISPROCURATORATE = #{isprocuratorate,jdbcType=INTEGER},
+      ISBORROWED = #{isborrowed,jdbcType=INTEGER},
+      BORROWEDDATE = #{borroweddate,jdbcType=TIMESTAMP},
+      RETURNDATE = #{returndate,jdbcType=TIMESTAMP},
+      STATE = #{state,jdbcType=INTEGER},
+      NOWSTATE = #{nowstate,jdbcType=INTEGER},
+      AJJBXXID = #{ajjbxxid,jdbcType=INTEGER},
+      CREATOR = #{creator,jdbcType=INTEGER},
+      MODIFIER = #{modifier,jdbcType=INTEGER},
+      CREATETIME = #{createtime,jdbcType=TIMESTAMP},
+      MODIFYTIME = #{modifytime,jdbcType=TIMESTAMP},
+      MARK = #{mark,jdbcType=VARCHAR},
+      REPORTDATE = #{reportdate,jdbcType=TIMESTAMP},
+      CORPNUM = #{corpnum,jdbcType=VARCHAR},
+      ORGANISERPOLICECODE = #{organiserpolicecode,jdbcType=VARCHAR},
+      COORGANISERPOLICECODE = #{coorganiserpolicecode,jdbcType=VARCHAR},
+      PROCURATORATEDATE = #{procuratoratedate,jdbcType=TIMESTAMP},
+      USERPOLICEID = #{userpoliceid,jdbcType=VARCHAR},
+      LATEBB = #{latebb,jdbcType=VARCHAR},
+      COORGANISERNUM = #{coorganisernum,jdbcType=VARCHAR},
+      RELEGATIONCORPNAME = #{relegationcorpname,jdbcType=VARCHAR},
+      RELEGATIONCORPID = #{relegationcorpid,jdbcType=INTEGER},
+      RELEGATIONCORPNUM = #{relegationcorpnum,jdbcType=VARCHAR},
+      ISCASEARCHIVES = #{iscasearchives,jdbcType=INTEGER},
+      CASEARCHIVESDATE = #{casearchivesdate,jdbcType=TIMESTAMP},
+      CASEBRIEF = #{casebrief,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select ID, CASETYPEID, CASETYPENAME, CASENAME, CASEATTRIBUTE, CASESTATE, CASESTATENAME, 
+    CASENUMBER, CASENATURE, CASENATURENAME, CASESOURCE, CASESOURCENAME, CORPID, CORPNAME, 
+    ORGANISERID, ORGANISERNAME, COORGANISERID, COORGANISERNAME, REVIEWMATURITYDATE, REVIEWDATE, 
+    DISCOVERYDATE, CASEUPPERDATE, CASELOWERDATE, RECEPTIONDATE, FILINGDATE, TRANSFERDATE, 
+    RECEIVINGDATE, DETECTIONAPPROVALDATE, ARCHIVINGDATE, REPORTBIRTHDAYDATE, REVOCATIONDATE, 
+    DETECTIONDATE, CLOSINGDATE, CABINETNUM, DEVICEID, CABINETCELL, CELLNUMBER, BOXID, 
+    BOXNUM, BOXFLOORID, BOXFLOORNUM, BOXEPC, BOXLOCATION, ISPASTEEPC, ISCABINET, CABINETINOUTDATE, 
+    ISTURNONBOX, ISBOX, TURNONINDATE, EPC, ISPROCURATORATE, ISBORROWED, BORROWEDDATE, 
+    RETURNDATE, STATE, NOWSTATE, AJJBXXID, CREATOR, MODIFIER, CREATETIME, MODIFYTIME, 
+    MARK, REPORTDATE, CORPNUM, ORGANISERPOLICECODE, COORGANISERPOLICECODE, PROCURATORATEDATE, 
+    USERPOLICEID, LATEBB, COORGANISERNUM, RELEGATIONCORPNAME, RELEGATIONCORPID, RELEGATIONCORPNUM, 
+    ISCASEARCHIVES, CASEARCHIVESDATE, CASEBRIEF
+    from CASEINFO
+    where ID = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select ID, CASETYPEID, CASETYPENAME, CASENAME, CASEATTRIBUTE, CASESTATE, CASESTATENAME, 
+    CASENUMBER, CASENATURE, CASENATURENAME, CASESOURCE, CASESOURCENAME, CORPID, CORPNAME, 
+    ORGANISERID, ORGANISERNAME, COORGANISERID, COORGANISERNAME, REVIEWMATURITYDATE, REVIEWDATE, 
+    DISCOVERYDATE, CASEUPPERDATE, CASELOWERDATE, RECEPTIONDATE, FILINGDATE, TRANSFERDATE, 
+    RECEIVINGDATE, DETECTIONAPPROVALDATE, ARCHIVINGDATE, REPORTBIRTHDAYDATE, REVOCATIONDATE, 
+    DETECTIONDATE, CLOSINGDATE, CABINETNUM, DEVICEID, CABINETCELL, CELLNUMBER, BOXID, 
+    BOXNUM, BOXFLOORID, BOXFLOORNUM, BOXEPC, BOXLOCATION, ISPASTEEPC, ISCABINET, CABINETINOUTDATE, 
+    ISTURNONBOX, ISBOX, TURNONINDATE, EPC, ISPROCURATORATE, ISBORROWED, BORROWEDDATE, 
+    RETURNDATE, STATE, NOWSTATE, AJJBXXID, CREATOR, MODIFIER, CREATETIME, MODIFYTIME, 
+    MARK, REPORTDATE, CORPNUM, ORGANISERPOLICECODE, COORGANISERPOLICECODE, PROCURATORATEDATE, 
+    USERPOLICEID, LATEBB, COORGANISERNUM, RELEGATIONCORPNAME, RELEGATIONCORPID, RELEGATIONCORPNUM, 
+    ISCASEARCHIVES, CASEARCHIVESDATE, CASEBRIEF
+    from CASEINFO
+  </select>
+
+  <select id="QueryDictionDataList" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select i.id as typeid,d.value as id,null as name,d.name as text,null as code from dictionaryinfo i left join dictionarydata d on(d.dictionaryid=i.id) where i.id in(#{id,jdbcType=INTEGER},)
+  </select>
+  <select id="QueryCorpDataList" resultMap="BaseResultMap">
+    SELECT code as id,code as name,name as text,id as code FROM corp
+  </select>
+  <select id="QueryUserInfoDataList" resultMap="BaseResultMap">
+    SELECT account as id,account as name,name as text,id as code FROM corp
+  </select>
+</mapper>

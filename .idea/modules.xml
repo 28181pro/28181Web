@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/irmp-JZGL/irmp-JZGL.iml" filepath="$PROJECT_DIR$/irmp-JZGL/irmp-JZGL.iml" />
+      <module fileurl="file://$PROJECT_DIR$/irmp-base/irmp-base.iml" filepath="$PROJECT_DIR$/irmp-base/irmp-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/irmp-core/irmp-core.iml" filepath="$PROJECT_DIR$/irmp-core/irmp-core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/irmp-timetask/irmp-timetask.iml" filepath="$PROJECT_DIR$/irmp-timetask/irmp-timetask.iml" />
+      <module fileurl="file://$PROJECT_DIR$/irmp-util/irmp-util.iml" filepath="$PROJECT_DIR$/irmp-util/irmp-util.iml" />
+      <module fileurl="file://$PROJECT_DIR$/irmp-web/irmp-web.iml" filepath="$PROJECT_DIR$/irmp-web/irmp-web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pirmp.iml" filepath="$PROJECT_DIR$/pirmp.iml" />
+    </modules>
+  </component>
+</project>

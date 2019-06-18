@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cethik.irmp.mapper.CorpMapper">
+    <resultMap id="BaseResultMap" type="com.cethik.irmp.model.Corp">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="code" jdbcType="VARCHAR" property="code"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
+        <result column="pid" jdbcType="INTEGER" property="pid"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="areaid" jdbcType="INTEGER" property="areaid"/>
+        <result column="areacode" jdbcType="VARCHAR" property="areacode"/>
+        <result column="areaname" jdbcType="VARCHAR" property="areaname"/>
+        <result column="shortname" jdbcType="VARCHAR" property="shortname"/>
+        <result column="epctype" jdbcType="INTEGER" property="epctype"/>
+        <result column="sequence" jdbcType="INTEGER" property="sequence" />
+        <result column="state" jdbcType="INTEGER" property="state"/>
+        <result column="creator" jdbcType="INTEGER" property="creator"/>
+        <result column="createtime" jdbcType="DATE" property="createTime"/>
+        <result column="modifier" jdbcType="INTEGER" property="modifier"/>
+        <result column="modifytime" jdbcType="DATE" property="modifytime"/>
+        <result column="mark" jdbcType="VARCHAR" property="mark"/>
+    </resultMap>
+    <insert id="create" parameterType="com.cethik.irmp.model.Corp">
+        insert into corp (id, code, name, parentid, type, address, areaid, areacode, areaname, shortname, epctype, sequence, state)
+        values (#{id}, #{code}, #{name}, #{pid}, #{type}, #{address}, #{areaid}, #{areacode}, #{areaname}, #{shortname}, #{epctype}, #{sequence}, #{state})
+    </insert>
+    <update id="edit" parameterType="com.cethik.irmp.model.Corp">
+        update corp
+        set code = #{code},
+        name = #{name}
+        where id = #{id}
+    </update>
+
+    <select id="detail" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select id, code, name, parentid as pid, type, address, areaid, areacode, areaname, shortname, epctype, sequence, state, mark
+        from corp
+        where id = #{id}
+    </select>
+
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        delete from corp
+        where ID = #{id,jdbcType=INTEGER}
+    </delete>
+
+    <select id="selectAll" resultMap="BaseResultMap">
+        select id, code, name, parentid as pid, type, address, areaid, areacode, areaname, shortname, epctype, sequence, state, mark
+        from corp
+    </select>
+</mapper>

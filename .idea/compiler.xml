@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="irmp-base" />
+        <module name="irmp-core" />
+        <module name="irmp-JZGL" />
+        <module name="irmp-timetask" />
+        <module name="irmp-util" />
+        <module name="irmp-web" />
+      </profile>
+    </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="irmp-base" target="1.7" />
+      <module name="irmp-core" target="1.7" />
+      <module name="irmp-JZGL" target="1.7" />
+      <module name="irmp-timetask" target="1.7" />
+      <module name="irmp-util" target="1.7" />
+      <module name="irmp-web" target="1.7" />
+      <module name="pirmp" target="1.8" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cethik.irmp.mapper.SystemlogMapper">
+  <resultMap id="BaseResultMap" type="com.cethik.irmp.model.Systemlog">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="logtype" jdbcType="VARCHAR" property="logtype" />
+    <result column="controller" jdbcType="VARCHAR" property="controller" />
+    <result column="action" jdbcType="VARCHAR" property="action" />
+    <result column="modulename" jdbcType="VARCHAR" property="modulename" />
+    <result column="relationid" jdbcType="VARCHAR" property="relationid" />
+    <result column="hostip" jdbcType="VARCHAR" property="hostip" />
+    <result column="updatetime" jdbcType="TIMESTAMP" property="updatetime" />
+    <result column="operator" jdbcType="INTEGER" property="operator" />
+    <result column="operatorname" jdbcType="VARCHAR" property="operatorname" />
+    <result column="creator" jdbcType="INTEGER" property="creator" />
+    <result column="modifier" jdbcType="INTEGER" property="modifier" />
+    <result column="createtime" jdbcType="TIMESTAMP" property="createtime" />
+    <result column="modifytime" jdbcType="TIMESTAMP" property="modifytime" />
+    <result column="mark" jdbcType="VARCHAR" property="mark" />
+    <result column="message" jdbcType="LONGVARCHAR" property="message" />
+    <result column="description" jdbcType="LONGVARCHAR" property="description" />
+    <result column="contents" jdbcType="LONGVARCHAR" property="contents" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from systemlog
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="create" parameterType="com.cethik.irmp.model.Systemlog">
+    insert into systemlog (id, logtype,
+      updatetime, operator,
+      operatorname, creator, modifier,
+      message, description
+      )
+    values (#{id,jdbcType=BIGINT}, #{logtype,jdbcType=VARCHAR},
+      #{updatetime,jdbcType=TIMESTAMP}, #{operator,jdbcType=INTEGER},
+      #{operatorname,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, #{modifier,jdbcType=INTEGER},
+      #{message,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insert-bk" parameterType="com.cethik.irmp.model.Systemlog">
+    insert into systemlog (id, logtype, controller, 
+      action, modulename, relationid,
+      hostip, updatetime, operator, 
+      operatorname, creator, modifier, 
+      createtime, modifytime, mark, 
+      message, description, contents
+      )
+    values (#{id,jdbcType=BIGINT}, #{logtype,jdbcType=VARCHAR}, #{controller,jdbcType=VARCHAR}, 
+      #{action,jdbcType=VARCHAR}, #{modulename,jdbcType=VARCHAR}, #{relationid,jdbcType=VARCHAR}, 
+      #{hostip,jdbcType=VARCHAR}, #{updatetime,jdbcType=TIMESTAMP}, #{operator,jdbcType=INTEGER}, 
+      #{operatorname,jdbcType=VARCHAR}, #{creator,jdbcType=INTEGER}, #{modifier,jdbcType=INTEGER}, 
+      #{createtime,jdbcType=TIMESTAMP}, #{modifytime,jdbcType=TIMESTAMP}, #{mark,jdbcType=VARCHAR}, 
+      #{message,jdbcType=LONGVARCHAR}, #{description,jdbcType=LONGVARCHAR}, #{contents,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <update id="edit" parameterType="com.cethik.irmp.model.Systemlog">
+    update systemlog
+    set logtype = #{logtype,jdbcType=VARCHAR},
+      controller = #{controller,jdbcType=VARCHAR},
+      action = #{action,jdbcType=VARCHAR},
+      modulename = #{modulename,jdbcType=VARCHAR},
+      relationid = #{relationid,jdbcType=VARCHAR},
+      hostip = #{hostip,jdbcType=VARCHAR},
+      updatetime = #{updatetime,jdbcType=TIMESTAMP},
+      operator = #{operator,jdbcType=INTEGER},
+      operatorname = #{operatorname,jdbcType=VARCHAR},
+      creator = #{creator,jdbcType=INTEGER},
+      modifier = #{modifier,jdbcType=INTEGER},
+      createtime = #{createtime,jdbcType=TIMESTAMP},
+      modifytime = #{modifytime,jdbcType=TIMESTAMP},
+      mark = #{mark,jdbcType=VARCHAR},
+      message = #{message,jdbcType=LONGVARCHAR},
+      description = #{description,jdbcType=LONGVARCHAR},
+      contents = #{contents,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="detail" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select id, logtype, controller, action, modulename, relationid, hostip, updatetime, 
+    operator, operatorname, creator, modifier, createtime, modifytime, mark, message, 
+    description, contents
+    from systemlog
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    select id, logtype, controller, action, modulename, relationid, hostip, updatetime, 
+    operator, operatorname, creator, modifier, createtime, modifytime, mark, message, 
+    description, contents
+    from systemlog
+  </select>
+</mapper>
