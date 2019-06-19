@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('上级机构')"></head>
+<body>
+	<div id="dpLTE" class="container-fluid" v-cloak>
+		<ul id="orgTree" class="ztree"></ul>
+	</div>
+	<div th:include="include/footer_js::footer"></div>
+	<script type="text/javascript">
+	var setting = {
+		data : {
+			simpleData : {
+				enable : true,
+				idKey : "orgId",
+				pIdKey : "parentId",
+				rootPId : -1
+			},
+			key : {
+				url : "nourl"
+			}
+		}
+	};
+	var ztree;
+
+	var vm = new Vue({
+		el : '#dpLTE',
+		methods : {
+			getMenu : function(menuId) {
+				$.get('../../sys/org/select', function(r) {
+					ztree = $.fn.zTree
+							.init($("#orgTree"), setting, r);
+					var node = ztree.getNodeByParam("orgId", top.layerForm.vm.org.parentId);
+					ztree.selectNode(node);
+					top.layerForm.vm.org.parentName = node.name;
+				})
+			},
+			acceptClick: function() {
+				var node = ztree.getSelectedNodes();
+				top.layerForm.vm.org.parentId = node[0].orgId;
+				top.layerForm.vm.org.parentName = node[0].name;
+				dialogClose();
+			}
+		},
+		created : function() {
+			this.getMenu();
+		}
+	})
+	</script>
+</body>
+</html>

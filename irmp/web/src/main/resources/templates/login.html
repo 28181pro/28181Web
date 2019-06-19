@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>管理系统</title>
+<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/login.min.css">
+</head>
+<body>
+	<div class="login" id="dpLTE" v-cloak>
+		<div class="message">DP-BOOT 管理登录</div>
+		<div id="darkbannerwrap"></div>
+		<form method="post">
+			<div v-if="error" class="alert alert-danger alert-dismissible">
+				<h4 style="margin-bottom: 0px;font-size:13px;">
+					<i class="fa fa-exclamation-triangle"></i> {{errorMsg}}
+				</h4>
+			</div>
+			<input placeholder="用户名" v-model="username" type="text">
+			<hr class="hr15">
+			<input placeholder="密码" v-model="password" type="password">
+			<hr class="hr15">
+			<input value="登录" style="width: 100%;" type="button" @click="login">
+			<hr class="hr20">
+		</form>
+	</div>
+	<div class="copyright">
+		快捷通支付服务有限公司
+	</div>
+	<script src="libs/jquery.min.js"></script>
+	<script src="libs/vue.min.js"></script>
+	<script type="text/javascript">
+		var vm = new Vue({
+			el : '#dpLTE',
+			data : {
+				username : 'admin',
+				password : '1',
+				error : false,
+				errorMsg : ''
+			},
+			beforeCreate : function() {
+				if (self != top) {
+					top.location.href = self.location.href;
+				}
+			},
+			methods : {
+				login : function(event) {
+					if (vm.username == '') {
+						vm.error = true;
+						vm.errorMsg = '用户名为空';
+						return false;
+					}
+					if (vm.password == '') {
+						vm.error = true;
+						vm.errorMsg = '密码为空';
+						return false;
+					}
+					var data = "username=" + vm.username + "&password="
+							+ vm.password;
+					$.ajax({
+						type : "POST",
+						url : "sys/login",
+						data : data,
+						dataType : "json",
+						success : function(result) {
+							if (result.code == 0) {//登录成功
+								localStorage.setItem("token", result.token);
+								parent.location.href = 'index.html';
+							} else {
+								vm.error = true;
+								vm.errorMsg = result.msg;
+							}
+						}
+					});
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('新增-用户管理')"></head>
+<body>
+	<div id="dpLTE" class="container-fluid" v-cloak>
+		<table class="form" id="form">
+			<tr>
+	            <td class="formTitle">用户名<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="用户名" v-model="user.username" isvalid="yes" checkexpession="NotNull">
+	            </td>
+	            <td class="formTitle">所属机构<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control pointer" placeholder="所属机构" v-model="user.orgName" @click="orgTree" isvalid="yes" checkexpession="NotNull" readonly="readonly">
+	            </td>
+        	</tr>
+        	<tr>
+	            <td class="formTitle">密码<font face="宋体">*</font></td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="密码" v-model="user.password" isvalid="yes" checkexpession="NotNull">
+	            </td>
+        		<td class="formTitle">邮箱</td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="邮箱" v-model="user.email">
+	            </td>
+        	</tr>
+        	<tr>
+	            <td class="formTitle">手机号</td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="手机号" v-model="user.mobile">
+	            </td>
+	            <td class="formTitle">备注</td>
+	            <td class="formValue">
+					<input type="text" class="form-control" placeholder="备注" v-model="user.remark">
+	            </td>
+        		
+        	</tr>
+			<tr>
+				<td class="formTitle">角色</td>
+				<td class="formValue" colspan="3">
+					<select multiple="multiple" size="10" name="doublebox" class="rolebox"></select>
+				</td>
+			</tr>
+			<tr>
+				<td class="formTitle">状态</td>
+				<td class="formValue" colspan="3">
+					<label class="radio-inline">
+						<input type="radio" name="status" value="0" v-model="user.status"/> 禁用
+					</label>
+					<label class="radio-inline">
+						<input type="radio" name="status" value="1" v-model="user.status"/> 正常
+					</label>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div th:include="include/footer_js::footer"></div>
+	<script th:src="@{/js/base/user/add.js}"></script>
+</body>
+</html>
