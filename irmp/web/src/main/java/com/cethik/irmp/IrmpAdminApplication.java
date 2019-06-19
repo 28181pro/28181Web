@@ -6,9 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 /**
  * 程序启动类
  *
- *
  * @Auther daniel.yu
- * @Date 2018/8/13 10:20
+ * @Date 2019/6/18 10:20
  */
 @SpringBootApplication
 public class IrmpAdminApplication {
