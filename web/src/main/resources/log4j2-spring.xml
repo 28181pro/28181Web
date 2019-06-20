@@ -57,18 +57,7 @@
             <PatternLayout charset="UTF-8"   pattern="${LOG_FILE_PATTERN}"/>
         </RollingFile>
 
-        <RollingFile name="BIZ-SERVICE-IMPL-APPENDER" fileName="${log_path}/irmp-biz-service-impl.log"
-                     filePattern="${log_path}/irmp-biz-service-impl.%d{yyyy-MM-dd}.log">
-            <Filters>
-                <!-- 只记录info和warn级别信息 -->
-                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
-            <Policies>
-                <TimeBasedTriggeringPolicy/>
-            </Policies>
-            <PatternLayout charset="UTF-8"   pattern="${LOG_FILE_PATTERN}"/>
-        </RollingFile>
+
 
         <RollingFile name="BIZ-SHARED-APPENDER" fileName="${log_path}/irmp-biz-shared.log"
                      filePattern="${log_path}/irmp-biz-shared.%d{yyyy-MM-dd}.log">
@@ -96,31 +85,7 @@
             <PatternLayout charset="UTF-8"   pattern="${LOG_FILE_PATTERN}"/>
         </RollingFile>
 
-        <RollingFile name="COMMON-SERVICE-FACADE-APPENDER" fileName="${log_path}/irmp-common-service-facade.log"
-                     filePattern="${log_path}/irmp-common-service-facade.%d{yyyy-MM-dd}.log">
-            <Filters>
-                <!-- 只记录info和warn级别信息 -->
-                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
-            <Policies>
-                <TimeBasedTriggeringPolicy/>
-            </Policies>
-            <PatternLayout charset="UTF-8"   pattern="${LOG_FILE_PATTERN}"/>
-        </RollingFile>
 
-        <RollingFile name="COMMON-SERVICE-INTEGRATION-APPENDER" fileName="${log_path}/irmp-common-service-integration.log"
-                     filePattern="${log_path}/irmp-common-service-integration.%d{yyyy-MM-dd}.log">
-            <Filters>
-                <!-- 只记录info和warn级别信息 -->
-                <ThresholdFilter level="ERROR" onMatch="DENY" onMismatch="NEUTRAL"/>
-                <ThresholdFilter level="INFO" onMatch="ACCEPT" onMismatch="DENY"/>
-            </Filters>
-            <Policies>
-                <TimeBasedTriggeringPolicy/>
-            </Policies>
-            <PatternLayout charset="UTF-8"   pattern="${LOG_FILE_PATTERN}"/>
-        </RollingFile>
 
 
         <RollingFile name="COMMON-UTIL-APPENDER" fileName="${log_path}/irmp-common-util.log"
@@ -190,10 +155,7 @@
 
     </appenders>
     <loggers>
-        <AsyncLogger name="com.cethik.irmp.biz.service.impl" level="INFO" additivity="false">
-            <appender-ref ref="BIZ-SERVICE-IMPL-APPENDER"/>
-            <appender-ref ref="ERROR-APPENDER"/>
-        </AsyncLogger>
+
 
         <AsyncLogger name="com.cethik.irmp.biz.shared" level="INFO" additivity="false">
             <appender-ref ref="BIZ-SHARED-APPENDER"/>
@@ -205,15 +167,6 @@
             <appender-ref ref="ERROR-APPENDER"/>
         </AsyncLogger>
 
-        <AsyncLogger name="com.cethik.irmp.common.service.facade" level="INFO" additivity="false">
-            <appender-ref ref="COMMON-SERVICE-FACADE-APPENDER"/>
-            <appender-ref ref="ERROR-APPENDER"/>
-        </AsyncLogger>
-
-        <AsyncLogger name="com.cethik.irmp.common.service.integration" level="INFO" additivity="false">
-            <appender-ref ref="COMMON-SERVICE-INTEGRATION-APPENDER"/>
-            <appender-ref ref="ERROR-APPENDER"/>
-        </AsyncLogger>
 
         <AsyncLogger name="com.cethik.irmp.common.util" level="INFO" additivity="false">
             <appender-ref ref="COMMON-UTIL-APPENDER"/>

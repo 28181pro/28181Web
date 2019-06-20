@@ -1,6 +1,6 @@
 package com.cethik.irmp.common.dal.dao;
 
-import com.cethik.irmp.common.util.entity.Page;
+
 
 import com.cethik.irmp.common.util.entity.Query;
 
@@ -99,26 +99,12 @@ public interface BaseMapper<T> {
 	 */
 	int batchRemoveLogic(Object[] id);
 	
-	/**
-	 * 分页查询列表
-	 * @param page
-	 * @param query
-	 * @return
-	 */
-	List<T> listForPage(Page<T> page, Query query);
 
-		/**
-	 * 分页查询列表
-	 * @param page
-	 * @param query
-	 * @return
-	 */
-	//List<T> listForPage(PageInfo2<T> page, Query query);
 
 	//TODO
 	List<T> listForPage(Query query);
 
-	//List<T> listForPage();
+
 	
 	/**
 	 * 查询列表
