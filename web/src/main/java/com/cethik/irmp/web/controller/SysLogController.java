@@ -19,9 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 /**
  * 系统日志
  *
- * @author ZhouChenglin
- * @email yczclcn@163.com
- * @url www.chenlintech.com
+ * @author daniel.yu
  * @date 2017年8月14日 下午10:01:36
  */
 @RestController
@@ -39,7 +37,7 @@ public class SysLogController extends AbstractController {
             Query query = new Query(params);
             return sysLogManager.listForPage(query);
         } catch (Exception ex) {
-            String s = ex.getMessage();
+            logger.error(ex.getMessage());
             System.out.print(ex.getMessage());
             return new PageResult(0, null);
         }

@@ -1,5 +1,6 @@
 package com.cethik.irmp.web.common.support.config;
 
+import com.cethik.irmp.web.common.support.oauth2.OAuth2Filter;
 import com.cethik.irmp.web.common.support.oauth2.OAuth2Realm;
 import org.apache.shiro.mgt.SecurityManager;
 import org.apache.shiro.session.mgt.SessionManager;
@@ -12,6 +13,8 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import javax.servlet.Filter;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -46,10 +49,10 @@ public class ShiroConfig {
         ShiroFilterFactoryBean shiroFilter = new ShiroFilterFactoryBean();
         shiroFilter.setSecurityManager(securityManager);
 
-//        //oauth过滤
-//        Map<String, Filter> filters = new HashMap<>();
-//        filters.put("oauth2", new OAuth2Filter());
-//        shiroFilter.setFilters(filters);
+        //oauth过滤
+        Map<String, Filter> filters = new HashMap<>();
+        filters.put("oauth2", new OAuth2Filter());
+        shiroFilter.setFilters(filters);
 
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/webjars/**", "anon");
@@ -66,14 +69,7 @@ public class ShiroConfig {
         filterMap.put("/swagger/**", "anon");
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/", "anon");
-
-//        filterMap.put("/css/**", "anon");
-//        filterMap.put("/plugins/**", "anon");
-//        filterMap.put("/plugins/**", "anon");
-
-
-
-      //  filterMap.put("/**", "oauth2");
+        filterMap.put("/**", "oauth2");
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;
@@ -97,5 +93,4 @@ public class ShiroConfig {
         advisor.setSecurityManager(securityManager);
         return advisor;
     }
-
 }

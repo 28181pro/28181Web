@@ -11,7 +11,7 @@ import java.util.List;
  * @Auther daniel.yu
  * @Date 2018/9/13 20:39
  **/
-public class SysUserEntity implements Serializable {
+public class SysUserDO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
@@ -81,7 +81,7 @@ public class SysUserEntity implements Serializable {
 	 */
 	private List<Long> roleIdList;
 
-	public SysUserEntity() {
+	public SysUserDO() {
 		super();
 	}
 

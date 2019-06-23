@@ -9,7 +9,7 @@ import java.io.Serializable;
  * @Auther daniel.yu
  * @Date 2018/9/13 20:39
  */
-public class SysRoleOrgEntity implements Serializable {
+public class SysRoleOrgDO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -28,7 +28,7 @@ public class SysRoleOrgEntity implements Serializable {
 	 */
 	private Long orgId;
 
-	public SysRoleOrgEntity() {
+	public SysRoleOrgDO() {
 		super();
 	}
 

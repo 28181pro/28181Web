@@ -4,7 +4,7 @@ import com.cethik.irmp.common.dal.dao.master.SysRoleMapper;
 import com.cethik.irmp.common.dal.dao.master.SysRoleMenuMapper;
 import com.cethik.irmp.common.dal.dao.master.SysRoleOrgMapper;
 import com.cethik.irmp.common.dal.dao.master.SysUserRoleMapper;
-import com.cethik.irmp.common.dal.entity.SysRoleEntity;
+import com.cethik.irmp.common.dal.entity.SysRoleDO;
 //import Page;
 import com.cethik.irmp.common.util.entity.Query;
 import com.cethik.irmp.core.service.manager.SysRoleManager;
@@ -16,9 +16,7 @@ import java.util.List;
 /**
  * 系统角色
  *
- * @author ZhouChenglin
- * @email yczclcn@163.com
- * @url www.chenlintech.com
+ * @author daniel.yu
  * @date 2017年8月12日 上午12:39:48
  */
 @Component("sysRoleManager")
@@ -37,18 +35,18 @@ public class SysRoleManagerImpl implements SysRoleManager {
 	private SysRoleOrgMapper sysRoleOrgMapper;
 
 //	@Override
-//	public List<SysRoleEntity> listRole(Page<SysRoleEntity> page, Query search) {
+//	public List<SysRoleDO> listRole(Page<SysRoleDO> page, Query search) {
 //		return sysRoleMapper.listForPage(page, search);
 //	}
 
 	@Override
-	public int saveRole(SysRoleEntity role) {
+	public int saveRole(SysRoleDO role) {
 		return sysRoleMapper.save(role);
 	}
 
 	@Override
-	public SysRoleEntity getRoleById(Long id) {
-		SysRoleEntity role = sysRoleMapper.getObjectById(id);
+	public SysRoleDO getRoleById(Long id) {
+		SysRoleDO role = sysRoleMapper.getObjectById(id);
 		List<Long> menuId = sysRoleMenuMapper.listMenuId(id);
 		List<Long> orgId = sysRoleOrgMapper.listOrgId(id);
 		role.setMenuIdList(menuId);
@@ -57,7 +55,7 @@ public class SysRoleManagerImpl implements SysRoleManager {
 	}
 
 	@Override
-	public int updateRole(SysRoleEntity role) {
+	public int updateRole(SysRoleDO role) {
 		return sysRoleMapper.update(role);
 	}
 
@@ -71,12 +69,12 @@ public class SysRoleManagerImpl implements SysRoleManager {
 	}
 
 	@Override
-	public List<SysRoleEntity> listRole() {
+	public List<SysRoleDO> listRole() {
 		return sysRoleMapper.list();
 	}
 
 	@Override
-	public int updateRoleOptAuthorization(SysRoleEntity role) {
+	public int updateRoleOptAuthorization(SysRoleDO role) {
 		Long roleId = role.getRoleId();
 		int count = sysRoleMenuMapper.remove(roleId);
 		Query query = new Query();
@@ -90,7 +88,7 @@ public class SysRoleManagerImpl implements SysRoleManager {
 	}
 	
 	@Override
-	public int updateRoleDataAuthorization(SysRoleEntity role) {
+	public int updateRoleDataAuthorization(SysRoleDO role) {
 		Long roleId = role.getRoleId();
 		int count = sysRoleOrgMapper.remove(roleId);
 		Query query = new Query();

@@ -1,20 +1,18 @@
 package com.cethik.irmp.core.service.manager;
 
-import com.cethik.irmp.common.dal.entity.SysLogEntity;
+import com.cethik.irmp.common.dal.entity.SysLogDO;
 import com.cethik.irmp.common.util.entity.PageResult;
 import com.cethik.irmp.common.util.entity.Query;
 
 /**
  * 系统日志
  *
- * @author ZhouChenglin
- * @email yczclcn@163.com
- * @url www.chenlintech.com
+ * @author daniel.yu
  * @date 2017年8月14日 下午8:43:06
  */
 public interface SysLogManager {
 
-    void saveLog(SysLogEntity log);
+    void saveLog(SysLogDO log);
 
     /**
      * @Author daniel.yu

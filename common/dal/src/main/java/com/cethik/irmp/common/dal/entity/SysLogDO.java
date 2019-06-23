@@ -10,7 +10,7 @@ import java.sql.Timestamp;
  * @Auther daniel.yu
  * @Date 2018/9/13 20:39
  */
-public class SysLogEntity implements Serializable {
+public class SysLogDO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -59,7 +59,7 @@ public class SysLogEntity implements Serializable {
 	 */
 	private Timestamp gmtCreate;
 
-	public SysLogEntity() {
+	public SysLogDO() {
 		super();
 	}
 

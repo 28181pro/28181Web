@@ -41,13 +41,14 @@ spring:
     resources: # 指定静态资源的路径
         static-locations: classpath:/static/,classpath:/templates/
 
+
 # MyBatis
 #mybatis:
 #    mapper-locations: classpath:/mybatis/*.xml
 # Mybatis配置
-mybatis:
-    configLocation: classpath:mybatis.xml
-
+#mybatis:
+#    configLocation: classpath:mybatis.xml
+#    configuration: map-underscore-to-camel-case: true
 # 分页配置
 #pagehelper:
 #  helper-dialect: mysql

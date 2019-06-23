@@ -2,7 +2,7 @@ package com.cethik.irmp.web.controller;
 
 import com.cethik.irmp.common.dal.dao.master.SysMenuMapper;
 import com.cethik.irmp.common.dal.dao.master.SysUserMapper;
-import com.cethik.irmp.common.dal.entity.SysMenuEntity;
+import com.cethik.irmp.common.dal.entity.SysMenuDO;
 import com.cethik.irmp.common.util.constant.SystemConstant;
 import com.cethik.irmp.common.util.entity.R;
 import com.cethik.irmp.web.common.annotation.OperateLog;
@@ -44,15 +44,16 @@ public class SysMenuController extends AbstractController {
 
 //查询根菜单列表
             long userId = 1;
-            List<SysMenuEntity> menuList = new ArrayList<>();
+            List<SysMenuDO> menuList = null;
 
-            List<Long> menuIdList = sysUserMapper.listAllMenuId(userId);
+            List<Long> menuIdList = sysUserMapper.listAllMenuId(getUserId());
             menuList = getAllMenuList(menuIdList);
 
             return R.ok().put("menuList", menuList);
 //		return sysMenuService.listUserMenu(getUserId());
             //return R.ok();
         } catch (Exception ex) {
+            logger.error(ex.getMessage());
             return R.error(ex.getMessage());
         }
     }
@@ -61,9 +62,9 @@ public class SysMenuController extends AbstractController {
      * 获取所有菜单列表
      */
     @OperateLog("获取所有菜单列表")
-    private List<SysMenuEntity> getAllMenuList(List<Long> menuIdList) {
+    private List<SysMenuDO> getAllMenuList(List<Long> menuIdList) {
         //查询根菜单列表
-        List<SysMenuEntity> menuList = listParentId(0L, menuIdList);
+        List<SysMenuDO> menuList = listParentId(0L, menuIdList);
         //递归获取子菜单
         getMenuTreeList(menuList, menuIdList);
 
@@ -73,10 +74,10 @@ public class SysMenuController extends AbstractController {
     /**
      * 递归
      */
-    private List<SysMenuEntity> getMenuTreeList(List<SysMenuEntity> menuList, List<Long> menuIdList) {
-        List<SysMenuEntity> subMenuList = new ArrayList<SysMenuEntity>();
+    private List<SysMenuDO> getMenuTreeList(List<SysMenuDO> menuList, List<Long> menuIdList) {
+        List<SysMenuDO> subMenuList = new ArrayList<SysMenuDO>();
 
-        for (SysMenuEntity entity : menuList) {
+        for (SysMenuDO entity : menuList) {
             if (entity.getType() == SystemConstant.MenuType.CATALOG.getValue()) {//目录
                 entity.setList(getMenuTreeList(listParentId(entity.getMenuId(), menuIdList), menuIdList));
             }
@@ -85,14 +86,14 @@ public class SysMenuController extends AbstractController {
         return subMenuList;
     }
 
-    public List<SysMenuEntity> listParentId(Long parentId, List<Long> menuIdList) {
-        List<SysMenuEntity> menuList = sysMenuMapper.listParentId(parentId);
+    public List<SysMenuDO> listParentId(Long parentId, List<Long> menuIdList) {
+        List<SysMenuDO> menuList = sysMenuMapper.listParentId(parentId);
         if (menuIdList == null) {
             return menuList;
         }
 
-        List<SysMenuEntity> userMenuList = new ArrayList<>();
-        for (SysMenuEntity menu : menuList) {
+        List<SysMenuDO> userMenuList = new ArrayList<>();
+        for (SysMenuDO menu : menuList) {
             if (menuIdList.contains(menu.getMenuId())) {
                 userMenuList.add(menu);
             }

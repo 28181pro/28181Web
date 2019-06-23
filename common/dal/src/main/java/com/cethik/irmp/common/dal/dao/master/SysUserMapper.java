@@ -1,6 +1,6 @@
 package com.cethik.irmp.common.dal.dao.master;
 
-import com.cethik.irmp.common.dal.entity.SysUserEntity;
+import com.cethik.irmp.common.dal.entity.SysUserDO;
 import com.cethik.irmp.common.dal.dao.BaseMapper;
 import com.cethik.irmp.common.util.entity.Query;
 import org.apache.ibatis.annotations.Mapper;
@@ -14,9 +14,9 @@ import java.util.List;
  * @Date 2018/9/13 20:39
  */
 @Mapper
-public interface SysUserMapper extends BaseMapper<SysUserEntity> {
+public interface SysUserMapper extends BaseMapper<SysUserDO> {
 
-	SysUserEntity getByUserName(String username);
+	SysUserDO getByUserName(String username);
 	
 	List<Long> listAllMenuId(Long userId);
 	
@@ -26,6 +26,6 @@ public interface SysUserMapper extends BaseMapper<SysUserEntity> {
 	
 	int updateUserStatus(Query query);
 	
-	int updatePswd(SysUserEntity user);
+	int updatePswd(SysUserDO user);
 	
 }

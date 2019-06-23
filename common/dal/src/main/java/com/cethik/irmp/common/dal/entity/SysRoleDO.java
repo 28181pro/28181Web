@@ -11,7 +11,7 @@ import java.util.List;
  * @Auther daniel.yu
  * @Date 2018/9/13 20:39
  */
-public class SysRoleEntity implements Serializable {
+public class SysRoleDO implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
@@ -64,7 +64,7 @@ public class SysRoleEntity implements Serializable {
 	 */
 	private Timestamp gmtModified;
 
-	public SysRoleEntity() {
+	public SysRoleDO() {
 		super();
 	}
 

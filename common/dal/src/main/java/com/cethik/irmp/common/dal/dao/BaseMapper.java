@@ -3,6 +3,7 @@ package com.cethik.irmp.common.dal.dao;
 
 
 import com.cethik.irmp.common.util.entity.Query;
+import com.github.pagehelper.Page;
 
 
 import java.util.List;
@@ -98,14 +99,24 @@ public interface BaseMapper<T> {
 	 * @return
 	 */
 	int batchRemoveLogic(Object[] id);
-	
 
 
-	//TODO
+
+	/**
+	 * 分页查询列表
+	 * @param page
+	 * @param query
+	 * @return
+	 */
+	List<T> listForPage(Page<T> page, Query query);
+
+	/**
+	 * 分页查询列表
+	 * @param page
+	 * @param query
+	 * @return
+	 */
 	List<T> listForPage(Query query);
-
-
-	
 	/**
 	 * 查询列表
 	 * @param query

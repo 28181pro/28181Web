@@ -2,7 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cethik.irmp.common.dal.dao.master.SysUserRoleMapper">
-	
+	<resultMap id ="rm" type="com.cethik.irmp.common.dal.entity.SysUserRoleDO">
+		<result column="id" property="id"/>
+		<result column="role_id" property="roleId"/>
+		<result column="user_id" property="userId"/>
+	</resultMap>
 	<insert id="save">
 		INSERT INTO sys_user_role (`user_id`, `role_id`)
 		VALUES

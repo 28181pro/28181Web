@@ -2,7 +2,7 @@ package com.cethik.irmp.core.service.manager.impl;
 
 import com.cethik.irmp.common.dal.dao.master.SysOrgMapper;
 import com.cethik.irmp.common.dal.dao.master.SysRoleOrgMapper;
-import com.cethik.irmp.common.dal.entity.SysOrgEntity;
+import com.cethik.irmp.common.dal.entity.SysOrgDO;
 import com.cethik.irmp.common.util.utils.CommonUtils;
 import com.cethik.irmp.core.service.manager.SysOrgManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,9 +13,7 @@ import java.util.List;
 /**
  * 组织架构
  *
- * @author ZhouChenglin
- * @email yczclcn@163.com
- * @url www.chenlintech.com
+ * @author daniel.yu
  * @date 2017年8月17日 上午11:32:15
  */
 @Component("sysOrgManager")
@@ -28,22 +26,22 @@ public class SysOrgManagerImpl implements SysOrgManager {
 	private SysRoleOrgMapper sysRoleOrgMapper;
 	
 	@Override
-	public List<SysOrgEntity> listOrg() {
+	public List<SysOrgDO> listOrg() {
 		return sysOrgMapper.list();
 	}
 
 	@Override
-	public int saveOrg(SysOrgEntity org) {
+	public int saveOrg(SysOrgDO org) {
 		return sysOrgMapper.save(org);
 	}
 
 	@Override
-	public SysOrgEntity getOrg(Long orgId) {
+	public SysOrgDO getOrg(Long orgId) {
 		return sysOrgMapper.getObjectById(orgId);
 	}
 
 	@Override
-	public int updateOrg(SysOrgEntity org) {
+	public int updateOrg(SysOrgDO org) {
 		return sysOrgMapper.update(org);
 	}
 

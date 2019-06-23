@@ -2,8 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cethik.irmp.common.dal.dao.master.SysUserTokenMapper">
-	
-	<select id="getByToken" resultType="com.cethik.irmp.common.dal.entity.SysUserTokenEntity">
+	<resultMap id ="rm" type="com.cethik.irmp.common.dal.entity.SysUserTokenDO">
+		<result column="user_id" property="userId"/>
+		<result column="token" property="token"/>
+		<result column="gmt_expire" property="gmtExpire"/>
+		<result column="gmt_modified" property="gmtModified"/>
+	</resultMap>
+	<select id="getByToken" resultMap="rm">
 		SELECT
 			user_id,
 			token,
@@ -15,7 +20,7 @@
 			token = #{value}
 	</select>
 	
-	<select id="getByUserId" resultType="com.cethik.irmp.common.dal.entity.SysUserTokenEntity">
+	<select id="getByUserId" resultMap="rm">
 		SELECT
 			user_id,
 			token,

@@ -9,7 +9,7 @@ import java.util.Date;
  * @Auther daniel.yu
  * @Date 2018/9/13 20:39
  */
-public class SysUserTokenEntity implements Serializable {
+public class SysUserTokenDO implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -33,7 +33,7 @@ public class SysUserTokenEntity implements Serializable {
 	 */
 	private Date gmtModified;
 
-	public SysUserTokenEntity() {
+	public SysUserTokenDO() {
 		super();
 	}
 

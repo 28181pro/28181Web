@@ -2,8 +2,18 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cethik.irmp.common.dal.dao.master.SysRoleMapper">
-	
-	<select id="list" resultType="com.cethik.irmp.common.dal.entity.SysRoleEntity">
+	<resultMap id ="rm" type="com.cethik.irmp.common.dal.entity.SysRoleDO">
+		<result column="role_id" property="roleId"/>
+		<result column="org_id" property="orgId"/>
+		<result column="role_name" property="roleName"/>
+		<result column="role_sign" property="roleSign"/>
+		<result column="remark" property="remark"/>
+		<result column="orgName" property="orgName"/>
+		<result column="user_id_create" property="userIdCreate"/>
+		<result column="gmt_create" property="gmtCreate"/>
+		<result column="gmt_modified" property="gmtModified"/>
+	</resultMap>
+	<select id="list" resultMap="rm">
 		SELECT
 			role_id,
 			role_name
@@ -13,7 +23,7 @@
 			role_id ASC
 	</select>
 	
-	<select id="listForPage" resultType="com.cethik.irmp.common.dal.entity.SysRoleEntity">
+	<select id="listForPage" resultMap="rm">
 		SELECT
 			r.role_id,
 			r.org_id,
@@ -62,7 +72,7 @@
 		)
 	</insert>
 	
-	<select id="getObjectById" resultType="com.cethik.irmp.common.dal.entity.SysRoleEntity">
+	<select id="getObjectById" resultMap="rm">
 		SELECT
 			r.role_id,
 			r.org_id,

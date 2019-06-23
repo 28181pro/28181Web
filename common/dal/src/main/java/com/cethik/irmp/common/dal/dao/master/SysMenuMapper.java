@@ -1,6 +1,6 @@
 package com.cethik.irmp.common.dal.dao.master;
 
-import com.cethik.irmp.common.dal.entity.SysMenuEntity;
+import com.cethik.irmp.common.dal.entity.SysMenuDO;
 import com.cethik.irmp.common.dal.dao.BaseMapper;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -13,11 +13,11 @@ import java.util.List;
  * @Date 2018/9/13 20:39
  */
 @Mapper
-public interface SysMenuMapper extends BaseMapper<SysMenuEntity> {
+public interface SysMenuMapper extends BaseMapper<SysMenuDO> {
 	
-	List<SysMenuEntity> listParentId(Long parentId);
+	List<SysMenuDO> listParentId(Long parentId);
 	
-	List<SysMenuEntity> listNotButton();
+	List<SysMenuDO> listNotButton();
 	
 	List<String> listUserPerms(Long userId);
 	

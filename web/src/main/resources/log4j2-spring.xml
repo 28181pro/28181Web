@@ -158,32 +158,38 @@
 
 
         <AsyncLogger name="com.cethik.irmp.biz.shared" level="INFO" additivity="false">
+            <appender-ref ref="Console"/>
             <appender-ref ref="BIZ-SHARED-APPENDER"/>
             <appender-ref ref="ERROR-APPENDER"/>
         </AsyncLogger>
 
         <AsyncLogger name="com.cethik.irmp.common.dal" level="INFO" additivity="false">
+            <appender-ref ref="Console"/>
             <appender-ref ref="COMMON-DAL-APPENDER"/>
             <appender-ref ref="ERROR-APPENDER"/>
         </AsyncLogger>
 
 
         <AsyncLogger name="com.cethik.irmp.common.util" level="INFO" additivity="false">
+            <appender-ref ref="Console"/>
             <appender-ref ref="COMMON-UTIL-APPENDER"/>
             <appender-ref ref="ERROR-APPENDER"/>
         </AsyncLogger>
 
         <AsyncLogger name="com.cethik.irmp.core.model" level="INFO" additivity="false">
+            <appender-ref ref="Console"/>
             <appender-ref ref="CORE-MODEL-APPENDER"/>
             <appender-ref ref="ERROR-APPENDER"/>
         </AsyncLogger>
 
         <AsyncLogger name="com.cethik.irmp.core.service" level="INFO" additivity="false">
+            <appender-ref ref="Console"/>
             <appender-ref ref="CORE-SERVICE-APPENDER"/>
             <appender-ref ref="ERROR-APPENDER"/>
         </AsyncLogger>
 
         <AsyncLogger name="com.cethik.irmp.web" level="INFO" additivity="false" >
+            <appender-ref ref="Console"/>
             <appender-ref ref="WEB-APPENDER"/>
             <appender-ref ref="ERROR-APPENDER"/>
         </AsyncLogger>
@@ -194,6 +200,7 @@
         </AsyncLogger>
 
         <AsyncLogger name="org.springframework" level="EEROR" additivity="false">
+            <appender-ref ref="Console"/>
             <appender-ref ref="DEFAULT-APPENDER"/>
         </AsyncLogger>
 
@@ -208,7 +215,7 @@
         <AsyncLogger name="RocketmqRemoting" level="ERROR" />
         <AsyncLogger name="RocketmqClient" level="ERROR" />
 
-        <AsyncRoot level="debug">
+        <AsyncRoot level="info">
             <appender-ref ref="Console"/>
             <appender-ref ref="DEFAULT-APPENDER"/>
             <appender-ref ref="ERROR-APPENDER"/>

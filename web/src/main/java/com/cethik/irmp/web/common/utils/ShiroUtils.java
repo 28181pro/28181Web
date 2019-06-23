@@ -1,6 +1,7 @@
 package com.cethik.irmp.web.common.utils;
 
-import com.cethik.irmp.common.dal.entity.SysUserEntity;
+import com.cethik.irmp.common.dal.entity.SysUserDO;
+import com.cethik.irmp.core.model.SysUser;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.Subject;
@@ -21,8 +22,12 @@ public class ShiroUtils {
 		return SecurityUtils.getSubject();
 	}
 	
-	public static SysUserEntity getUserEntity() {
-		return (SysUserEntity)SecurityUtils.getSubject().getPrincipal();
+//	public static SysUserDO getUserEntity() {
+//		return (SysUserDO)SecurityUtils.getSubject().getPrincipal();
+//	}
+
+	public static SysUser getUserEntity() {
+		return (SysUser)SecurityUtils.getSubject().getPrincipal();
 	}
 
 	public static Long getUserId() {

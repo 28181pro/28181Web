@@ -1,6 +1,6 @@
 package com.cethik.irmp.core.service.manager;
 
-import com.cethik.irmp.common.dal.entity.SysMenuEntity;
+import com.cethik.irmp.common.dal.entity.SysMenuDO;
 import com.cethik.irmp.common.util.entity.Query;
 
 import java.util.List;
@@ -8,26 +8,24 @@ import java.util.List;
 /**
  * 系统菜单
  *
- * @author ZhouChenglin
- * @email yczclcn@163.com
- * @url www.chenlintech.com
+ * @author daniel.yu
  * @date 2017年8月10日 上午10:34:59
  */
 public interface SysMenuManager {
 	
-	List<SysMenuEntity> listUserMenu(Long userId);
+	List<SysMenuDO> listUserMenu(Long userId);
 	
-	List<SysMenuEntity> listParentId(Long parentId, List<Long> menuIdList);
+	List<SysMenuDO> listParentId(Long parentId, List<Long> menuIdList);
 	
-	List<SysMenuEntity> listMenu(Query search);
+	List<SysMenuDO> listMenu(Query search);
 	
-	List<SysMenuEntity> listNotButton();
+	List<SysMenuDO> listNotButton();
 	
-	int saveMenu(SysMenuEntity menu);
+	int saveMenu(SysMenuDO menu);
 
-	SysMenuEntity getMenuById(Long id);
+	SysMenuDO getMenuById(Long id);
 	
-	int updateMenu(SysMenuEntity menu);
+	int updateMenu(SysMenuDO menu);
 	
 	int batchRemove(Long[] id);
 	

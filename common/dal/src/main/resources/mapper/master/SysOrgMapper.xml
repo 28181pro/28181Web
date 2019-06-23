@@ -2,7 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.cethik.irmp.common.dal.dao.master.SysOrgMapper">
-	
+	<resultMap id ="rm" type="com.cethik.irmp.common.dal.entity.SysOrgDO">
+		<result column="org_id" property="orgId"/>
+		<result column="parent_id" property="parentId"/>
+		<result column="parentName" property="parentName"/>
+		<result column="code" property="code"/>
+		<result column="name" property="name"/>
+		<result column="status" property="status"/>
+		<result column="order_num" property="orderNum"/>
+		<result column="gmt_create" property="gmtCreate"/>
+		<result column="gmt_modified" property="gmtModified"/>
+	</resultMap>
 	<select id="countOrgChildren" resultType="int">
 		SELECT
 			COUNT(*)
@@ -12,7 +22,7 @@
 			parent_id = #{value}
 	</select>
 	
-	<select id="list" resultType="com.cethik.irmp.common.dal.entity.SysOrgEntity">
+	<select id="list" resultMap="rm">
 		SELECT
 			o.org_id,
 			o.parent_id,
@@ -55,7 +65,7 @@
 		)
 	</insert>
 	
-	<select id="getObjectById" resultType="com.cethik.irmp.common.dal.entity.SysOrgEntity">
+	<select id="getObjectById" resultMap="rm">
 		SELECT
 			o.org_id,
 			o.parent_id,

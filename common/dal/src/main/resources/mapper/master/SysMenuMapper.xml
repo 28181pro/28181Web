@@ -3,7 +3,7 @@
 
 <mapper namespace="com.cethik.irmp.common.dal.dao.master.SysMenuMapper">
 
-	<resultMap id="rm" type="com.cethik.irmp.common.dal.entity.SysMenuEntity">
+	<resultMap id="rm" type="com.cethik.irmp.common.dal.entity.SysMenuDO">
 		<result property="menuId" javaType="java.lang.Long" column="menu_id"/>
 		<result property="parentId" javaType="java.lang.Long" column="parent_id"/>
 		<result property="url" javaType="java.lang.String" column="url"/>

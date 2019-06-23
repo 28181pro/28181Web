@@ -1,17 +1,23 @@
 package com.cethik.irmp.web.controller;
 
 import com.cethik.irmp.common.dal.dao.master.SysMenuMapper;
+import com.cethik.irmp.common.util.constant.SystemConstant;
+import com.cethik.irmp.common.util.entity.PageResult;
+import com.cethik.irmp.common.util.entity.Query;
 import com.cethik.irmp.common.util.entity.R;
 import com.cethik.irmp.common.util.utils.CommonUtils;
+import com.cethik.irmp.core.model.SysUser;
+import com.cethik.irmp.core.service.manager.SysLogManager;
+import com.cethik.irmp.core.service.manager.SysMenuManager;
+import com.cethik.irmp.core.service.manager.SysUserManager;
+import com.github.pagehelper.Page;
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 /**
  * 系统用户
@@ -23,9 +29,14 @@ import java.util.Set;
 @RequestMapping("/sys/user")
 public class SysUserController extends AbstractController {
 
-	@Autowired
-	private SysMenuMapper sysMenuMapper;
-	
+    @Autowired
+    private SysMenuMapper sysMenuMapper;
+
+    @Autowired
+    private SysMenuManager sysMenuManager;
+
+    @Autowired
+    private SysUserManager sysUserManager;
 //	/**
 //	 * 用户列表
 //	 * @param params
@@ -36,36 +47,58 @@ public class SysUserController extends AbstractController {
 //		if(getUserId() != SystemConstant.SUPER_ADMIN) {
 //			params.put("userIdCreate", getUserId());
 //		}
-//		return sysUserService.listUser(params);
+//		return listUser(params);
 //	}
-	
-	/**
-	 * 获取登录的用户信息
-	 */
-	@RequestMapping("/info")
-	public R info(){
-		return R.ok().put("user", getUser());
-	}
-	
-	/**
-	 * 用户权限
-	 * @return
-	 */
-	@RequestMapping("/perms")
-	public R listUserPerms() {
+//
+//    public Page<SysUser> listUser(Map<String, Object> params) {
+//        Query form = new Query(params);
+//        Page<SysUser> page = new Page<>(form);
+//        sysUserManager.listUser(page, form);
+//        return page;
+//    }
 
-		List<String> perms = sysMenuMapper.listUserPerms(getUserId());
-		Set<String> permsSet = new HashSet<>();
-		for(String perm : perms) {
-			if(StringUtils.isNotBlank(perm)) {
-				permsSet.addAll(Arrays.asList(perm.trim().split(",")));
-			}
-		}
+//    @RequestMapping("/list")
+//    public PageResult listLog(@RequestBody Map<String, Object> params) {
+//        try {
+//            Query query = new Query(params);
+//            return sysLogManager.listForPage(query);
+//        } catch (Exception ex) {
+//            logger.error(ex.getMessage());
+//            System.out.print(ex.getMessage());
+//            return new PageResult(0, null);
+//        }
+//    }
 
-		return CommonUtils.msgNotCheckNull(permsSet);
+    /**
+     * 获取登录的用户信息
+     */
+    @RequestMapping("/info")
+    public R info() {
+        return R.ok().put("user", getUser());
+    }
 
-	}
-	
+    /**
+     * 用户权限
+     *
+     * @return
+     */
+    @RequestMapping("/perms")
+    public R listUserPerms() {
+        try {
+            List<String> perms = sysMenuMapper.listUserPerms(getUserId());
+            Set<String> permsSet = new HashSet<>();
+            for (String perm : perms) {
+                if (StringUtils.isNotBlank(perm)) {
+                    permsSet.addAll(Arrays.asList(perm.trim().split(",")));
+                }
+            }
+            return CommonUtils.msgNotCheckNull(permsSet);
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+            return R.error(ex.getMessage());
+        }
+    }
+
 //	/**
 //	 * 新增用户
 //	 * @param user

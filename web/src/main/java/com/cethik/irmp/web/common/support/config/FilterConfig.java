@@ -8,9 +8,7 @@
 ///**
 // * Filter配置
 // *
-// * @author ZhouChenglin
-// * @email yczclcn@163.com
-// * @url www.chenlintech.com
+// * @author daniel.yu
 // * @date 2017年9月3日 下午7:26:49
 // */
 //@Configuration
