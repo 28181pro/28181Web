@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('定时任务')"></head>
+<body>
+<div id="dpLTE" class="container-fluid" v-cloak>
+	<div class="row">
+		<div class="col-md-4 form-inline pull-left">
+			<div class="form-group">
+		    	<input v-model="keyword" @keyup.enter="load" class="form-control" placeholder="请输入查询关键字" style="width: 220px;" />
+			</div>
+			<div class="form-group">
+			    <a class="btn btn-primary" @click="load"><i class="fa fa-search"></i>&nbsp;查询</a>
+			</div>
+		</div>
+		<div class="col-md-8">
+			<div class="btn-toolbar pull-right">
+				<div class="btn-group">
+		            <a v-if="hasPermission('quartz:job:list')" class="btn btn-default" onclick="reload();"><i class="fa fa-refresh"></i>&nbsp;刷新</a>
+		            <a v-if="hasPermission('quartz:job:save')" class="btn btn-default" @click="save"><i class="fa fa-plus"></i>&nbsp;新增</a>
+		            <a v-if="hasPermission('quartz:job:edit')" class="btn btn-default" @click="edit"><i class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
+		            <a v-if="hasPermission('quartz:job:remove')" class="btn btn-default" @click="remove"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+					<a v-if="hasPermission('quartz:job:more')" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">更多&nbsp;<span class="caret"></span></a>
+					<ul class="dropdown-menu pull-right">
+						<li><a v-if="hasPermission('quartz:job:enable')" @click="enable">&nbsp;启用</a></li>
+						<li><a v-if="hasPermission('quartz:job:disable')" @click="disable">&nbsp;禁用</a></li>
+						<li><a v-if="hasPermission('quartz:job:run')" @click="run">&nbsp;立即执行</a></li>
+					</ul>
+				</div>
+				<div class="btn-group">
+					<a v-if="hasPermission('quartz:log:list')" class="btn btn-default" href="log.html"><i class="fa fa-warning"></i>&nbsp;日志列表</a>
+				</div>
+	        </div>
+		</div>
+	</div>
+	<div class="row">
+		<table id="dataGrid"></table>
+	</div>
+</div>
+<div th:include="include/footer_js::footer"></div>
+<script th:src="@{/js/base/quartz/list.js}"></script>
+</body>
+</html>

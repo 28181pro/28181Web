@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>管理系统</title>
+<meta
+	content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"
+	name="viewport">
+<link rel="stylesheet" href="css/bootstrap.min.css">
+<link rel="stylesheet" href="css/font-awesome.min.css">
+<link rel="stylesheet" href="css/style.min.css">
+<link rel="stylesheet" href="css/common.min.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+	<div class="wrapper" id="dpLTE" v-cloak>
+		<header class="main-header">
+			<a href="javascript:void(0);" class="logo"> <span
+				class="logo-mini"><b>XX管理系统</b></span> <span class="logo-lg"><b>XX管理系统</b></span>
+			</a>
+			<nav class="navbar navbar-static-top">
+                <a class="sidebar-toggle" @click="hideMenu">
+                    <span class="sr-only">Toggle navigation</span>
+                </a>
+                <div class="navbar-custom-menu">
+                    <ul class="nav navbar-nav">
+						<li><a href="index_tab.html"><i
+								class="fa fa-home"></i> &nbsp;首页</a></li>
+                        <li class="dropdown user user-menu">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                                <img src="images/avatar.png" class="user-image" alt="User Image">
+                                <span class="hidden-xs">{{user.username}}</span>
+                            </a>
+                            <ul class="dropdown-menu pull-right" style="margin-top: 2px;">
+                                <!--<li><a class="menuItem" data-id="userInfo" href="SystemManage/User/Info"><i class="fa fa-user"></i>个人信息</a></li>-->
+								<li><a class="menuItem" data-id="userInfo" href="base/user/list.html"><i class="fa fa-user"></i>个人信息</a></li>
+
+                                <li><a href="javascript:;" @click="updatePassword"><i class="fa fa-trash-o"></i>修改密码</a></li>
+                                <li class="divider"></li>
+                                <li><a href="javascript:;" @click="logout"><i class="ace-icon fa fa-power-off"></i>安全退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+		</header>
+
+		<!-- 导航菜单 -->
+		<div class="main-sidebar">
+			<div class="sidebar">
+				<ul class="sidebar-menu" id="sidebar-menu">
+					<menu-item :item="item" v-for="item in menuList"></menu-item>
+				</ul>
+			</div>
+		</div>
+		<!-- 路径导航 -->
+		<div id="content-wrapper" class="content-wrapper">
+			<!-- tab标签 -->
+			<div class="content-tabs">
+				<button class="roll-nav roll-left tabLeft">
+					<i class="fa fa-backward"></i>
+				</button>
+				<nav class="page-tabs menuTabs">
+					<div class="page-tabs-content" style="margin-left: 0px;">
+						<a href="javascript:;" class="menuTab active" :data-id="main">系统主页</a>
+					</div>
+				</nav>
+				<button class="roll-nav roll-right tabRight">
+					<i class="fa fa-forward" style="margin-left: 3px;"></i>
+				</button>
+				<div class="btn-group roll-nav roll-right">
+					<button class="dropdown tabClose" data-toggle="dropdown">
+						页签操作<i class="fa fa-caret-down" style="padding-left: 3px;"></i>
+					</button>
+					<ul class="dropdown-menu dropdown-menu-right">
+						<li><a class="tabReload" href="javascript:;">刷新当前</a></li>
+						<li><a class="tabCloseCurrent" href="javascript:;" @click="tabCloseCurrent">关闭当前</a></li>
+						<li><a class="tabCloseAll" href="javascript:;">全部关闭</a></li>
+						<li><a class="tabCloseOther" href="javascript:;">除此之外全部关闭</a></li>
+					</ul>
+				</div>
+				<button class="roll-nav roll-right fullscreen" @click="fullScreen" id="fullscreen">
+					<i class="fa fa-arrows-alt"></i>
+				</button>
+			</div>
+
+			<!-- 主界面 -->
+			<div class="content-iframe" style="overflow: hidden; background: #fff;">
+                <div class="mainContent" id="content-main" style="margin: 5px; margin-bottom: 0px; padding: 0;">
+                    <iframe class="DP_iframe" frameborder="0" width="100%" height="100%" :src="main" id="main" name="main" :data-id="main"></iframe>
+                </div>
+            </div>
+			
+		</div>
+
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">Version 1.0.0</div>
+			Copyright &copy; 2019 <a href="#"
+				target="_blank">#</a>
+		</footer>
+
+		<div class="control-sidebar-bg"></div>
+
+		<!-- 修改密码 -->
+		<div id="passwordLayer" class="container-fluid" style="display: none;">
+			<table class="form">
+				<tr>
+					<td class="formTitle">账号</td>
+					<td class="formValue"><span class="label label-success"
+						style="vertical-align: bottom;">{{user.username}}</span></td>
+				</tr>
+				<tr>
+					<td class="formTitle">原密码</td>
+					<td class="formValue"><input type="password"
+						class="form-control" v-model="pswd" placeholder="原密码" id="oldPswd"/></td>
+				</tr>
+				<tr>
+					<td class="formTitle">新密码<font face="宋体">*</font></td>
+					<td class="formValue"><input type="text" class="form-control"
+						v-model="newPswd" placeholder="新密码" id="newPswd"/></td>
+				</tr>
+			</table>
+		</div>
+
+	</div>
+
+	<script src="libs/jquery.min.js"></script>
+	<script src="libs/vue.min.js"></script>
+	<script src="libs/bootstrap.min.js"></script>
+	<script src="libs/jquery.slimscroll.min.js"></script>
+	<script src="plugins/layer/layer.js"></script>
+	<script src="js/common.js"></script>
+	<script src="js/index_tab.js"></script>
+</body>
+</html>
