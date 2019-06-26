@@ -1,0 +1,51 @@
+﻿/* ***********Start 监控页面样式 Start*********** */
+#monitorArea { width:100%; float:left; clear:both; vertical-align:middle; text-align: center; border: 0px solid gray;overflow:auto;  margin:0 auto;  }
+/* v1 */
+#playwindow{ min-width:400px; height: 275px; margin:0px auto;text-align:center; }
+#control{ min-width:400px; height:42px; line-height:42px; margin: 0px auto; background: transparent url(../images/monitor/CtrlBar.gif) repeat-x left center;}
+/* v1 */
+    
+/* v3 */
+/*#playwindow{ min-width:500px; height: 430px; margin:0px auto;text-align:center; }
+#control{ min-width:500px; height:42px; line-height:42px; margin: 0px auto; background: transparent url(../images/monitor/CtrlBar.gif) repeat-x left center;}*/
+/* v3 */
+
+h5 { font-size: 12px; float:left; clear:both; border-bottom: 1px dotted #ddd; padding: 0 0 10px 0; width: 95%; text-align:left; margin-left: 2.5%;}
+*+ html h5 { margin-top: 15px; margin-bottom: 15px;}
+
+span.play, span.stopPlay, span.record, span.recordon,span.talk,span.talkon,span.capture,span.window,span.window4,span.window9,span.window16, span.playback, span.playfoward {height:33px; width:34px; float:left; cursor:pointer; margin-left:30px; padding-top:5px;}
+span.play { background:transparent url(../images/monitor/normalplay.gif) no-repeat center center; margin-left:15px; }
+span.play:hover { background-image: url(../images/monitor/normalplaysel.gif);}
+span.stopPlay { background:transparent url(../images/monitor/realplaystop.gif) no-repeat center center; }
+span.stopPlay:hover { background-image: url(../images/monitor/realplaystopsel.gif);}
+span.record { background:transparent url(../images/monitor/record.png) no-repeat center center; }
+span.record:hover{ background-image: url(../images/monitor/recordsel.png);}
+span.recordon { background:transparent url(../images/monitor/recordsel.png) no-repeat center center; }
+span.talk { background:transparent url(../images/monitor/talk_stoped.png) no-repeat center center; }
+span.talk:hover { background-image: url(../images/monitor/talk_stoped.png);}
+span.talkon { background:transparent url(../images/monitor/talking.png) no-repeat center center; }
+span.capture { background:transparent url(../images/monitor/snapshot.gif) no-repeat center center;}
+span.capture:hover { background-image: url(../images/monitor/snapshotsel.gif);}
+span.window { background:transparent url(../images/monitor/screen1wnd.gif) no-repeat center center;  }
+span.windowon,span.window:hover { background-image: url(../images/monitor/screensel1wnd.gif);}
+span.window4 { background:transparent url(../images/monitor/screen4wnd.gif) no-repeat center center;  }
+span.window4on, span.window4:hover { background-image: url(../images/monitor/screensel4wnd.gif);}
+span.window9 { background:transparent url(../images/monitor/screen9wnd.gif) no-repeat center center;  }
+span.window9on, span.window9:hover { background-image: url(../images/monitor/screensel9wnd.gif);}
+span.window16 { background:transparent url(../images/monitor/screen16wnd.gif) no-repeat center center;  }
+span.window16on, span.window16:hover { background-image: url(../images/monitor/screensel16wnd.gif);}
+span.nosound { background:transparent url(../images/monitor/nosound.gif) no-repeat center center;  }
+span.nosound:hover { background-image: url(../images/monitor/nosound.gif);}
+span.sound { background:transparent url(../images/monitor/sound.gif) no-repeat center center;  }
+span.sound:hover { background-image: url(../images/monitor/sound.gif);}
+span.playback { background:transparent url(../images/monitor/slow.gif) no-repeat center center; }
+span.playback:hover { background-image: url(../images/monitor/slowsel.gif);}
+span.playfoward { background:transparent url(../images/monitor/fast.png) no-repeat center center; }
+span.playfoward:hover{ background-image: url(../images/monitor/fastsel.png);}
+/* *************End 监控页面样式 End************* */
+
+/* ************* 分屏监控页面 ************* */
+.community {background:transparent url(../images/icon_station.png) no-repeat 10px center; padding-left: 30px !important; line-height:30px; }
+li { list-style:none;}
+li.online { background:transparent url(../images/monitor/online.png) no-repeat left center; padding-left: 20px; line-height:30px; }
+li.offline { background:transparent url(../images/monitor/offline.png) no-repeat left center; padding-left: 20px; line-height:30px; }
