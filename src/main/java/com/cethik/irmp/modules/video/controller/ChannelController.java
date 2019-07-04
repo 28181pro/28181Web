@@ -35,6 +35,18 @@ public class ChannelController  extends AbstractController {
         return channelService.listChannel(params);
     }
 
+    @RequestMapping("/play/{deviceid}")
+    ModelAndView play(@PathVariable("deviceid") String deviceid , Model model){
+
+        ChannelEntity channel = channelService.getByChannelCode( deviceid );
+
+        //String result = JSON.toJSONString( channel );
+        model.addAttribute("channel", channel);
+        //model.addAttribute("channel", "124.91.150.149");
+        return new ModelAndView("Video/play");
+
+    }
+
     /*
     @RequestMapping("/Video/getChannelInfo/{deviceid}")
     public String getChannelInfo( @PathVariable("deviceid") String deviceid) {

@@ -14,15 +14,23 @@ public class ChannelEntity implements Serializable {
     private Integer     port;
     private Integer     onlineStatus;
     private String      manufacturer;
-    /*
+
     private String      address;
     private Integer     registerway;
     private String      model;
     private String      longitude;
     private String      latitude;
-    private ServersEntity   streaminfo;
-    private ServersEntity   registerinfo;
-*/
+   // private ServersEntity   streaminfo;
+  // private ServersEntity   registerinfo;
+    private String            regLanIp;
+    private Integer          regLanPort;
+    private String            regWanIp;
+    private Integer          regWanPort;
+    private String            strmLanIp;
+    private Integer          strmLanPort;
+    private String            strmWanIp;
+    private Integer          strmWanPort;
+
     public Integer getId() {
         return id;
     }
@@ -77,7 +85,7 @@ public class ChannelEntity implements Serializable {
     public void setOnlineStatus(Integer onlinestatus) {
         this.onlineStatus = onlinestatus;
     }
-/*
+
     public Integer getRegisterway() {
         return registerway;
     }
@@ -126,6 +134,70 @@ public class ChannelEntity implements Serializable {
         this.latitude = latitude;
     }
 
+    public String getRegLanIp() {
+        return regLanIp;
+    }
+
+    public void setRegLanIp(String regLanIp) {
+        this.regLanIp = regLanIp;
+    }
+
+    public Integer getRegLanPort() {
+        return regLanPort;
+    }
+
+    public void setRegLanPort(Integer regLanPort) {
+        this.regLanPort = regLanPort;
+    }
+
+    public String getRegWanIp() {
+        return regWanIp;
+    }
+
+    public void setRegWanIp(String regWanIp) {
+        this.regWanIp = regWanIp;
+    }
+
+    public Integer getRegWanPort() {
+        return regWanPort;
+    }
+
+    public void setRegWanPort(Integer regWanPort) {
+        this.regWanPort = regWanPort;
+    }
+
+    public String getStrmLanIp() {
+        return strmLanIp;
+    }
+
+    public void setStrmLanIp(String strmLanIp) {
+        this.strmLanIp = strmLanIp;
+    }
+
+    public Integer getStrmLanPort() {
+        return strmLanPort;
+    }
+
+    public void setStrmLanPort(Integer strmLanPort) {
+        this.strmLanPort = strmLanPort;
+    }
+
+    public String getStrmWanIp() {
+        return strmWanIp;
+    }
+
+    public void setStrmWanIp(String strmWanIp) {
+        this.strmWanIp = strmWanIp;
+    }
+
+    public Integer getStrmWanPort() {
+        return strmWanPort;
+    }
+
+    public void setStrmWanPort(Integer strmWanPort) {
+        this.strmWanPort = strmWanPort;
+    }
+    /*
     public ServersEntity getStreaminfo() {
         return streaminfo;
     }
@@ -143,4 +215,5 @@ public class ChannelEntity implements Serializable {
     }
 
  */
+
 }

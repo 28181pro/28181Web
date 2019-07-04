@@ -37,6 +37,7 @@ public class ChannelServiceImpl implements ChannelService {
 
     @Override
     public ChannelEntity getByChannelCode(String channelcode) {
+
         return channelManager.getByChannelCode(channelcode);
     }
 /*

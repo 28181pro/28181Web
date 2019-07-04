@@ -17,7 +17,7 @@ function initialPage() {
 
 function getGrid() {
 	$('#dataGrid').bootstrapTableEx({
-		url : '../../sys/user/list?_' + $.now(),
+		url : '../../video/channel/list?_' + $.now(),
 		height : $(window).height() - 56,
 		queryParams : function(params) {
 			params.username = vm.keyword;
@@ -26,43 +26,43 @@ function getGrid() {
 		columns : [ {
 			checkbox : true
 		}, {
-			field : "userId",
+			field : "id",
 			title : "编号",
 			width : "50px"
 		}, {
-			field : "username",
-			title : "用户名",
+			field : "channelCode",
+			title : "通道编号",
 			width : "200px"
 		}, {
-			field : "orgName",
-			title : "所属部门",
+			field : "gbdeviceCode",
+			title : "设备编号",
 			width : "200px"
 		}, {
-			field : "email",
-			title : "邮箱",
+			field : "name",
+			title : "名称",
 			width : "300px"
 		}, {
-			field : "mobile",
-			title : "手机号",
+			field : "ip",
+			title : "出口IP",
 			width : "130px"
 		}, {
-			field : "status",
+			field : "port",
+			title : "端口",
+			width : "200px"
+		},  {
+			field : "onlineStatus",
 			title : "状态",
 			width : "60px",
 			formatter : function(value, row, index) {
 				if (value == '0') {
-					return '<span class="label label-danger">禁用</span>';
+					return '<span class="label label-danger">离线</span>';
 				} else if (value == '1') {
 					return '<span class="label label-success">正常</span>';
 				}
 			}
-		}, {
-			field : "gmtCreate",
-			title : "创建时间",
-			width : "200px"
-		}, {
-			field : "remark",
-			title : "备注"
+		},{
+			field : "manufacturer",
+			title : "厂商"
 		} ]
 	})
 }
@@ -138,19 +138,22 @@ var vm = new Vue({
 				});
 			}
 		},
-		enable : function() {
+		play : function() {
 			var ck = $('#dataGrid').bootstrapTable('getSelections'), ids = [];
-			if (checkedArray(ck)) {
-				$.each(ck, function(idx, item) {
-					ids[idx] = item.userId;
-				});
-				$.ConfirmForm({
-					msg : '您是否要启用所选账户吗？',
-					url : '../../sys/user/enable?_' + $.now(),
-					param : ids,
-					success : function(data) {
-						vm.load();
-					}
+			if (checkedRow(ck)) {
+				dialogOpen({
+					title : '通道播放',
+					url : '../../video/channel/play.html?_' + $.now(),
+					width : '620px',
+					height : '400px',
+					scroll : false,
+					success : function(iframeId) {
+						//top.frames[iframeId].vm.user.userId = ck[0].userId;
+						//top.frames[iframeId].vm.setForm();
+					},
+					yes : function(iframeId) {
+						//top.frames[iframeId].vm.acceptClick();
+					},
 				});
 			}
 		},

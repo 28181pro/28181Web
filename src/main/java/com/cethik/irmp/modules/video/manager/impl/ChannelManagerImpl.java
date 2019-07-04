@@ -25,6 +25,7 @@ public class ChannelManagerImpl implements ChannelManager {
 
     @Override
     public ChannelEntity getByChannelCode(String channelcode){
+
         return mapper.getByChannelCode( channelcode );
     }
 
