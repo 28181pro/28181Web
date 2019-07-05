@@ -1,0 +1,71 @@
+﻿<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('播放')"></head>
+<body>
+<div id="dpLTE" class="container-fluid" v-cloak>
+
+    <div class="widget" style="width: 620px; height: 400px; margin: 0px 10px 10px 10px; float: left;">
+        <link href="/css/video.css" rel="stylesheet" type="text/css">
+        <link href="/css/bootstrap/css/hik-bootstrap.css" rel="stylesheet" type="text/css">
+        <link href="/css/bootstrap/css/hik-bootstrap.css" rel="stylesheet" type="text/css">
+
+        <div class="widget-content" style="height: 400px;">
+            <!--监控区域-->
+            <div id="monitorArea">
+                <!--
+                                <span id = "regsvrip" th:utext="${channel.registerinfo.wanip}" style="display:none"></span>
+                                <span id = "regsvrport" th:utext="${channel.registerinfo.wanport}" style="display:none"></span>
+                                <span id = "strsvrip" th:utext="${channel.streaminfo.wanip}" style="display:none"></span>
+                                <span id= "strsvrport" th:utext="${channel.streaminfo.wanport}" style="display:none"></span>
+                                <span id= "channelcode" th:utext="${channel.channelcode}" style="display:none"></span>
+                -->
+                <div id="playwindow" style="text-align: center; background-color: #000; width: 100%; ">
+                    <object classid="clsid:942D7F59-8377-4D21-BD39-AF446986AFFF" id="ppvs" width="100%" height="100%" name="ppvs"></object>
+                </div>
+                <div id="control" style="width: 100%;">
+                    <span id="btnPlay" class="play" onclick="StartVideo(this);"></span>
+                    <span id="btnStopPlay" class="stopPlay" onclick="StopVideo(this);"></span>
+                    <span id="btnCapture" class="capture" onclick="Snapshot(this)"></span>
+                    <span id="btnRecord" class="record" onclick="RecordHandle(this);"></span>
+                    <span id="btnTalk" class="talk" onclick="TalkHandle(this);"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div th:include="include/footer_js::footer"></div>
+<script th:src="@{/js/video/channel/play.js}"></script>
+<script>
+
+    var regSvrIp = "";              //注册服务器
+    var regSvrPort = "";
+    var streamSvrIp = "";           //流媒体服务器
+    var streamSvrPort = "";
+    var iStreamCodeType = 1;        //0: 主码流 1: 子码流
+
+    var iStreamTransferMode = 1;    //流媒体取流类型(0: UDP 1:TCP)
+    var iServerRoute = 1;             //注册时配置的线路
+
+    function StartVideo() {
+        var ocx = document.getElementById("ppvs");
+
+        var elevCode =   '34020000001320000007';//$("#channelcode")[0].innerText;
+        regSvrIp = '124.91.150.149'; // $("#regsvrip")[0].innerText;;
+        regSvrPort =  9210;//$("#regsvrport")[0].innerText;;
+        streamSvrIp =  '124.91.150.149';//$("#strsvrip")[0].innerText;;
+        streamSvrPort =  9310;//$("#strsvrport")[0].innerText;;
+
+        //ocx.StartVideo(streamSvrIp, streamSvrPort, regSvrIp, regSvrPort, elevCode, iServerRoute, iStreamCodeType, 0);
+        ocx.playvideo(regSvrIp, regSvrPort,streamSvrIp, streamSvrPort,  elevCode, iServerRoute, iStreamCodeType, 0);
+
+    }
+
+    function StopVideo() {
+        var ocx = document.getElementById("ppvs");
+        ocx.stopvideo();
+    }
+</script>
+</body>
+</html>
