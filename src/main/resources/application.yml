@@ -38,6 +38,6 @@ mybatis:
     configLocation: classpath:mybatis.xml
 
 #日志
-logging:
-  config: classpath:logback-${spring.profiles.active}.xml
+#logging:
+#  config: classpath:logback-${spring.profiles.active}.xml
 
