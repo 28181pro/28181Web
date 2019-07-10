@@ -52,10 +52,10 @@
         var ocx = document.getElementById("ppvs");
 
         var elevCode =  vm.channel.channelCode;//$("#channelcode")[0].innerText;
-        regSvrIp = vm.channel.regwanip;
-        regSvrPort =  vm.channel.regwanport;//9210;//$("#regsvrport")[0].innerText;;
-        streamSvrIp =  vm.channel.strwanip;//'124.91.150.149';//$("#strsvrip")[0].innerText;;
-        streamSvrPort =  vm.channel.strwanport;//9310;//$("#strsvrport")[0].innerText;;
+        regSvrIp = vm.channel.regWanIp;
+        regSvrPort =  vm.channel.regWanPort;//9210;//$("#regsvrport")[0].innerText;;
+        streamSvrIp =  vm.channel.strmWanIp;//'124.91.150.149';//$("#strsvrip")[0].innerText;;
+        streamSvrPort =  vm.channel.strmWanPort;//9310;//$("#strsvrport")[0].innerText;;
 
         //ocx.StartVideo(streamSvrIp, streamSvrPort, regSvrIp, regSvrPort, elevCode, iServerRoute, iStreamCodeType, 0);
         ocx.playvideo(regSvrIp, regSvrPort,streamSvrIp, streamSvrPort,  elevCode, iServerRoute, iStreamCodeType, 0);

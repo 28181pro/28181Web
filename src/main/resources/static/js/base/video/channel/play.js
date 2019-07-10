@@ -9,14 +9,14 @@ var vm = new Vue({
         nonselectedList:[],
         channel:{
             channelCode: 0,
-            strlanip: null,
-            strlanport: 1,
-            strwanip:null,
-            strwanport:1,
-            reglanip: null,
-            reglanport: 1,
-            regwanip:null,
-            regwanport:1
+            strmLanIp: null,
+            strmLanPort: 1,
+            strmWanIp:null,
+            strmWanPort:1,
+            regLanIp: null,
+            regLanPort: 1,
+            regWanIp:null,
+            regWanPort:1
         }
     },
     methods : {
@@ -25,14 +25,15 @@ var vm = new Vue({
                 url: '../../video/channel/getChannelInfo?_' + $.now(),
                 param: vm.channel.channelCode,
                 success: function(data) {
-                    vm.channel.regwanport = data.regwanport;
-                    vm.channel.regwanip = data.regwanip;
-                    vm.channel.reglanip = data.reglanip;
-                    vm.channel.reglanport = data.reglanport;
-                    vm.channel.strwanip = data.strwanip;
-                    vm.channel.strwanport = data.strwanport;
-                    vm.channel.strlanip = data.strlanip;
-                    vm.channel.strlanport = data.strlanport;
+                    alert(data.strmWanIp );
+                    vm.channel.regWanPort = data.regWanPort;
+                    vm.channel.regWanIp = data.regWanIp;
+                    vm.channel.regLanIp = data.regLanIp;
+                    vm.channel.regLanPort = data.regLanPort;
+                    vm.channel.strmWanIp = data.strmWanIp;
+                    vm.channel.strmWanPort = data.strmWanPort;
+                    vm.channel.strmLanIp = data.strmLanIp;
+                    vm.channel.strmLanPort = data.strmLanPort;
                 }
 
             });
