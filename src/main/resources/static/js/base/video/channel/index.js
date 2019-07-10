@@ -62,8 +62,42 @@ function getGrid() {
 			}
 		},{
 			field : "manufacturer",
-			title : "厂商"
-		} ]
+			title : "厂商",
+			width : "0px"
+		}
+		/*,{
+			field : "strmLanIp",
+			title : "流媒体IP",
+			width : "0px"
+		},{
+			field : "strmLanPort",
+			title : "流媒体端口",
+			width : "0px"
+		},{
+			field : "strmWanIp",
+			title : "流媒体IP",
+			width : "0px"
+		},{
+			field : "strmWanPort",
+			title : "流媒体IP",
+			width : "0px"
+		},{
+			field : "regLanIp",
+			title : "流媒体IP",
+			width : "0px"
+		},{
+			field : "regLanPort",
+			title : "流媒体IP",
+			width : "0px"
+		},{
+			field : "regWanIp",
+			title : "流媒体IP",
+			width : "0px"
+		},{
+			field : "regWanPort",
+			title : "流媒体IP",
+			width : "0px"
+		}*/]
 	})
 }
 
@@ -148,8 +182,16 @@ var vm = new Vue({
 					height : '400px',
 					scroll : false,
 					success : function(iframeId) {
-						//top.frames[iframeId].vm.user.userId = ck[0].userId;
-						//top.frames[iframeId].vm.setForm();
+						top.frames[iframeId].vm.channel.channelCode = ck[0].channelCode;
+						//top.frames[iframeId].vm.channel.strlanip = ck[0].strmLanIp;
+						//top.frames[iframeId].vm.channel.strlanport = ck[0].strmLanPort;
+						//top.frames[iframeId].vm.channel.strwanip = ck[0].strmWanIp;
+						//top.frames[iframeId].vm.channel.strwanport= ck[0].strmWanPort;
+						//top.frames[iframeId].vm.channel.reglanip = ck[0].regLanIp;
+						//top.frames[iframeId].vm.channel.reglanport = ck[0].regLanPort;
+						//top.frames[iframeId].vm.channel.regwanip = ck[0].regWanIp;
+						//top.frames[iframeId].vm.channel.regwanport = ck[0].regWanPort;
+						top.frames[iframeId].vm.setForm();
 					},
 					yes : function(iframeId) {
 						//top.frames[iframeId].vm.acceptClick();

@@ -8,6 +8,6 @@ import java.util.List;
 
 public interface ChannelManager {
     public List<ChannelEntity> listChannel(Page<ChannelEntity> page, Query search);
-    public ChannelEntity getByChannelCode(String channelcode);
+    public ChannelEntity getByChannelCode(String channelCode);
 
 }

@@ -8,5 +8,5 @@ import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
 public interface ChannelMapper extends BaseMapper<ChannelEntity>  {
-    public ChannelEntity getByChannelCode(String channelcode);
+    public ChannelEntity getByChannelCode(String channelCode);
 }

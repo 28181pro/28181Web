@@ -7,14 +7,37 @@ var vm = new Vue({
         roleList:{},
         selectedList:[],
         nonselectedList:[],
-        user:{
-            orgId: 0,
-            orgName: null,
-            status: 1,
-            roleIdList:[]
+        channel:{
+            channelCode: 0,
+            strlanip: null,
+            strlanport: 1,
+            strwanip:null,
+            strwanport:1,
+            reglanip: null,
+            reglanport: 1,
+            regwanip:null,
+            regwanport:1
         }
     },
     methods : {
+        setForm: function() {
+            $.SetForm({
+                url: '../../video/channel/getChannelInfo?_' + $.now(),
+                param: vm.channel.channelCode,
+                success: function(data) {
+                    vm.channel.regwanport = data.regwanport;
+                    vm.channel.regwanip = data.regwanip;
+                    vm.channel.reglanip = data.reglanip;
+                    vm.channel.reglanport = data.reglanport;
+                    vm.channel.strwanip = data.strwanip;
+                    vm.channel.strwanport = data.strwanport;
+                    vm.channel.strlanip = data.strlanip;
+                    vm.channel.strlanport = data.strlanport;
+                }
+
+            });
+
+        },
         getRoleList: function(){
             $.ajax({
                 type: 'get',
@@ -40,43 +63,6 @@ var vm = new Vue({
                     top.frames[iframeId].vm.acceptClick();
                 }
             })
-        },
-        setForm: function() {
-            this.getRoleList();
-            $.SetForm({
-                url: '../../sys/user/infoUser?_' + $.now(),
-                param: vm.user.userId,
-                success: function(data) {
-                    vm.user = data;
-                    for(var i=0; i<vm.roleList.length; i++){
-                        var exist = true;
-                        inner:
-                            for(var j=0; j<vm.user.roleIdList.length; j++){
-                                if(vm.roleList[i].roleId == vm.user.roleIdList[j]){
-                                    vm.selectedList.push(vm.roleList[i]);
-                                    exist = true;
-                                    break inner;
-                                }else{
-                                    exist = false;
-                                }
-                            }
-                        if (!exist){
-                            vm.nonselectedList.push(vm.roleList[i]);
-                        }
-                    }
-                    doublebox = $('.rolebox').doublebox({
-                        selectorMinimalHeight: 187,
-                        filterPlaceHolder: '关键字...',
-                        preserveSelectionOnMove: 'moved',
-                        moveOnSelect: false,
-                        nonSelectedList: vm.nonselectedList,
-                        selectedList:vm.selectedList,
-                        optionValue:"roleId",
-                        optionText:"roleName",
-                        doubleMove:true
-                    });
-                }
-            });
         },
         acceptClick: function() {
             var roles = doublebox.getSelectedOptions();

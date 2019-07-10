@@ -5,6 +5,7 @@ package com.cethik.irmp.modules.video.controller;
 import com.cethik.irmp.common.constant.SystemConstant;
 import com.cethik.irmp.common.entity.Page;
 //import com.cethik.irmp.dto.BaseResponse;
+import com.cethik.irmp.common.entity.R;
 import com.cethik.irmp.modules.video.entity.ChannelEntity;
 import com.cethik.irmp.modules.sys.controller.AbstractController;
 import com.cethik.irmp.modules.sys.entity.SysUserEntity;
@@ -32,9 +33,11 @@ public class ChannelController  extends AbstractController {
         if(getUserId() != SystemConstant.SUPER_ADMIN) {
             params.put("userIdCreate", getUserId());
         }
-        return channelService.listChannel(params);
+        Page<ChannelEntity>  pages = channelService.listChannel(params);
+        return  pages ;//channelService.listChannel(params);
     }
 
+    /*
     @RequestMapping("/play/{deviceid}")
     ModelAndView play(@PathVariable("deviceid") String deviceid , Model model){
 
@@ -46,19 +49,20 @@ public class ChannelController  extends AbstractController {
         return new ModelAndView("Video/play");
 
     }
+*/
 
-    /*
-    @RequestMapping("/Video/getChannelInfo/{deviceid}")
-    public String getChannelInfo( @PathVariable("deviceid") String deviceid) {
-        //String sEcho = request.getParameter("sEcho");
-        Channel channel = channelService.selectByCode( deviceid );
+    /**
+     * 根据id查询详情
+     * @param channelCode
+     * @return
+     */
 
-        JSONObject json = new JSONObject();
-        json.put("aData", channel);
+    @RequestMapping("/getChannelInfo")
+    public R getChannelInfo(@RequestBody String channelCode) {
 
-        return "124.91.150.149";
+        return channelService.getByChannelCode( channelCode );
     }
-
+/*
     @RequestMapping("/Video/index/{deviceid}")
     public ModelAndView play( @PathVariable("deviceid") String deviceid , Model model)
      {

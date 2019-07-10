@@ -20,8 +20,10 @@ public class ChannelEntity implements Serializable {
     private String      model;
     private String      longitude;
     private String      latitude;
-   // private ServersEntity   streaminfo;
-  // private ServersEntity   registerinfo;
+    /*
+    private ServersEntity   streaminfo;
+    private ServersEntity   registerinfo;
+    */
     private String            regLanIp;
     private Integer          regLanPort;
     private String            regWanIp;
@@ -134,6 +136,7 @@ public class ChannelEntity implements Serializable {
         this.latitude = latitude;
     }
 
+
     public String getRegLanIp() {
         return regLanIp;
     }
@@ -197,7 +200,9 @@ public class ChannelEntity implements Serializable {
     public void setStrmWanPort(Integer strmWanPort) {
         this.strmWanPort = strmWanPort;
     }
-    /*
+
+
+/*
     public ServersEntity getStreaminfo() {
         return streaminfo;
     }
@@ -213,7 +218,5 @@ public class ChannelEntity implements Serializable {
     public void setRegisterinfo(ServersEntity registerinfo) {
         this.registerinfo = registerinfo;
     }
-
- */
-
+*/
 }

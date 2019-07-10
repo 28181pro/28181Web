@@ -2,6 +2,8 @@ package com.cethik.irmp.modules.video.service.impl;
 
 import com.cethik.irmp.common.entity.Page;
 import com.cethik.irmp.common.entity.Query;
+import com.cethik.irmp.common.entity.R;
+import com.cethik.irmp.common.utils.CommonUtils;
 import com.cethik.irmp.modules.sys.entity.SysUserEntity;
 import com.cethik.irmp.modules.video.dao.ChannelMapper;
 import com.cethik.irmp.modules.video.entity.ChannelEntity;
@@ -36,9 +38,10 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public ChannelEntity getByChannelCode(String channelcode) {
+    public R getByChannelCode(String channelCode) {
 
-        return channelManager.getByChannelCode(channelcode);
+        ChannelEntity channel = channelManager.getByChannelCode(channelCode);
+        return CommonUtils.msg(channel);
     }
 /*
     @CetcLog(type= OPERATE.QUERY,info="查询部份的列表2222")
