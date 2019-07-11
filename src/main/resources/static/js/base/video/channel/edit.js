@@ -6,7 +6,9 @@ var vm = new Vue({
     data: {
         channel: {
             id: 0
-        }
+        },
+        longitude: '',
+        latitude: ''
     },
     methods : {
         setForm: function() {
@@ -38,8 +40,11 @@ var vm = new Vue({
                 scroll : true,
                 width: "500px",
                 height: "450px",
-                yes : function(iframeId) {
-                    top.frames[iframeId].vm.acceptClick();
+                yes : function(iframeId, index) {
+                    top.layer.close(index);
+                    vm.longitude = localStorage.getItem('longitude');
+                    vm.latitude = localStorage.getItem('latitude');
+                    // top.frames['layerForm'][iframeId].vm.acceptClick();
                 }
             })
         }

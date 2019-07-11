@@ -59,6 +59,14 @@ $(function () {
         localStorage.setItem("zoomLevel", map.getViewport().zoom);
     });
 
+
+    map.addEventListener("click",function(e){
+        localStorage.setItem("longitude", e.point.lng);
+        localStorage.setItem("latitude", e.point.lat);
+		console.log("[MAP] You clicked point:", e.point.lng, e.point.lat);
+	});
+
+
     let request = {
         pageNumber: 1,
         pageSize: 1000, // Need to be fixed
@@ -78,3 +86,17 @@ $(function () {
         dataType: 'json'
     });
 })
+
+
+var vm = new Vue({
+	el : '#vueDiv',
+	data : {
+		keyword : null
+	},
+	methods : {
+        acceptClick: function() {
+            console.log("AcceptClick is called");
+        }
+    }
+});
+
