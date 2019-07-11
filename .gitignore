@@ -6,3 +6,4 @@ target/
 .project
 .factorypath
 .classpath
+.settings/org.springframework.ide.eclipse.prefs
