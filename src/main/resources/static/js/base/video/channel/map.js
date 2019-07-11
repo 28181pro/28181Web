@@ -1,11 +1,20 @@
 
 function showDevices(map, devices) {
+    let zoomLevel = localStorage.getItem("zoomLevel");
+
+
     devices.forEach(device=> {
         if (device.longitude != null && device.latitude != null) {
             var point = new BMap.Point(device.longitude, device.latitude);
-            map.centerAndZoom(point, 12);
+            
+            if (zoomLevel !== null) {
+                map.centerAndZoom(point, zoomLevel);
+            }
             var marker = new BMap.Marker(point);
-            map.addOverlay(marker);        
+            map.addOverlay(marker);   
+            marker.addEventListener("click",function (){
+                alert("点击了标注..");
+            });     
             var label = new BMap.Label(device.name, { offset: new BMap.Size(20, -10) });
             marker.setLabel(label);    
         }
@@ -22,8 +31,14 @@ $(function () {
             BMAP_HYBRID_MAP
         ]
     }));
-    map.setCurrentCity("北京");
+
+
+
     map.enableScrollWheelZoom(true);
+
+    map.addEventListener("zoomend", function(type){
+        localStorage.setItem("zoomLevel", map.getViewport().zoom);
+    });
 
     let request = {
         pageNumber: 1,
