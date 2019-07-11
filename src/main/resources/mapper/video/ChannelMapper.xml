@@ -32,7 +32,7 @@
     </resultMap>
 
     <select id="listForPage" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
-        SELECT  id, channel_code, gbdevice_code, name, ip, port, online_status, manufacturer
+        SELECT  id, channel_code, gbdevice_code, name, ip, port, online_status, manufacturer, longitude, latitude 
         FROM
         channel
         <where>
