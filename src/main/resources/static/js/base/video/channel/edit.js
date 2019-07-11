@@ -29,6 +29,19 @@ var vm = new Vue({
                     $.currentIframe().vm.load();
                 }
             });
+        },
+        sellocation: function() {
+            dialogOpen({
+                id: 'location',
+                title: '选择坐标',
+                url: '../../video/channel/map.html?_' + $.now(),
+                scroll : true,
+                width: "500px",
+                height: "450px",
+                yes : function(iframeId) {
+                    top.frames[iframeId].vm.acceptClick();
+                }
+            })
         }
     }
 })

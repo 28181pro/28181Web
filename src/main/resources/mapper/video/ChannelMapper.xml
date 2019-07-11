@@ -51,7 +51,7 @@
         FROM
         channel  INNER JOIN servers reg ON channel.register_server_id = reg.id
         INNER JOIN servers strm ON channel.stream_server_id = strm.id
-        where  channel.channel_code =  '34020000001320000005';
+        where  channel.id = #{value};
     </select>
 
 
@@ -78,9 +78,10 @@
 	</insert>
 
     <select id="getObjectById" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
+
 		SELECT
-		id,channel_code,gbdevice_code,
-name,ip,port,online_status,manufacturer,address,stream_server_id,register_way,model,longitude,latitude,register_server_id
+		id,channel_code,gbdevice_code,name,ip,port,online_status,manufacturer,address,stream_server_id,
+        register_way,model,longitude,latitude,register_server_id
 		FROM
 			channel
 		WHERE

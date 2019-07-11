@@ -11,7 +11,7 @@ var vm = new Vue({
     methods : {
         setForm: function() {
             $.SetForm({
-                url: '../../video/channel/info?_' + $.now(),
+                url: '../../video/channel/getChannelInfo?_' + $.now(),
                 param: vm.channel.id,
                 success: function(data) {
                     vm.channel = data;

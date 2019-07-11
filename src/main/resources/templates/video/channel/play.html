@@ -6,47 +6,6 @@
 
 <body>
 <div id="dpLTE" class="container-fluid" v-cloak>
-    <table class="form" id="form">
-        <tr>
-            <td class="formTitle">通道编号</td>
-            <td class="formValue">
-                <input type="text" class="form-control" placeholder="通道编号" v-model="channel.channelCode" isvalid="yes" checkexpession="NotNull" readonly>
-            </td>
-        </tr>
-        <tr>
-            <td class="formTitle">设备编号</td>
-            <td class="formValue">
-                <input type="text" class="form-control"  v-model="channel.gbdeviceCode" isvalid="yes" checkexpession="NotNull" readonly>
-            </td>
-        </tr>
-        <tr>
-            <td class="formTitle">名称</td>
-            <td class="formValue">
-                <input type="text" class="form-control" placeholder="名称" v-model="channel.name"  isvalid="yes" checkexpession="NotNull" readonly>
-            </td>
-        </tr>
-        <tr>
-            <td class="formTitle">出口IP</td>
-            <td class="formValue">
-                <input type="text" class="form-control " placeholder="出口IP" v-model="channel.ip"  isvalid="yes" checkexpession="NotNull" readonly>
-            </td>
-        </tr>
-        <tr>
-            <td class="formTitle">端口</td>
-            <td class="formValue">
-                <input type="text" class="form-control" placeholder="端口" v-model="channel.port"  isvalid="yes" checkexpession="NotNull" readonly>
-            </td>
-        </tr>
-        <tr>
-            <td class="formTitle">厂商</td>
-            <td class="formValue">
-                <input type="text" class="form-control " placeholder="厂商" v-model="channel.manufacturer"  isvalid="yes" checkexpession="NotNull" readonly>
-            </td>
-        </tr>
-
-    </table>
-
-
     <div class="widget" style="width: 620px; height: 400px; margin: 0px 10px 10px 10px; float: left;">
         <div class="widget-content" style="height: 400px;">
             <!--监控区域-->
@@ -79,10 +38,10 @@
     function StartVideo() {
         var ocx = document.getElementById("ppvs");
         var elevCode =  vm.channel.channelCode;//$("#channelcode")[0].innerText;
-        regSvrIp = vm.channel.regwanip;
-        regSvrPort =  vm.channel.regwanport;//9210;//$("#regsvrport")[0].innerText;;
-        streamSvrIp =  vm.channel.strwanip;//'124.91.150.149';//$("#strsvrip")[0].innerText;;
-        streamSvrPort =  vm.channel.strwanport;//9310;//$("#strsvrport")[0].innerText;;
+        regSvrIp = vm.channel.regWanIp;
+        regSvrPort =  vm.channel.regWanPort;//9210;//$("#regsvrport")[0].innerText;;
+        streamSvrIp =  vm.channel.strmWanIp;//'124.91.150.149';//$("#strsvrip")[0].innerText;;
+        streamSvrPort =  vm.channel.strmWanPort;//9310;//$("#strsvrport")[0].innerText;;
         //ocx.StartVideo(streamSvrIp, streamSvrPort, regSvrIp, regSvrPort, elevCode, iServerRoute, iStreamCodeType, 0);
         ocx.playvideo(regSvrIp, regSvrPort,streamSvrIp, streamSvrPort,  elevCode, iServerRoute, iStreamCodeType, 0);
     }
