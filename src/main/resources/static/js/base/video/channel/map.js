@@ -1,22 +1,41 @@
 
+function markerClicked(channelId) {
+    return () => {
+        dialogOpen({
+            title: '播放',
+            url: 'video/channel/play.html?_' + $.now(),
+            width: '650px',
+            height: '550px',
+            scroll: true,
+            success: function (iframeId) {
+                console.log("[MAP] Setting channnel id to play video:", channelId);
+                top.frames[iframeId].vm.channel.id = channelId;
+                top.frames[iframeId].vm.setForm();
+            },
+            yes: function (iframeId) {
+                top.frames[iframeId].vm.acceptClick();
+            },
+        });
+    }
+}
+
+
 function showDevices(map, devices) {
     let zoomLevel = localStorage.getItem("zoomLevel");
 
 
-    devices.forEach(device=> {
+    devices.forEach(device => {
         if (device.longitude != null && device.latitude != null) {
             var point = new BMap.Point(device.longitude, device.latitude);
-            
+
             if (zoomLevel !== null) {
                 map.centerAndZoom(point, zoomLevel);
             }
             var marker = new BMap.Marker(point);
-            map.addOverlay(marker);   
-            marker.addEventListener("click",function (){
-                alert("点击了标注..");
-            });     
+            map.addOverlay(marker);
+            marker.addEventListener("click", markerClicked(device.id));
             var label = new BMap.Label(device.name, { offset: new BMap.Size(20, -10) });
-            marker.setLabel(label);    
+            marker.setLabel(label);
         }
     })
 }
@@ -36,7 +55,7 @@ $(function () {
 
     map.enableScrollWheelZoom(true);
 
-    map.addEventListener("zoomend", function(type){
+    map.addEventListener("zoomend", function (type) {
         localStorage.setItem("zoomLevel", map.getViewport().zoom);
     });
 
