@@ -1,16 +1,5 @@
 package com.cethik.irmp.modules.sys.service.impl;
 
-import java.util.List;
-import java.util.Map;
-
-import com.cethik.irmp.common.entity.Page;
-import com.cethik.irmp.common.entity.Query;
-import com.cethik.irmp.common.entity.R;
-import com.cethik.irmp.common.utils.CommonUtils;
-import com.cethik.irmp.modules.sys.entity.SysRoleEntity;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
 import com.cethik.irmp.common.entity.Page;
 import com.cethik.irmp.common.entity.Query;
 import com.cethik.irmp.common.entity.R;
@@ -18,6 +7,11 @@ import com.cethik.irmp.common.utils.CommonUtils;
 import com.cethik.irmp.modules.sys.entity.SysRoleEntity;
 import com.cethik.irmp.modules.sys.manager.SysRoleManager;
 import com.cethik.irmp.modules.sys.service.SysRoleService;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * 系统角色

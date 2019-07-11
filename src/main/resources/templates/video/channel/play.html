@@ -1,24 +1,56 @@
 ﻿<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="include/header_css::header('播放')"></head>
+<head th:include="include/header_css::header('编辑-通道管理')"></head>
+
+<link href="/css/video.css" rel="stylesheet" type="text/css">
+
 <body>
 <div id="dpLTE" class="container-fluid" v-cloak>
+    <table class="form" id="form">
+        <tr>
+            <td class="formTitle">通道编号</td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="通道编号" v-model="channel.channelCode" isvalid="yes" checkexpession="NotNull" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">设备编号</td>
+            <td class="formValue">
+                <input type="text" class="form-control"  v-model="channel.gbdeviceCode" isvalid="yes" checkexpession="NotNull" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">名称</td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="名称" v-model="channel.name"  isvalid="yes" checkexpession="NotNull" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">出口IP</td>
+            <td class="formValue">
+                <input type="text" class="form-control " placeholder="出口IP" v-model="channel.ip"  isvalid="yes" checkexpession="NotNull" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">端口</td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="端口" v-model="channel.port"  isvalid="yes" checkexpession="NotNull" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">厂商</td>
+            <td class="formValue">
+                <input type="text" class="form-control " placeholder="厂商" v-model="channel.manufacturer"  isvalid="yes" checkexpession="NotNull" readonly>
+            </td>
+        </tr>
+
+    </table>
+
 
     <div class="widget" style="width: 620px; height: 400px; margin: 0px 10px 10px 10px; float: left;">
-        <link href="/css/video.css" rel="stylesheet" type="text/css">
-        <link href="/css/bootstrap/css/hik-bootstrap.css" rel="stylesheet" type="text/css">
-        <link href="/css/bootstrap/css/hik-bootstrap.css" rel="stylesheet" type="text/css">
-
         <div class="widget-content" style="height: 400px;">
             <!--监控区域-->
             <div id="monitorArea">
-                <!--
-                                <span id = "regsvrip" th:utext="${channel.registerinfo.wanip}" style="display:none"></span>
-                                <span id = "regsvrport" th:utext="${channel.registerinfo.wanport}" style="display:none"></span>
-                                <span id = "strsvrip" th:utext="${channel.streaminfo.wanip}" style="display:none"></span>
-                                <span id= "strsvrport" th:utext="${channel.streaminfo.wanport}" style="display:none"></span>
-                                <span id= "channelcode" th:utext="${channel.channelcode}" style="display:none"></span>
-                -->
                 <div id="playwindow" style="text-align: center; background-color: #000; width: 100%; ">
                     <object classid="clsid:942D7F59-8377-4D21-BD39-AF446986AFFF" id="ppvs" width="100%" height="100%" name="ppvs"></object>
                 </div>
@@ -32,40 +64,34 @@
             </div>
         </div>
     </div>
-
 </div>
-
 <div th:include="include/footer_js::footer"></div>
 <script th:src="@{/js/base/video/channel/play.js}"></script>
-<script>
 
+<script>
     var regSvrIp = "";              //注册服务器
     var regSvrPort = "";
     var streamSvrIp = "";           //流媒体服务器
     var streamSvrPort = "";
     var iStreamCodeType = 1;        //0: 主码流 1: 子码流
-
     var iStreamTransferMode = 1;    //流媒体取流类型(0: UDP 1:TCP)
     var iServerRoute = 1;             //注册时配置的线路
-
     function StartVideo() {
         var ocx = document.getElementById("ppvs");
-
         var elevCode =  vm.channel.channelCode;//$("#channelcode")[0].innerText;
         regSvrIp = vm.channel.regwanip;
         regSvrPort =  vm.channel.regwanport;//9210;//$("#regsvrport")[0].innerText;;
         streamSvrIp =  vm.channel.strwanip;//'124.91.150.149';//$("#strsvrip")[0].innerText;;
         streamSvrPort =  vm.channel.strwanport;//9310;//$("#strsvrport")[0].innerText;;
-
         //ocx.StartVideo(streamSvrIp, streamSvrPort, regSvrIp, regSvrPort, elevCode, iServerRoute, iStreamCodeType, 0);
         ocx.playvideo(regSvrIp, regSvrPort,streamSvrIp, streamSvrPort,  elevCode, iServerRoute, iStreamCodeType, 0);
-
     }
-
     function StopVideo() {
         var ocx = document.getElementById("ppvs");
         ocx.stopvideo();
     }
 </script>
+
+
 </body>
 </html>

@@ -69,7 +69,7 @@
 						success : function(result) {
 							if (result.code == 0) {//登录成功
 								localStorage.setItem("token", result.token);
-								parent.location.href = 'index.html';
+								parent.location.href = 'index_tab.html';
 							} else {
 								vm.error = true;
 								vm.errorMsg = result.msg;

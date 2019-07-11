@@ -38,9 +38,6 @@ public class SysPageController {
 	}
 
 
-	@RequestMapping("/sys/org/list2")
-	public String page2() {
-		return "base/org/list.html";
-	}
+
 
 }

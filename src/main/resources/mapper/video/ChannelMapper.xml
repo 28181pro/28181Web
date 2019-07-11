@@ -2,55 +2,50 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.cethik.irmp.modules.video.dao.ChannelMapper">
 
-    <resultMap id="BaseResultMap" type="com.cethik.irmp.modules.video.entity.ChannelEntity">
-      <id column="id" jdbcType="INTEGER" property="id" />
-      <result column="channel_code" jdbcType="VARCHAR" property="channelCode" />
-      <result column="gbdevice_code" jdbcType="VARCHAR" property="gbdeviceCode" />
-      <result column="name" jdbcType="VARCHAR" property="name" />
-      <result column="ip" jdbcType="VARCHAR" property="ip" />
-      <result column="port" jdbcType="INTEGER" property="port" />
-      <result column="address" jdbcType="VARCHAR" property="address" />
-      <result column="online_status" jdbcType="INTEGER" property="onlineStatus" />
-      <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer" />
-      <result column="register_way" jdbcType="INTEGER" property="registerway" />
-      <result column="model" jdbcType="VARCHAR" property="model" />
-      <result column="longitude" jdbcType="VARCHAR" property="longitude" />
-      <result column="latitude" jdbcType="VARCHAR" property="latitude" />
+    <resultMap id="rm" type="com.cethik.irmp.modules.video.entity.ChannelEntity">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="channel_code" jdbcType="VARCHAR" property="channelCode"/>
+        <result column="gbdevice_code" jdbcType="VARCHAR" property="gbdeviceCode"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="ip" jdbcType="VARCHAR" property="ip"/>
+        <result column="port" jdbcType="INTEGER" property="port"/>
+        <result column="address" jdbcType="VARCHAR" property="address"/>
+        <result column="online_status" jdbcType="INTEGER" property="onlineStatus"/>
+        <result column="manufacturer" jdbcType="VARCHAR" property="manufacturer"/>
+        <result column="stream_server_id" jdbcType="INTEGER" property="streamServerId"/>
+        <result column="register_way" jdbcType="INTEGER" property="registerWay"/>
+        <result column="model" jdbcType="VARCHAR" property="model"/>
+        <result column="longitude" jdbcType="VARCHAR" property="longitude"/>
+        <result column="latitude" jdbcType="VARCHAR" property="latitude"/>
+
+        <result column="strm_lan_ip" jdbcType="VARCHAR" property="strmLanIp"/>
+        <result column="strm_lan_port" jdbcType="INTEGER" property="strmLanPort"/>
+        <result column="strm_wan_ip" jdbcType="VARCHAR" property="strmWanIp"/>
+        <result column="strm_wan_port" jdbcType="INTEGER" property="strmWanPort"/>
 
 
-        <result column="strm_lan_ip" jdbcType="VARCHAR"  property="strmlanip" />
-        <result  column="strm_lan_port" jdbcType="INTEGER" property="strmlanport"/>
-        <result column="strm_wan_ip" jdbcType="VARCHAR"  property="strmwanip" />
-        <result  column="strm_wan_port" jdbcType="INTEGER" property="strmwanport"/>
+        <result column="reg_lan_ip" jdbcType="VARCHAR" property="regLanIp"/>
+        <result column="reg_lan_port" jdbcType="INTEGER" property="regLanPort"/>
+        <result column="reg_wan_ip" jdbcType="VARCHAR" property="regWanIp"/>
+        <result column="reg_wan_port" jdbcType="INTEGER" property="regWanPort"/>
+        <result column="register_server_id" jdbcType="INTEGER" property="registerServerId"/>
+    </resultMap>
 
-
-        <result column="reg_lan_ip" jdbcType="VARCHAR"  property="reglanip" />
-        <result  column="reg_lan_port" jdbcType="INTEGER" property="reglanport"/>
-        <result column="reg_wan_ip" jdbcType="VARCHAR"  property="regwanip" />
-        <result  column="reg_wan_port" jdbcType="INTEGER" property="regwanport"/>
-
-
-  </resultMap>
-
-  <select id="listForPage" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
-    SELECT  id,  channel_code, gbdevice_code, `name`, ip, `port`, online_status,
-      manufacturer
-    FROM
-    channel
+    <select id="listForPage" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
+        SELECT  id, channel_code, gbdevice_code, name, ip, port, online_status, manufacturer
+        FROM
+        channel
+        <where>
+            <if test="name != null and name.trim() != ''">
+                AND name LIKE concat('%',#{name},'%')
+            </if>
+        </where>
+        ORDER BY
+        id ASC
 
  </select>
-    <!--
-  <select id="listForPage"  resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
-      SELECT  channel.id,  channel.channel_code, channel.gbdevice_code, channel.`name`, channel.ip, channel.`port`, channel.online_status,
-      channel.manufacturer, channel.address, channel.register_way, channel.model, channel.longitude, channel.latitude,
-      reg.lan_ip as reg_lan_ip , reg.lan_port as reg_lan_port, reg.wan_ip as reg_wan_ip , reg.wan_port reg_wan_port,
-      strm.lan_ip as strm_lan_ip , strm.lan_port as strm_lan_port, strm.wan_ip as strm_wan_ip, strm.wan_port as strm_wan_port
-      FROM
-      channel  INNER JOIN servers reg ON channel.register_server_id = reg.id
-      INNER JOIN servers strm ON channel.stream_server_id = strm.id
-  </select>
-   -->
-    <select id="getByChannelCode" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity" >
+
+    <select id="getByChannelCode" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
         SELECT channel.channel_code, reg.lan_ip as reg_lan_ip , reg.lan_port as reg_lan_port, reg.wan_ip as reg_wan_ip , reg.wan_port reg_wan_port,
         strm.lan_ip as strm_lan_ip , strm.lan_port as strm_lan_port, strm.wan_ip as strm_wan_ip, strm.wan_port as strm_wan_port
         FROM
@@ -58,4 +53,81 @@
         INNER JOIN servers strm ON channel.stream_server_id = strm.id
         where  channel.channel_code =  '34020000001320000005';
     </select>
+
+
+    <insert id="save">
+		INSERT INTO channel (
+			channel_code,gbdevice_code,name,ip,port,online_status,manufacturer,address,stream_server_id,register_way,model,longitude,latitude,register_server_id
+		)
+		VALUES (
+			#{channelCode},
+			#{gbdeviceCode},
+			#{name},
+			#{ip},
+			#{port},
+			#{onlineStatus},
+			#{manufacturer},
+			#{address},
+			#{streamServerId},
+			#{registerWay},
+			#{model},
+			#{longitude},
+			#{latitude},
+			#{registerServerId}
+		)
+	</insert>
+
+    <select id="getObjectById" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
+		SELECT
+		id,channel_code,gbdevice_code,
+name,ip,port,online_status,manufacturer,address,stream_server_id,register_way,model,longitude,latitude,register_server_id
+		FROM
+			channel
+		WHERE
+			id = #{value}
+	</select>
+
+    <update id="update">
+        UPDATE channel
+        <set>
+            <if test="channelCode != null">channel_code = #{channelCode},</if>
+            <if test="gbdeviceCode != null">gbdevice_code = #{gbdeviceCode},</if>
+            <if test="name != null">name = #{name},</if>
+            <if test="ip != null">ip = #{ip},</if>
+            <if test="port != null">port = #{port},</if>
+            <if test="onlineStatus != null">online_status = #{onlineStatus},</if>
+            <if test="manufacturer != null">manufacturer = #{manufacturer},</if>
+            <if test="address != null">address = #{address},</if>
+            <if test="streamServerId != null">stream_server_id = #{streamServerId},</if>
+            <if test="registerWay != null">register_way = #{registerWay},</if>
+            <if test="model != null">model = #{model},</if>
+            <if test="longitude != null">longitude = #{longitude},</if>
+            <if test="latitude != null">latitude = #{latitude},</if>
+        </set>
+        WHERE
+        id = #{id}
+    </update>
+
+    <delete id="batchRemove">
+        DELETE
+        FROM
+        channel
+        WHERE
+        id IN
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+    <update id="updateChannelStatus">
+        UPDATE channel
+        SET
+        online_status = #{onlineStatus}
+        WHERE
+        id IN
+        <foreach item="id" collection="id" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </update>
+
 </mapper>

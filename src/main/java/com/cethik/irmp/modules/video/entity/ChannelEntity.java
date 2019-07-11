@@ -4,8 +4,6 @@ import java.io.Serializable;
 
 public class ChannelEntity implements Serializable {
     private static final long serialVersionUID = 1L;
-
-
     private Integer     id;
     private String      channelCode;
     private String      gbdeviceCode;
@@ -14,16 +12,13 @@ public class ChannelEntity implements Serializable {
     private Integer     port;
     private Integer     onlineStatus;
     private String      manufacturer;
-
     private String      address;
-    private Integer     registerway;
+    private Integer     streamServerId;
+    private Integer registerWay;
     private String      model;
     private String      longitude;
     private String      latitude;
-    /*
-    private ServersEntity   streaminfo;
-    private ServersEntity   registerinfo;
-    */
+    private Integer registerServerId;
     private String            regLanIp;
     private Integer          regLanPort;
     private String            regWanIp;
@@ -32,6 +27,16 @@ public class ChannelEntity implements Serializable {
     private Integer          strmLanPort;
     private String            strmWanIp;
     private Integer          strmWanPort;
+
+    public Integer getRegisterServerId() {
+        return registerServerId;
+    }
+
+    public void setRegisterServerId(Integer registerServerId) {
+        this.registerServerId = registerServerId;
+    }
+
+
 
     public Integer getId() {
         return id;
@@ -88,12 +93,12 @@ public class ChannelEntity implements Serializable {
         this.onlineStatus = onlinestatus;
     }
 
-    public Integer getRegisterway() {
-        return registerway;
+    public Integer getRegisterWay() {
+        return registerWay;
     }
 
-    public void setRegisterway(Integer registerway) {
-        this.registerway = registerway;
+    public void setRegisterWay(Integer registerWay) {
+        this.registerWay = registerWay;
     }
 
     public String getManufacturer() {
@@ -199,6 +204,14 @@ public class ChannelEntity implements Serializable {
 
     public void setStrmWanPort(Integer strmWanPort) {
         this.strmWanPort = strmWanPort;
+    }
+
+    public Integer getStreamServerId() {
+        return streamServerId;
+    }
+
+    public void setStreamServerId(Integer streamServerId) {
+        this.streamServerId = streamServerId;
     }
 
 

@@ -7,8 +7,28 @@ import com.cethik.irmp.modules.video.entity.ChannelEntity;
 
 import java.util.Map;
 
+/**
+ * 通道管理服务
+ *
+ * @author daniel.yu
+ *
+ *
+ * @Date 2019/7/10 20:20
+ */
 public interface ChannelService {
     Page<ChannelEntity> listChannel(Map<String, Object> params);
 
     R getByChannelCode(String channelCode);
+
+    R saveChannel(ChannelEntity channelEntity);
+
+    R getChannelById(Long id);
+
+    R updateChannel(ChannelEntity channelEntity);
+
+    R batchRemove(Long[] id);
+
+    R updateChannelEnable(Long[] id);
+
+    R updateChannelDisable(Long[] id);
 }

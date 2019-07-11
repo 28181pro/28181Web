@@ -1,13 +1,10 @@
 package com.cethik.irmp.modules.sys.service;
 
-import java.util.Map;
+import com.cethik.irmp.common.entity.Page;
+import com.cethik.irmp.common.entity.R;
+import com.cethik.irmp.modules.sys.entity.SysRoleEntity;
 
-import com.cethik.irmp.common.entity.Page;
-import com.cethik.irmp.common.entity.R;
-import com.cethik.irmp.modules.sys.entity.SysRoleEntity;
-import com.cethik.irmp.common.entity.Page;
-import com.cethik.irmp.common.entity.R;
-import com.cethik.irmp.modules.sys.entity.SysRoleEntity;
+import java.util.Map;
 
 /**
  * 系统角色

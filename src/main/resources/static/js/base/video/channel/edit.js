@@ -1,5 +1,5 @@
 /**
- * 播放js
+ * 编辑-通道管理js
  */
 var vm = new Vue({
     el:'#dpLTE',
@@ -15,6 +15,18 @@ var vm = new Vue({
                 param: vm.channel.id,
                 success: function(data) {
                     vm.channel = data;
+                }
+            });
+        },
+        acceptClick: function() {
+            if (!$('#form').Validform()) {
+                return false;
+            }
+            $.ConfirmForm({
+                url: '../../video/channel/update?_' + $.now(),
+                param: vm.channel,
+                success: function(data) {
+                    $.currentIframe().vm.load();
                 }
             });
         }
