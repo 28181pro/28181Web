@@ -16,19 +16,19 @@
         <div class="col-md-8">
             <div class="btn-toolbar pull-right">
                 <div class="btn-group">
-                    <a v-if="hasPermission('video:channel:save')" class="btn btn-default" @click="save"><i
+                    <a v-if="hasPermission('channel:save')" class="btn btn-default" @click="save"><i
                             class="fa fa-plus"></i>&nbsp;新增</a>
-                    <a v-if="hasPermission('video:channel:edit')" class="btn btn-default" @click="edit"><i
+                    <a v-if="hasPermission('channel:edit')" class="btn btn-default" @click="edit"><i
                             class="fa fa-pencil-square-o"></i>&nbsp;编辑</a>
-                    <a v-if="hasPermission('video:channel:remove')" class="btn btn-default" @click="remove"><i
+                    <a v-if="hasPermission('channel:remove')" class="btn btn-default" @click="remove"><i
                             class="fa fa-trash-o"></i>&nbsp;删除</a>
                 </div>
                 <div class="btn-group">
-                    <a v-if="hasPermission('video:channel:disable')" class="btn btn-default" @click="disable"><i
+                    <a v-if="hasPermission('channel:disable')" class="btn btn-default" @click="disable"><i
                             class="fa fa-pause"></i>&nbsp;禁用</a>
-                    <a v-if="hasPermission('video:channel:enable')" class="btn btn-default" @click="enable"><i
+                    <a v-if="hasPermission('channel:enable')" class="btn btn-default" @click="enable"><i
                             class="fa fa-play"></i>&nbsp;启用</a>
-                    <a v-if="hasPermission('video:channel:play')" class="btn btn-default" @click="play"><i
+                    <a v-if="hasPermission('channel:play')" class="btn btn-default" @click="play"><i
                             class="fa fa-address-book"></i>&nbsp;播放</a>
                 </div>
             </div>
