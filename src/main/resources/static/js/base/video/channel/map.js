@@ -22,8 +22,6 @@ function markerClicked(channelId) {
 
 function showDevices(map, devices) {
     let zoomLevel = localStorage.getItem("zoomLevel");
-
-
     devices.forEach(device => {
         if (device.longitude != null && device.latitude != null) {
             var point = new BMap.Point(device.longitude, device.latitude);
@@ -39,7 +37,8 @@ function showDevices(map, devices) {
         }
     })
 }
-
+var longitude;
+var latitude;
 
 $(function () {
     var map = new BMap.Map("allmap");
@@ -60,11 +59,10 @@ $(function () {
     });
 
 
-    map.addEventListener("click",function(e){
-        localStorage.setItem("longitude", e.point.lng);
-        localStorage.setItem("latitude", e.point.lat);
-		console.log("[MAP] You clicked point:", e.point.lng, e.point.lat);
-	});
+    map.addEventListener("click", function (e) {
+        longitude = e.point.lng;
+        latitude = e.point.lat;
+    });
 
 
     let request = {
@@ -89,13 +87,15 @@ $(function () {
 
 
 var vm = new Vue({
-	el : '#vueDiv',
-	data : {
-		keyword : null
-	},
-	methods : {
-        acceptClick: function() {
-            console.log("AcceptClick is called");
+    el: '#vueDiv',
+    data: {
+        keyword: null
+    },
+    methods: {
+        acceptClick: function () {
+            top.layerForm.vm.longitude = longitude;
+            top.layerForm.vm.latitude = latitude;
+            dialogClose();
         }
     }
 });

@@ -34,17 +34,14 @@ var vm = new Vue({
         },
         sellocation: function() {
             dialogOpen({
-                id: 'location',
+                id: 'mapLocation',
                 title: '选择坐标',
                 url: '../../video/channel/map.html?_' + $.now(),
                 scroll : true,
                 width: "500px",
                 height: "450px",
-                yes : function(iframeId, index) {
-                    top.layer.close(index);
-                    vm.longitude = localStorage.getItem('longitude');
-                    vm.latitude = localStorage.getItem('latitude');
-                    // top.frames['layerForm'][iframeId].vm.acceptClick();
+                yes : function(iframeId) {               
+                    top.frames[iframeId].vm.acceptClick();
                 }
             })
         }

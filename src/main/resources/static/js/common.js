@@ -217,8 +217,8 @@ dialogOpen = function(opt){
 		success: function(){
 			option.success(option.id);
 		},
-		yes: function(index){
-			option.yes(option.id, index);
+		yes: function(){
+			option.yes(option.id);
 		}
     });
 }
