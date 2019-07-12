@@ -35,10 +35,10 @@ function markerClicked(channelId) {
     }
 }
 
-var cameraIcon = new BMap.Icon("/images/2.png", new BMap.Size(30, 30));
 
 function showDevices(map, devices) {
-    let zoomLevel = localStorage.getItem('zoomLevel');
+    var cameraIcon = new BMap.Icon("/images/2.png", new BMap.Size(30, 30));
+    var zoomLevel = localStorage.getItem('zoomLevel');
 
     for (var i = 0; i < devices.length; i++) {
         var device = devices[i];
@@ -60,76 +60,73 @@ function showDevices(map, devices) {
                 label.setContent("");
                 label.setStyle({ border: "none", width: "0px", padding: "0px" });
             })
-            // marker.setLabel(label);
         }
     }
 }
-var longitude;
-var latitude;
-var currentMarker;
-
-$(function () {
-    var map = new BMap.Map('allmap');
-    map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
-    map.addControl(new BMap.MapTypeControl({
-        mapTypes: [
-            BMAP_NORMAL_MAP,
-            BMAP_HYBRID_MAP
-        ]
-    }));
-
-
-
-    map.enableScrollWheelZoom(true);
-
-    map.addEventListener('zoomend', function (type) {
-        localStorage.setItem('zoomLevel', map.getViewport().zoom);
-    });
-
-
-    if (vm.clickable === true) {
-        map.addEventListener('click', function (e) {
-            longitude = e.point.lng;
-            latitude = e.point.lat;
-            if (currentMarker != null) {
-                map.removeOverlay(currentMarker);
-            }
-            currentMarker = new BMap.Marker(e.point);
-            map.addOverlay(currentMarker);
-        });
-    }
-
-
-    let request = {
-        pageNumber: 1,
-        pageSize: 1000, // Need to be fixed
-        sortOrder: 'asc',
-        username: null
-    };
-
-    $.ajax({
-        type: 'POST',
-        async: false,
-        contentType: 'application/json',
-        url: 'list?_' + $.now(),
-        data: JSON.stringify(request),
-        success: function (r) {
-            showDevices(map, r.rows);
-        },
-        dataType: 'json'
-    });
-})
-
 
 var vm = new Vue({
     el: '#vueDiv',
     data: {
-        clickable: false
+        map: null,
+        longitude: null,
+        latitude: null,
+        currentMarker: null
+    },
+
+    mounted: function () {
+        var self = this;
+        this.map = new BMap.Map('allmap');
+        this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
+        this.map.addControl(new BMap.MapTypeControl({
+            mapTypes: [
+                BMAP_NORMAL_MAP,
+                BMAP_HYBRID_MAP
+            ]
+        }));
+
+        this.map.enableScrollWheelZoom(true);
+
+        this.map.addEventListener('zoomend', function (type) {
+            localStorage.setItem('zoomLevel', self.map.getViewport().zoom);
+        });
+
+        let request = {
+            pageNumber: 1,
+            pageSize: 1000, // Need to be fixed
+            sortOrder: 'asc',
+            username: null
+        };
+
+        $.ajax({
+            type: 'POST',
+            async: false,
+            contentType: 'application/json',
+            url: 'list?_' + $.now(),
+            data: JSON.stringify(request),
+            success: function (r) {
+                showDevices(self.map, r.rows);
+            },
+            dataType: 'json'
+        });
     },
     methods: {
+
+        registerClick: function () {
+            var self = this;
+            this.map.addEventListener('click', function (e) {
+                self.longitude = e.point.lng;
+                self.latitude = e.point.lat;
+                if (self.currentMarker != null) {
+                    self.map.removeOverlay(self.currentMarker);
+                }
+                self.currentMarker = new BMap.Marker(e.point);
+                self.map.addOverlay(self.currentMarker);
+            });
+
+        },
         acceptClick: function () {
-            top.layerForm.vm.channel.longitude = longitude;
-            top.layerForm.vm.channel.latitude = latitude;
+            top.layerForm.vm.channel.longitude = this.longitude;
+            top.layerForm.vm.channel.latitude = this.latitude;
             dialogClose();
         }
     }

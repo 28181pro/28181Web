@@ -41,7 +41,7 @@ var vm = new Vue({
                 width: "500px",
                 height: "450px",
                 success : function(iframeId) {
-                    top.frames[iframeId].vm.clickable = true;
+                    top.frames[iframeId].vm.registerClick();
                 },
                 yes : function(iframeId) {               
                     top.frames[iframeId].vm.acceptClick();
