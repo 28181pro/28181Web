@@ -36,9 +36,9 @@ public class ChannelServiceImpl implements ChannelService {
     }
 
     @Override
-    public R getByChannelCode(String channelCode) {
+    public R getByChannelCode(Long id) {
 
-        ChannelEntity channel = channelManager.getByChannelCode(channelCode);
+        ChannelEntity channel = channelManager.getByChannelCode(id);
         return CommonUtils.msg(channel);
     }
 

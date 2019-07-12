@@ -18,7 +18,7 @@ import java.util.Map;
 public interface ChannelService {
     Page<ChannelEntity> listChannel(Map<String, Object> params);
 
-    R getByChannelCode(String channelCode);
+    R getByChannelCode(Long id);
 
     R saveChannel(ChannelEntity channelEntity);
 

@@ -41,14 +41,14 @@ public class ChannelController extends AbstractController {
     /**
      * 根据id查询详情
      *
-     * @param channelCode
+     * @param id
      * @return
      */
 
     @RequestMapping("/getChannelInfo")
-    public R getChannelInfo(@RequestBody String channelCode) {
+    public R getChannelInfo(@RequestBody Long id) {
         try {
-            return channelService.getByChannelCode(channelCode);
+            return channelService.getByChannelCode(id);
         } catch (Exception ex) {
             logger.error(ex.getMessage());
             return CommonUtils.msg("系统异常");
