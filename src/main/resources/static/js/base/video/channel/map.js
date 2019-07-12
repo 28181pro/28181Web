@@ -103,8 +103,8 @@ var vm = new Vue({
     },
     methods: {
         acceptClick: function () {
-            top.layerForm.vm.longitude = longitude;
-            top.layerForm.vm.latitude = latitude;
+            top.layerForm.vm.channel.longitude = longitude;
+            top.layerForm.vm.channel.latitude = latitude;
             dialogClose();
         }
     }
