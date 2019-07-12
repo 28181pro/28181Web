@@ -37,7 +37,7 @@ function markerClicked(channelId) {
 
 
 function showDevices(map, devices) {
-    var cameraIcon = new BMap.Icon("/images/2.png", new BMap.Size(30, 30));
+    var cameraIcon = new BMap.Icon("/images/2.png", new BMap.Size(35, 35));
     var zoomLevel = localStorage.getItem('zoomLevel');
 
     for (var i = 0; i < devices.length; i++) {
