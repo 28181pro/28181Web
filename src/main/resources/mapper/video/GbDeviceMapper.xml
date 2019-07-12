@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cethik.irmp.modules.video.dao.GbDeviceMapper">
+	
+	<select id="list" resultType="com.cethik.irmp.modules.video.entity.GbDeviceEntity">
+		SELECT id,gbcode,name,channel_sum,ip,port,creator,createTime,modifior,modifytime,mark,
+depart_id,depart_name,used_status		FROM			gbdevice		ORDER BY			id ASC
+	</select>
+	
+	<select id="listForPage" resultType="com.cethik.irmp.modules.video.entity.GbDeviceEntity">
+		SELECT id,gbcode,name,channel_sum,ip,port,creator,createTime,modifior,modifytime,mark,
+		depart_id,depart_name,used_status		FROM			gbdevice
+		<where>
+			<if test="gbCode != null">
+				and gbcode = #{gbCode}
+			</if>
+			<if test="name != null and name.trim() != ''">
+				AND name LIKE concat('%',#{name},'%')
+			</if>
+		</where>
+		ORDER BY
+			id ASC
+	</select>
+	
+	<insert id="save">
+		INSERT INTO gbdevice (
+		gbcode,name,channel_sum,ip,port,creator,createTime,modifior,modifytime,mark,depart_id,depart_name,used_status
+		)
+		VALUES (
+			#{gbCode},
+			#{name},
+			#{channelSum},
+			#{ip},
+			#{port},
+			#{creator},
+			now(),
+			#{modifior},
+			now(),
+			#{mark},
+			#{departId},
+			#{departName},
+			#{usedStatus}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="com.cethik.irmp.modules.video.entity.GbDeviceEntity">
+		SELECT id,gbcode,name,channel_sum,ip,port,creator,createTime,modifior,modifytime,mark,
+		depart_id,depart_name,used_status		FROM			gbdevice
+		WHERE
+			id = #{id}
+	</select>
+	
+	<update id="update">
+		UPDATE gbdevice
+	 	<set> 
+			<if test="gbCode != null">gbcode = #{gbCode}, </if>
+			<if test="name != null">name = #{name}, </if>
+			<if test="channelSum != null">channel_sum = #{channelSum}, </if>
+			<if test="ip != null">ip = #{ip}, </if>
+			<if test="port != null">port = #{port}, </if>
+			<if test="modifior != null">modifior = #{modifior}, </if>
+			<if test="mark != null">mark = #{mark}, </if>
+			<if test="departId != null">depart_id = #{departId}, </if>
+			<if test="departName != null">depart_name = #{departName}, </if>
+			<if test="usedStatus != null">used_status = #{usedStatus}, </if>
+			modifytime = NOW()
+		</set>
+		WHERE
+			id = #{id}
+	</update>
+	
+	<delete id="batchRemove">
+		DELETE
+		FROM
+		gbdevice
+		WHERE
+			id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+	
+
+
+</mapper>

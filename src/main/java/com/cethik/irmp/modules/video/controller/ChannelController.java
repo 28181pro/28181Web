@@ -21,15 +21,12 @@ import java.util.Map;
 @RequestMapping("/video/channel")
 public class ChannelController extends AbstractController {
     @Autowired
-    ChannelService channelService;
+    private  ChannelService channelService;
 
 
     @RequestMapping("/list")
     Page<ChannelEntity> list(@RequestBody Map<String, Object> params) {
         try {
-            if (getUserId() != SystemConstant.SUPER_ADMIN) {
-                params.put("userIdCreate", getUserId());
-            }
             Page<ChannelEntity> pages  = channelService.listChannel(params);
             return pages;
         } catch (Exception ex) {

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('新增-国际设备管理')"></head>
+<body>
+<div id="dpLTE" class="container-fluid" v-cloak>
+    <table class="form" id="form">
+        <tr>
+            <td class="formTitle">设备国际编号<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="设备国际编号" v-model="gbdevice.gbCode" isvalid="yes"
+                       checkexpession="NotNull">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">设备名称<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="设备名称" v-model="gbdevice.name" isvalid="yes"
+                       checkexpession="NotNull">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">通道数<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="通道数" v-model="gbdevice.channelSum"
+                       isvalid="yes" checkexpession="NotNull">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">出口ip<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="出口ip" v-model="gbdevice.ip" isvalid="yes"
+                       checkexpession="NotNull">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">端口<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="端口" v-model="gbdevice.port" isvalid="yes"
+                       checkexpession="NotNull">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">使用状态<font face="宋体">*</font></td>
+            <td class="formValue">
+                <label class="radio-inline">
+                    <input type="radio" name="usedStatus" value="0" v-model="gbdevice.usedStatus"/> 离线
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="usedStatus" value="1" v-model="gbdevice.usedStatus"/> 正常
+                </label>
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:include="include/footer_js::footer"></div>
+<script th:src="@{/js/base/video/gbdevice/add.js}"></script>
+</body>
+</html>
