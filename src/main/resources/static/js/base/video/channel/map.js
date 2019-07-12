@@ -1,6 +1,22 @@
+function markerMouseOver(marker, name) {
+    return function () {
+        var label = new BMap.Label(name, { offset: new BMap.Size(20, -10) });
+        label.setStyle({
+            width: "120px",
+            color: '#fff',
+            background: '#3c8dbc',
+            border: '1px solid "#3c8dbc"',
+            borderRadius: "5px",
+            textAlign: "center",
+            height: "26px",
+            lineHeight: "26px"
+        });
+        marker.setLabel(label);
+    }
+}
 
 function markerClicked(channelId) {
-    return function() {
+    return function () {
         dialogOpen({
             title: '播放',
             url: 'video/channel/play.html?_' + $.now(),
@@ -19,13 +35,14 @@ function markerClicked(channelId) {
     }
 }
 
+var cameraIcon = new BMap.Icon("/images/2.png", new BMap.Size(30, 30));
 
 function showDevices(map, devices) {
     let zoomLevel = localStorage.getItem('zoomLevel');
 
-    for(var i = 0; i < devices.length; i++) {
-        var device = devices[i];     
-           if (device.longitude != null && device.latitude != null) {
+    for (var i = 0; i < devices.length; i++) {
+        var device = devices[i];
+        if (device.longitude != null && device.latitude != null) {
             var point = new BMap.Point(device.longitude, device.latitude);
 
             if (zoomLevel !== null) {
@@ -33,11 +50,17 @@ function showDevices(map, devices) {
             } else {
                 map.centerAndZoom(point, 11);
             }
-            var marker = new BMap.Marker(point);
-            map.addOverlay(marker);
+            var marker = new BMap.Marker(point, { icon: cameraIcon });
             marker.addEventListener('click', markerClicked(device.id));
-            var label = new BMap.Label(device.name, { offset: new BMap.Size(20, -10) });
-            marker.setLabel(label);
+            map.addOverlay(marker);
+
+            marker.addEventListener("mouseover", markerMouseOver(marker, device.name));
+            marker.addEventListener("mouseout", function (e) {
+                var label = this.getLabel();
+                label.setContent("");
+                label.setStyle({ border: "none", width: "0px", padding: "0px" });
+            })
+            // marker.setLabel(label);
         }
     }
 }
@@ -64,15 +87,17 @@ $(function () {
     });
 
 
-    map.addEventListener('click', function (e) {
-        longitude = e.point.lng;
-        latitude = e.point.lat;
-        if (currentMarker != null) {
-            map.removeOverlay(currentMarker);
-        }
-        currentMarker = new BMap.Marker(e.point);
-        map.addOverlay(currentMarker);
-    });
+    if (vm.clickable === true) {
+        map.addEventListener('click', function (e) {
+            longitude = e.point.lng;
+            latitude = e.point.lat;
+            if (currentMarker != null) {
+                map.removeOverlay(currentMarker);
+            }
+            currentMarker = new BMap.Marker(e.point);
+            map.addOverlay(currentMarker);
+        });
+    }
 
 
     let request = {
@@ -99,7 +124,7 @@ $(function () {
 var vm = new Vue({
     el: '#vueDiv',
     data: {
-        keyword: null
+        clickable: false
     },
     methods: {
         acceptClick: function () {

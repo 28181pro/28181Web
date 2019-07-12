@@ -40,6 +40,9 @@ var vm = new Vue({
                 scroll : true,
                 width: "500px",
                 height: "450px",
+                success : function(iframeId) {
+                    top.frames[iframeId].vm.clickable = true;
+                },
                 yes : function(iframeId) {               
                     top.frames[iframeId].vm.acceptClick();
                 }
