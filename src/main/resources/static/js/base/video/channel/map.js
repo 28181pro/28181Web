@@ -1,6 +1,6 @@
 
 function markerClicked(channelId) {
-    return () => {
+    return function() {
         dialogOpen({
             title: '播放',
             url: 'video/channel/play.html?_' + $.now(),
@@ -22,12 +22,16 @@ function markerClicked(channelId) {
 
 function showDevices(map, devices) {
     let zoomLevel = localStorage.getItem('zoomLevel');
-    devices.forEach(device => {
-        if (device.longitude != null && device.latitude != null) {
+
+    for(var i = 0; i < devices.length; i++) {
+        var device = devices[i];     
+           if (device.longitude != null && device.latitude != null) {
             var point = new BMap.Point(device.longitude, device.latitude);
 
             if (zoomLevel !== null) {
                 map.centerAndZoom(point, zoomLevel);
+            } else {
+                map.centerAndZoom(point, 11);
             }
             var marker = new BMap.Marker(point);
             map.addOverlay(marker);
@@ -35,7 +39,7 @@ function showDevices(map, devices) {
             var label = new BMap.Label(device.name, { offset: new BMap.Size(20, -10) });
             marker.setLabel(label);
         }
-    })
+    }
 }
 var longitude;
 var latitude;
