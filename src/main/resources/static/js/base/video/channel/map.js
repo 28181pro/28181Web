@@ -125,6 +125,10 @@ var vm = new Vue({
 
         },
         acceptClick: function () {
+            if (this.longitude === null || this.latitude == null) {
+                alert('请选择地图上的点');
+                return;
+            }
             top.layerForm.vm.channel.longitude = this.longitude;
             top.layerForm.vm.channel.latitude = this.latitude;
             dialogClose();
