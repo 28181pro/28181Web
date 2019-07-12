@@ -8,7 +8,7 @@ function markerClicked(channelId) {
             height: '550px',
             scroll: true,
             success: function (iframeId) {
-                console.log("[MAP] Setting channnel id to play video:", channelId);
+                console.log('[MAP] Setting channnel id to play video:', channelId);
                 top.frames[iframeId].vm.channel.id = channelId;
                 top.frames[iframeId].vm.setForm();
             },
@@ -21,7 +21,7 @@ function markerClicked(channelId) {
 
 
 function showDevices(map, devices) {
-    let zoomLevel = localStorage.getItem("zoomLevel");
+    let zoomLevel = localStorage.getItem('zoomLevel');
     devices.forEach(device => {
         if (device.longitude != null && device.latitude != null) {
             var point = new BMap.Point(device.longitude, device.latitude);
@@ -31,7 +31,7 @@ function showDevices(map, devices) {
             }
             var marker = new BMap.Marker(point);
             map.addOverlay(marker);
-            marker.addEventListener("click", markerClicked(device.id));
+            marker.addEventListener('click', markerClicked(device.id));
             var label = new BMap.Label(device.name, { offset: new BMap.Size(20, -10) });
             marker.setLabel(label);
         }
@@ -39,9 +39,10 @@ function showDevices(map, devices) {
 }
 var longitude;
 var latitude;
+var currentMarker;
 
 $(function () {
-    var map = new BMap.Map("allmap");
+    var map = new BMap.Map('allmap');
     map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
     map.addControl(new BMap.MapTypeControl({
         mapTypes: [
@@ -54,21 +55,26 @@ $(function () {
 
     map.enableScrollWheelZoom(true);
 
-    map.addEventListener("zoomend", function (type) {
-        localStorage.setItem("zoomLevel", map.getViewport().zoom);
+    map.addEventListener('zoomend', function (type) {
+        localStorage.setItem('zoomLevel', map.getViewport().zoom);
     });
 
 
-    map.addEventListener("click", function (e) {
+    map.addEventListener('click', function (e) {
         longitude = e.point.lng;
         latitude = e.point.lat;
+        if (currentMarker != null) {
+            map.removeOverlay(currentMarker);
+        }
+        currentMarker = new BMap.Marker(e.point);
+        map.addOverlay(currentMarker);
     });
 
 
     let request = {
         pageNumber: 1,
         pageSize: 1000, // Need to be fixed
-        sortOrder: "asc",
+        sortOrder: 'asc',
         username: null
     };
 
