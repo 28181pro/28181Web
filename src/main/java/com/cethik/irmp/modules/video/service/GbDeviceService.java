@@ -23,4 +23,5 @@ public interface GbDeviceService {
 
     R batchRemove(Long[] id);
 
+    R listGbDevice();
 }

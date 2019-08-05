@@ -1,9 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="include/header_css::header('组织部门')"></head>
-<body>
+<head th:include="include/header_css::header('组织部门')">
+	<style type="text/css">
+		. skin-blur-blue-2 {
+			background-image: url("/images/blue.jpg");
+		}
+
+	</style>
+</head>
+<body class="skin-blur-blue-2">
 <div id="dpLTE" class="container-fluid" v-cloak>
-	<div class="row">
+	<div class="row" >
 		<div class="col-md-6">
 			<div class="btn-toolbar">
 				<div class="btn-group">

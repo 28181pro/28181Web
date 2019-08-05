@@ -31,4 +31,10 @@ public interface ChannelService {
     R updateChannelEnable(Long[] id);
 
     R updateChannelDisable(Long[] id);
+
+    R  getStatisticChannelStatus();
+
+    R  getStatisticOnlineNumByGbdevices();
+
+    R  listChannelQuery(Map<String, Object> params);
 }

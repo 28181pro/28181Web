@@ -54,12 +54,13 @@ public class ShiroConfig {
         Map<String, Filter> filters = new HashMap<>();
         filters.put("oauth2", new OAuth2Filter());
         shiroFilter.setFilters(filters);
-
+//添加白名单
         Map<String, String> filterMap = new LinkedHashMap<>();
         filterMap.put("/webjars/**", "anon");
         filterMap.put("/druid/**", "anon");
         filterMap.put("/api/**", "anon");
         filterMap.put("/sys/login", "anon");
+        filterMap.put("/base/home/**", "anon");
         filterMap.put("/sys/captcha.jpg", "anon");
         filterMap.put("/**/*.css", "anon");
         filterMap.put("/**/*.js", "anon");
@@ -71,6 +72,9 @@ public class ShiroConfig {
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/", "anon");
         filterMap.put("/**", "oauth2");
+
+
+
         shiroFilter.setFilterChainDefinitionMap(filterMap);
 
         return shiroFilter;

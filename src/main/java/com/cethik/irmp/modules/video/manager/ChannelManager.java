@@ -3,6 +3,8 @@ package com.cethik.irmp.modules.video.manager;
 import com.cethik.irmp.common.entity.Page;
 import com.cethik.irmp.common.entity.Query;
 import com.cethik.irmp.common.entity.R;
+import com.cethik.irmp.modules.base.vo.ChannelStatusVO;
+import com.cethik.irmp.modules.base.vo.StatisticVO;
 import com.cethik.irmp.modules.video.entity.ChannelEntity;
 
 import java.util.List;
@@ -28,5 +30,11 @@ public interface ChannelManager {
     int updateChannelEnable(Long[] id);
 
     int updateChannelDisable(Long[] id);
+
+    List<StatisticVO> getStatisticChannelStatus();
+
+    List<StatisticVO> getStatisticOnlineNumByGbdevices();
+
+    List<ChannelEntity> listChannel(Query search);
 
 }

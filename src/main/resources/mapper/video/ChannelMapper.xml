@@ -31,6 +31,23 @@
         <result column="register_server_id" jdbcType="INTEGER" property="registerServerId"/>
     </resultMap>
 
+    <resultMap id="rmStatistic" type="com.cethik.irmp.modules.base.vo.StatisticVO">
+        <!--<result column="num" jdbcType="INTEGER" property="num"/>-->
+        <!--<result column="online_status" jdbcType="INTEGER" property="onlineStatus"/>-->
+        <!--<result column="statusName" jdbcType="VARCHAR" property="statusName"/>-->
+        <result column="num" jdbcType="INTEGER" property="num"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+    </resultMap>
+
+    <select id="getStatisticChannelStatus" resultMap="rmStatistic">
+         select online_status as name,count(channel_code) as num  from channel  group by online_status
+    </select>
+
+    <select id="getStatisticOnlineNumByGbdevices" resultMap="rmStatistic">
+        select gbdevice_code as name,count(channel_code) as num  from channel where online_status=1 group by gbdevice_code
+    </select>
+
+
     <select id="listForPage" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
         SELECT  id, channel_code, gbdevice_code, name, ip, port, online_status, manufacturer, longitude, latitude 
         FROM
@@ -42,8 +59,24 @@
         </where>
         ORDER BY
         id ASC
-
  </select>
+
+
+    <select id="list" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
+        SELECT  id, channel_code, gbdevice_code, name, ip, port, online_status, manufacturer, longitude, latitude
+        FROM
+        channel
+        <where>
+            <if test="name != null and name.trim() != ''">
+                AND name LIKE concat('%',#{name},'%')
+            </if>
+            <if test="onlineStatus != null">
+                and online_status = #{onlineStatus}
+            </if>
+        </where>
+        ORDER BY
+        id ASC
+	</select>
 
     <select id="getByChannelCode" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
         SELECT channel.channel_code, reg.lan_ip as reg_lan_ip , reg.lan_port as reg_lan_port, reg.wan_ip as reg_wan_ip , reg.wan_port reg_wan_port,

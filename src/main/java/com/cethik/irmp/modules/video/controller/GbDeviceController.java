@@ -6,6 +6,7 @@ import com.cethik.irmp.common.entity.Page;
 import com.cethik.irmp.common.entity.R;
 import com.cethik.irmp.common.utils.CommonUtils;
 import com.cethik.irmp.modules.sys.controller.AbstractController;
+import com.cethik.irmp.modules.sys.entity.SysOrgEntity;
 import com.cethik.irmp.modules.video.entity.GbDeviceEntity;
 import com.cethik.irmp.modules.video.service.GbDeviceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
 import java.util.Map;
 
 
@@ -33,6 +35,8 @@ public class GbDeviceController extends AbstractController {
             return new Page<GbDeviceEntity>();
         }
     }
+
+
 
 
     /**

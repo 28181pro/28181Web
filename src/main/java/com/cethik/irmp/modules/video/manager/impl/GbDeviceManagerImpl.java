@@ -28,6 +28,11 @@ public class GbDeviceManagerImpl implements GbDeviceManager {
     }
 
     @Override
+    public List<GbDeviceEntity> listGbDevice() {
+        return gbDeviceMapper.list();
+    }
+
+    @Override
     public int saveGbDevice(GbDeviceEntity gbDeviceEntity) {
         return gbDeviceMapper.save(gbDeviceEntity);
     }
