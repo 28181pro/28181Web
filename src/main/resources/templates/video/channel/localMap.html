@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+        body,
+        html,
+        #allmap {
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            margin: 0;
+            font-family: "微软雅黑";
+        }
+    </style>
+    <title>设备地图</title>
+</head>
+
+<body>
+    <div id="allmap"></div>
+    <div id="vueDiv"></div>
+    <div th:include="include/footer_js::footer"></div>
+    <script th:src="@{/js/base/video/channel/ETMap-Client.js}"></script>
+    <script th:src="@{/js/base/video/channel/localMap.js}"></script>
+</body>
+
+</html>
