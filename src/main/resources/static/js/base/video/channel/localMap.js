@@ -52,7 +52,7 @@ function showDevices(map, devices) {
             var point = new BMapGL.Point.fromLngLat(device.longitude, device.latitude);
 
 
-            var marker = new BMap.Marker(point, { icon: cameraIcon });
+            var marker = new BMapGL.Marker(point, { icon: cameraIcon });
             marker.addEventListener('click', markerClicked(device.id));
             map.addOverlay(marker);
 
@@ -65,7 +65,7 @@ function showDevices(map, devices) {
         }
     }
 
-    var center = new BMap.Point( lng / num, lat / num);
+    var center = new BMapGL.Point( lng / num, lat / num);
     if (zoomLevel !== null) {
         map.centerAndZoom(center, zoomLevel);
     } else {
