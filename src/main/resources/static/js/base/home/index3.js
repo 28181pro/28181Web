@@ -49,13 +49,21 @@ $(function () {
                             bottom: '3%',
                             containLabel: true
                         },
-                        // color: ['#FF4949','#FFA74D','#FFEA51','#4BF0FF','#44AFF0','#4E82FF','#584BFF','#BE4DFF','#F845F1'],
+                        color: ['#FF4949','#FFA74D','#FFEA51','#4BF0FF','#44AFF0','#4E82FF','#584BFF','#BE4DFF','#F845F1'],
                         xAxis: {
                             type: 'category',
                             boundaryGap: false,
                             data: names,
                             splitLine: {
                                 show: false
+                            },
+                            // x轴的字体样式
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#fff'
+                                },
+                                interval: 0
                             },
                             axisLine: {
                                 lineStyle: {
@@ -69,11 +77,19 @@ $(function () {
                             splitLine: {
                                 show: false
                             },
+                            // y轴的字体样式
+                            axisLabel: {
+                                show: true,
+                                textStyle: {
+                                    color: '#fff'
+                                }
+                            },
                             axisLine: {
                                 lineStyle: {
                                     color: '#fff'
                                 }
                             }
+
                         },
                         series: [
                             {

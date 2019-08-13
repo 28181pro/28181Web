@@ -26,6 +26,7 @@ $(function () {
                             subtext: '在线/离线状态',
                             x:'center'
                         },
+                        color:['#f67287','#65d186', '#f29e3c', '#c05bdd', '#7a65f2'], //环形图每块的颜色
                         tooltip : {
                             trigger: 'item',
                             formatter: "{a} <br/>{b} : {c} ({d}%)"
