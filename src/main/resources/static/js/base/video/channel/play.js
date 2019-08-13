@@ -5,7 +5,7 @@ var vm = new Vue({
     el:'#dpLTE',
     data: {
         channel: {
-            id: 0
+            id: location.search.split('id=')[1]
         }
     },
     methods : {
@@ -13,6 +13,19 @@ var vm = new Vue({
             $.SetForm({
                 url: '../../video/channel/getChannelInfo?_' + $.now(),
                 param: vm.channel.id,
+                success: function(data) {
+                    vm.channel = data;
+                }
+            });
+        }
+    },
+    mounted: function () {
+        var channelId = this.channel.id;
+        console.log("Channel id=", channelId);
+        if (channelId) {
+            $.SetForm({
+                url: 'getChannelInfo?_' + $.now(),
+                param: channelId,
                 success: function(data) {
                     vm.channel = data;
                 }

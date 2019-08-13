@@ -1,15 +1,15 @@
-function markerMouseOver(marker, name) {
+function markerMouseOver(marker, id, name) {
     return function () {
-        var label = new BMap.Label(name, { offset: new BMap.Size(20, -10) });
+        var label = new BMap.Label('编号：' + id + '，名称：' + name, { offset: new BMap.Size(20, -10) });
         label.setStyle({
-            width: "120px",
             color: '#fff',
             background: '#3c8dbc',
             border: '1px solid "#3c8dbc"',
             borderRadius: "5px",
             textAlign: "center",
             height: "26px",
-            lineHeight: "26px"
+            lineHeight: "26px",
+            padding: "5px"
         });
         marker.setLabel(label);
     }
@@ -17,50 +17,59 @@ function markerMouseOver(marker, name) {
 
 function markerClicked(channelId) {
     return function () {
-        dialogOpen({
-            title: '播放',
-            url: 'video/channel/play.html?_' + $.now(),
-            width: '650px',
-            height: '550px',
-            scroll: true,
-            success: function (iframeId) {
-                console.log('[MAP] Setting channnel id to play video:', channelId);
-                top.frames[iframeId].vm.channel.id = channelId;
-                top.frames[iframeId].vm.setForm();
-            },
-            yes: function (iframeId) {
-                top.frames[iframeId].vm.acceptClick();
-            },
-        });
+        window.open('play.html?id=' + channelId, '_blank');
+        // dialogOpen({
+        //     title: '播放',
+        //     url: 'video/channel/play.html?_' + $.now(),
+        //     width: '650px',
+        //     height: '550px',
+        //     scroll: true,
+        //     success: function (iframeId) {
+        //         console.log('[MAP] Setting channnel id to play video:', channelId);
+        //         top.frames[iframeId].vm.channel.id = channelId;
+        //         top.frames[iframeId].vm.setForm();
+        //     },
+        //     yes: function (iframeId) {
+        //         top.frames[iframeId].vm.acceptClick();
+        //     },
+        // });
     }
 }
 
 
 function showDevices(map, devices) {
-    var cameraIcon = new BMap.Icon("/images/2.png", new BMap.Size(35, 35));
+    var cameraIcon = new BMap.Icon("/images/32.png", new BMap.Size(32, 32));
     var zoomLevel = localStorage.getItem('zoomLevel');
+
+    var lat=0, lng=0, num = 0; 
 
     for (var i = 0; i < devices.length; i++) {
         var device = devices[i];
         if (device.longitude != null && device.latitude != null) {
+            num ++;
+            lat += parseFloat(device.latitude);
+            lng += parseFloat(device.longitude);
             var point = new BMap.Point(device.longitude, device.latitude);
 
-            if (zoomLevel !== null) {
-                map.centerAndZoom(point, zoomLevel);
-            } else {
-                map.centerAndZoom(point, 11);
-            }
+
             var marker = new BMap.Marker(point, { icon: cameraIcon });
             marker.addEventListener('click', markerClicked(device.id));
             map.addOverlay(marker);
 
-            marker.addEventListener("mouseover", markerMouseOver(marker, device.name));
+            marker.addEventListener("mouseover", markerMouseOver(marker, device.id, device.name));
             marker.addEventListener("mouseout", function (e) {
                 var label = this.getLabel();
                 label.setContent("");
                 label.setStyle({ border: "none", width: "0px", padding: "0px" });
             })
         }
+    }
+ 
+    var center = new BMap.Point( lng / num, lat / num);
+    if (zoomLevel !== null) {
+        map.centerAndZoom(center, zoomLevel);
+    } else {
+        map.centerAndZoom(center, 11);
     }
 }
 
@@ -76,6 +85,9 @@ var vm = new Vue({
     mounted: function () {
         var self = this;
         this.map = new BMap.Map('allmap');
+
+        this.map.setMapStyle({style:'light'});
+
         this.map.centerAndZoom(new BMap.Point(116.404, 39.915), 11);
         this.map.addControl(new BMap.MapTypeControl({
             mapTypes: [
