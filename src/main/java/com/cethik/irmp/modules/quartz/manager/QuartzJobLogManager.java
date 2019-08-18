@@ -1,12 +1,10 @@
 package com.cethik.irmp.modules.quartz.manager;
 
-import java.util.List;
-
-import com.cethik.irmp.common.entity.Page;
-import com.cethik.irmp.common.entity.Query;
 import com.cethik.irmp.common.entity.Page;
 import com.cethik.irmp.common.entity.Query;
 import com.cethik.irmp.modules.quartz.entity.QuartzJobLogEntity;
+
+import java.util.List;
 
 /**
  * 定时任务日志
@@ -16,12 +14,12 @@ import com.cethik.irmp.modules.quartz.entity.QuartzJobLogEntity;
  */
 public interface QuartzJobLogManager {
 
-	List<QuartzJobLogEntity> listForPage(Page<QuartzJobLogEntity> page, Query query);
-	
-	int saveQuartzJobLog(QuartzJobLogEntity log);
-	
-	int batchRemove(Long[] id);
-	
-	int batchRemoveAll();
-	
+    List<QuartzJobLogEntity> listForPage(Page<QuartzJobLogEntity> page, Query query);
+
+    int saveQuartzJobLog(QuartzJobLogEntity log);
+
+    int batchRemove(Long[] id);
+
+    int batchRemoveAll();
+
 }

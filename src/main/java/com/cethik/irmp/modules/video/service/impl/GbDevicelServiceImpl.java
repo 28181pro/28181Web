@@ -7,6 +7,8 @@ import com.cethik.irmp.common.utils.CommonUtils;
 import com.cethik.irmp.modules.video.entity.GbDeviceEntity;
 import com.cethik.irmp.modules.video.manager.GbDeviceManager;
 import com.cethik.irmp.modules.video.service.GbDeviceService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,10 +23,21 @@ import java.util.Map;
  */
 @Service("gbDeviceService")
 public class GbDevicelServiceImpl implements GbDeviceService {
-
+    private Logger logger = LoggerFactory.getLogger(getClass());
     @Autowired
     private GbDeviceManager gbDeviceManager;
 
+
+    public void statisticsChannelNum() {
+        try {
+            logger.info("任务开始-统计设备通道数");
+            //TODO
+            logger.info("任务结束-统计设备通道数");
+        } catch (Exception ex) {
+            logger.error("任务异常"+ex.getMessage());
+        }
+
+    }
 
     @Override
     public Page<GbDeviceEntity> listGbDevice(Map<String, Object> params) {
