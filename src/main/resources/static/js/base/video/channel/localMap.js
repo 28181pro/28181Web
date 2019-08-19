@@ -17,22 +17,23 @@ function markerMouseOver(marker, id, name) {
 
 function markerClicked(channelId) {
     return function () {
-        window.open('play.html?id=' + channelId, '_blank');
-        // dialogOpen({
-        //     title: '播放',
-        //     url: 'video/channel/play.html?_' + $.now(),
-        //     width: '650px',
-        //     height: '550px',
-        //     scroll: true,
-        //     success: function (iframeId) {
-        //         console.log('[MAP] Setting channnel id to play video:', channelId);
-        //         top.frames[iframeId].vm.channel.id = channelId;
-        //         top.frames[iframeId].vm.setForm();
-        //     },
-        //     yes: function (iframeId) {
-        //         top.frames[iframeId].vm.acceptClick();
-        //     },
-        // });
+       // window.open('play.html?id=' + channelId, '_blank');
+         dialogOpen({
+             title: '播放',
+            //url: 'video/channel/play.html?_' + $.now(),
+             url: 'http://22.56.192.133:80?_' + $.now(),
+             width: '650px',
+             height: '378px',
+             scroll: true,
+             success: function (iframeId) {
+                 console.log('[MAP] Setting channnel id to play video:', channelId);
+                 top.frames[iframeId].vm.channel.id = channelId;
+                 top.frames[iframeId].vm.setForm();
+             },
+             yes: function (iframeId) {
+                 top.frames[iframeId].vm.acceptClick();
+             },
+         });
     }
 }
 
@@ -49,8 +50,8 @@ function showDevices(map, devices) {
             num ++;
             lat += parseFloat(device.latitude);
             lng += parseFloat(device.longitude);
-            var point = new BMapGL.Point.fromLngLat(device.longitude, device.latitude);
-
+           // var point = new BMapGL.Point.fromLngLat(device.longitude, device.latitude);
+            var point = new BMapGL.Point(device.longitude, device.latitude);
 
             var marker = new BMapGL.Marker(point, { icon: cameraIcon });
             marker.addEventListener('click', markerClicked(device.id));
@@ -84,9 +85,9 @@ var vm = new Vue({
 
     mounted: function () {
         var self = this;
-        this.map = new BMapGL.Map('allmap');
+        this.map = new BMapGL.ETMap('allmap');
         // this.map.setMapStyle({style:'light'});
-        this.map.centerAndZoom(new BMapGL.Point(116.404, 39.915), 11);
+        this.map.centerAndZoom(new BMapGL.Point(12529157.6, 3217853.21), 11);
         this.map.addControl(new BMapGL.MapTypeControl({
             mapTypes: [
             	BMAPGL_NORMAL_MAP,
