@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cethik.irmp.modules.video.dao.ServersMapper">
+
+	<select id="list" resultType="com.cethik.irmp.modules.video.entity.ServersEntity">
+		SELECT
+			id,
+			lan_ip,
+			lan_port,
+			name,
+			wan_ip,
+			wan_port
+		FROM
+			servers
+		ORDER BY
+			id ASC
+	</select>	
+		
+	<insert id="save">
+		INSERT INTO servers (
+			lan_ip,
+			lan_port,
+			name,
+			wan_ip,
+			wan_port
+		)
+		VALUES (
+			#{lanIp},
+			#{lanPort},
+			#{name},
+			#{wanIp},
+			#{wanPort}
+		)
+	</insert>
+	
+	<select id="getObjectById" resultType="com.cethik.irmp.modules.video.entity.ServersEntity">
+		SELECT 	id,	lan_ip,lan_port,name,wan_ip,wan_port
+		FROM
+			servers
+		WHERE
+			id = #{value}
+	</select>
+	
+	<update id="update">
+		UPDATE servers
+		<set> 
+			<if test="lanIp != null">lan_ip = #{lanIp}, </if>
+			<if test="lanPort != null">lan_port = #{lanPort}, </if>
+			<if test="name != null">name = #{name}, </if>
+			<if test="wanIp != null">wan_ip = #{wanIp}, </if>
+			<if test="wanPort != null">wan_port = #{wanPort}, </if>
+		</set>
+		where id = #{id}
+	</update>
+	
+
+	
+</mapper>

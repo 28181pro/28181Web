@@ -16,6 +16,12 @@
 					<input type="text" class="form-control"  v-model="channel.gbdeviceCode" isvalid="yes" checkexpession="NotNull">
 	            </td>
         	</tr>
+			<tr>
+				<td class="formTitle">注册服务器<font face="宋体">*</font></td>
+				<td class="formValue">
+					<input type="text" class="form-control pointer" placeholder="所属注册服务器" v-model="channel.registerServerName" @click="registerServerTree" isvalid="yes" checkexpession="NotNull" readonly="readonly">
+				</td>
+			</tr>
         	<tr>
 	            <td class="formTitle">名称<font face="宋体">*</font></td>
 	            <td class="formValue">
@@ -32,6 +38,12 @@
 				<td class="formTitle">端口<font face="宋体">*</font></td>
 				<td class="formValue">
 					<input type="text" class="form-control" placeholder="端口" v-model="channel.port"  isvalid="yes" checkexpession="NotNull" >
+				</td>
+			</tr>
+			<tr>
+				<td class="formTitle">流媒体服务器<font face="宋体">*</font></td>
+				<td class="formValue">
+					<input type="text" class="form-control pointer" placeholder="所属流媒体服务器" v-model="channel.streamServerName" @click="streamServerTree" isvalid="yes" checkexpession="NotNull" readonly="readonly">
 				</td>
 			</tr>
 			<tr>

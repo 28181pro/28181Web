@@ -2,11 +2,11 @@ package com.cethik.irmp.modules.video.entity;
 
 public class ServersEntity {
     private Integer id;
-    private  String lanip;
-    private  Integer lanport;
-    private String wanip;
-    private Integer wanport;
-
+    private  String lanIp;
+    private  Integer lanPort;
+    private String wanIp;
+    private Integer wanPort;
+    private String name;
     public Integer getId() {
         return id;
     }
@@ -15,35 +15,43 @@ public class ServersEntity {
         this.id = id;
     }
 
-    public String getLanip() {
-        return lanip;
+    public String getLanIp() {
+        return lanIp;
     }
 
-    public void setLanip(String lanip) {
-        this.lanip = lanip;
+    public void setLanIp(String lanIp) {
+        this.lanIp = lanIp;
     }
 
-    public Integer getLanport() {
-        return lanport;
+    public Integer getLanPort() {
+        return lanPort;
     }
 
-    public void setLanport(Integer lanport) {
-        this.lanport = lanport;
+    public void setLanPort(Integer lanPort) {
+        this.lanPort = lanPort;
     }
 
-    public String getWanip() {
-        return wanip;
+    public String getWanIp() {
+        return wanIp;
     }
 
-    public void setWanip(String wanip) {
-        this.wanip = wanip;
+    public void setWanIp(String wanIp) {
+        this.wanIp = wanIp;
     }
 
-    public Integer getWanport() {
-        return wanport;
+    public Integer getWanPort() {
+        return wanPort;
     }
 
-    public void setWanport(Integer wanport) {
-        this.wanport = wanport;
+    public void setWanPort(Integer wanPort) {
+        this.wanPort = wanPort;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 }

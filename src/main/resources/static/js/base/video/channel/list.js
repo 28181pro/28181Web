@@ -83,7 +83,7 @@ var vm = new Vue({
 				title : '新增通道',
 				url : 'video/channel/add.html?_' + $.now(),
                 width: '500px',
-                height: '320px',
+                height: '500px',
 				scroll : true,
 				yes : function(iframeId) {
 					top.frames[iframeId].vm.acceptClick();
@@ -97,7 +97,7 @@ var vm = new Vue({
 					title : '编辑通道',
 					url : 'video/channel/edit.html?_' + $.now(),
                     width: '500px',
-                    height: '550px',
+                    height: '500px',
 					scroll : true,
 					success : function(iframeId) {
 						top.frames[iframeId].vm.channel.id = ck[0].id;

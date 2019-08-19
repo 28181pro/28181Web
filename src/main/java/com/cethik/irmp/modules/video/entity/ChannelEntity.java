@@ -14,11 +14,13 @@ public class ChannelEntity implements Serializable {
     private String      manufacturer;
     private String      address;
     private Integer     streamServerId;
+    private String      streamServerName;
     private Integer registerWay;
     private String      model;
     private String      longitude;
     private String      latitude;
     private Integer registerServerId;
+    private String      registerServerName;
     private String            regLanIp;
     private Integer          regLanPort;
     private String            regWanIp;
@@ -36,7 +38,21 @@ public class ChannelEntity implements Serializable {
         this.registerServerId = registerServerId;
     }
 
+    public String getStreamServerName() {
+        return streamServerName;
+    }
 
+    public void setStreamServerName(String streamServerName) {
+        this.streamServerName = streamServerName;
+    }
+
+    public String getRegisterServerName() {
+        return registerServerName;
+    }
+
+    public void setRegisterServerName(String registerServerName) {
+        this.registerServerName = registerServerName;
+    }
 
     public Integer getId() {
         return id;
