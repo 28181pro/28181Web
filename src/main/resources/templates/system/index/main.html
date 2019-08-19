@@ -1,72 +1,14 @@
-<!--<!DOCTYPE html>-->
-<!--<html xmlns:th="http://www.w3.org/1999/xhtml">-->
-<!--<head th:include="include/header_css::header('欢迎页')"></head>-->
-<!--<body>-->
-<!--<div class="panel panel-default">-->
-    <!--<div class="panel-heading">基本信息</div>-->
-    <!--<div>-->
-        <!--<h3>&nbsp;&nbsp;&nbsp;项目介绍</h3>-->
-
-    <!--</div>-->
-<!--</div>-->
-<!--</body>-->
-<!--</html>-->
-
-
-
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
-    <title> 视频播放
-    </title>
-</head>
+<html xmlns:th="http://www.w3.org/1999/xhtml">
+<head th:include="include/header_css::header('欢迎页')"></head>-->
 <body>
-<head>
-    <link href="http://vjs.zencdn.net/5.8.0/video-js.css" rel="stylesheet">
-    <style>
-        .video-js {
-            width: 100%;
-        }
-    </style>
-    <!--兼容低版本浏览器的H5插件-->
-    <script src="http://api.html5media.info/1.1.4/html5media.min.js"></script>
-    <!-- If you'd like to support IE8 -->
-    <script src="http://vjs.zencdn.net/ie8/1.1.2/videojs-ie8.min.js"></script>
-</head>
+<div class="panel panel-default">
+    <div class="panel-heading">基本信息</div>
+    <div>
+        <h3>&nbsp;&nbsp;&nbsp;项目介绍</h3>
 
-
-<video id="my-video" class="video-js vjs-big-play-centered" controls preload="auto" width="640" height="320">
-    <source src="http://www.w3school.com.cn/example/html5/mov_bbb.mp4" type='video/mp4'>
-    <p class="vjs-no-js">
-        To view this video please enable JavaScript, and consider upgrading to a web browser that
-        <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a>
-    </p>
-</video>
-
-<script th:src="@{../../libs/jquery.min.js}"></script>
-<script src="//vjs.zencdn.net/5-unsafe/video.js"></script>
-<!--<script src="http://vjs.zencdn.net/c/video.js"></script>-->
-
-<script>
-    $(function () {
-        var resetVideoSize = function (myPlayer) {
-            var videoJsBoxWidth = $(".video-js").width();
-            var ratio = 1440 / 900;
-            var videoJsBoxHeight = videoJsBoxWidth / ratio;
-            myPlayer.height(videoJsBoxHeight);
-        }
-        var myPlayer = videojs("my-video").ready(function () {
-            resetVideoSize(myPlayer);
-            this.play();
-        });
-        $(window).on("resize", function () {
-            resetVideoSize(myPlayer);
-        });
-    });
-</script>
-
-
+    </div>
+<</div>
 </body>
 </html>
 

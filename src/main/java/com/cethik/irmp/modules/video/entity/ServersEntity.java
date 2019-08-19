@@ -2,6 +2,7 @@ package com.cethik.irmp.modules.video.entity;
 
 public class ServersEntity {
     private Integer id;
+    private  String name;
     private  String lanip;
     private  Integer lanport;
     private String wanip;
@@ -13,6 +14,14 @@ public class ServersEntity {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getLanip() {
