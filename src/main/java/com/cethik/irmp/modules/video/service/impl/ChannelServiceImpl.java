@@ -120,7 +120,9 @@ public class ChannelServiceImpl implements ChannelService {
         List<MapVO> mapVOList = new ArrayList<>();
         if (!channelEntityList.isEmpty()) {
             for (ChannelEntity channelEntity : channelEntityList) {
-                MapVO a = new MapVO(StringUtils.isBlank(channelEntity.getLongitude()) ? 0 : Double.valueOf(channelEntity.getLongitude()), StringUtils.isBlank(channelEntity.getLatitude()) ? 0 : Double.valueOf(channelEntity.getLatitude()), channelEntity.getName(), channelEntity.getIp(), channelEntity.getChannelCode());
+                MapVO a = new MapVO( StringUtils.isBlank(channelEntity.getLongitude()) ? 0 : Double.valueOf(channelEntity.getLongitude()),
+                        StringUtils.isBlank(channelEntity.getLatitude()) ? 0 : Double.valueOf(channelEntity.getLatitude()),
+                        channelEntity.getName(), channelEntity.getIp(), channelEntity.getChannelCode());
                 mapVOList.add(a);
             }
         }

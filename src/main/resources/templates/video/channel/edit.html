@@ -42,11 +42,11 @@
 				</td>
 			</tr>
 			<tr>
-				<td class="formTitle">通道经度<font face="宋体">*</font></td>
-				<td class="formValue">
-					<input type="text" v-model="channel.longitude" class="form-control" placeholder="通道经度" value="" @click="sellocation" isvalid="yes" checkexpession="NotNull" readonly="readonly">
-				</td>
-			</tr>
+			<td class="formTitle">通道经度<font face="宋体">*</font></td>
+			<td class="formValue">
+				<input type="text" v-model="channel.longitude" class="form-control" placeholder="通道经度" value="" @click="sellocation" isvalid="yes" checkexpession="NotNull" readonly="readonly">
+			</td>
+		</tr>
 			<tr>
 				<td class="formTitle">通道纬度</td>
 				<td class="formValue">
@@ -62,6 +62,18 @@
 					<label class="radio-inline">
 						<input type="radio" name="status" value="1" v-model="channel.onlineStatus"/> 正常
 					</label>
+				</td>
+			</tr>
+			<tr>
+				<td class="formTitle">流媒体服务器<font face="宋体">*</font></td>
+				<td class="formValue">
+					<input type="text" class="form-control pointer" placeholder="所属流媒体服务器" v-model="channel.streamServerName" @click="streamServerTree" isvalid="yes" checkexpession="NotNull" readonly="readonly">
+				</td>
+			</tr>
+			<tr>
+				<td class="formTitle">注册服务器<font face="宋体">*</font></td>
+				<td class="formValue">
+					<input type="text" class="form-control pointer" placeholder="所属注册服务器" v-model="channel.registerServerName" @click="registerServerTree" isvalid="yes" checkexpession="NotNull" readonly="readonly">
 				</td>
 			</tr>
 		</table>

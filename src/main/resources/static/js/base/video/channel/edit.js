@@ -20,6 +20,34 @@ var vm = new Vue({
                 }
             });
         },
+
+        registerServerTree: function() {
+            dialogOpen({
+                id: 'layerRegisterServerTree',
+                title: '选择注册服务器',
+                url: 'video/channel/registerServer.html?_' + $.now(),
+                scroll : true,
+                width: "300px",
+                height: "450px",
+                yes : function(iframeId) {
+                    top.frames[iframeId].vm.acceptClick();
+                }
+            })
+        },
+        streamServerTree: function() {
+            dialogOpen({
+                id: 'layerStreamServerTree',
+                title: '选择流媒体服务器',
+                url: 'video/channel/registerServer.html?_' + $.now(),
+                scroll : true,
+                width: "300px",
+                height: "450px",
+                yes : function(iframeId) {
+                    top.frames[iframeId].vm.acceptClick();
+                }
+            })
+        },
+
         acceptClick: function() {
             if (!$('#form').Validform()) {
                 return false;

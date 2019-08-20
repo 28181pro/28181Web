@@ -20,8 +20,8 @@ function markerClicked(channelId) {
        // window.open('play.html?id=' + channelId, '_blank');
          dialogOpen({
              title: '播放',
-            //url: 'video/channel/play.html?_' + $.now(),
-             url: 'http://22.56.192.133:80?_' + $.now(),
+             url : 'video/channel/video.html?_' + $.now(),
+
              width: '650px',
              height: '378px',
              scroll: true,
