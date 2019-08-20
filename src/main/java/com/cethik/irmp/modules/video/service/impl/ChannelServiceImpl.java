@@ -40,31 +40,26 @@ public class ChannelServiceImpl implements ChannelService {
 
     @Override
     public Page<ChannelEntity> listChannel(Map<String, Object> params) {
-        try {
-            Query form = new Query(params);
-            Page<ChannelEntity> page = new Page<>(form);
-            channelManager.listChannel(page, form);
-            for (ChannelEntity channelEntity : page.getRows()) {
-                //根据StreamServerId获取流媒体服务器名称
-                if (channelEntity.getStreamServerId() != null) {
-                    ServersEntity streamServerEntity = serversManager.getServersById(channelEntity.getStreamServerId().longValue());
-                    if (null != streamServerEntity) {
-                        channelEntity.setStreamServerName(streamServerEntity.getName());
-                    }
-                }
-                 //根据registerServerId获取注册服务器名称
-                if (channelEntity.getRegisterServerId() != null) {
-                    ServersEntity registerServerEntity = serversManager.getServersById(channelEntity.getRegisterServerId().longValue());
-                    if (null != registerServerEntity) {
-                        channelEntity.setRegisterServerName(registerServerEntity.getName());
-                    }
+        Query form = new Query(params);
+        Page<ChannelEntity> page = new Page<>(form);
+        channelManager.listChannel(page, form);
+        for (ChannelEntity channelEntity : page.getRows()) {
+            //根据StreamServerId获取流媒体服务器名称
+            if (channelEntity.getStreamServerId() != null) {
+                ServersEntity streamServerEntity = serversManager.getServersById(channelEntity.getStreamServerId().longValue());
+                if (null != streamServerEntity) {
+                    channelEntity.setStreamServerName(streamServerEntity.getName());
                 }
             }
-            return page;
-        } catch (Exception ex) {
-            return null;
+            //根据registerServerId获取注册服务器名称
+            if (channelEntity.getRegisterServerId() != null) {
+                ServersEntity registerServerEntity = serversManager.getServersById(channelEntity.getRegisterServerId().longValue());
+                if (null != registerServerEntity) {
+                    channelEntity.setRegisterServerName(registerServerEntity.getName());
+                }
+            }
         }
-
+        return page;
     }
 
     @Override
