@@ -29,7 +29,7 @@ var vm = new Vue({
             dialogOpen({
                 id: 'layerStreamServerTree',
                 title: '选择流媒体服务器',
-                url: 'video/channel/registerServer.html?_' + $.now(),
+                url: 'video/channel/streamServer.html?_' + $.now(),
                 scroll : true,
                 width: "300px",
                 height: "450px",

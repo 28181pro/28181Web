@@ -48,7 +48,7 @@ function getGrid() {
         }, {
             field : "port",
             title : "端口",
-            width : "200px"
+            width : "100px"
         },  {
             field : "onlineStatus",
             title : "状态",
@@ -60,6 +60,14 @@ function getGrid() {
                     return '<span class="label label-success">正常</span>';
                 }
             }
+        }, {
+            field : "registerServerName",
+            title : "注册服务器",
+            width : "150px"
+        }, {
+            field : "streamServerName",
+            title : "流媒体服务器",
+            width : "150px"
         },{
             field : "manufacturer",
             title : "厂商",

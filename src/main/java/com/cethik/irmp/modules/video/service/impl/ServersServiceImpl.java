@@ -25,7 +25,13 @@ public class ServersServiceImpl implements ServersService {
 	private ServersManager serversManager;
 
 
-	@Override
+    @Override
+    public R selectServers() {
+        List<ServersEntity> serversEntityList = serversManager.listServers();
+        return CommonUtils.msgNotCheckNull(serversEntityList);
+    }
+
+    @Override
 	public List<ServersEntity> listServers() {
 		return serversManager.listServers();
 	}

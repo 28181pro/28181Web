@@ -8,7 +8,9 @@ import com.cethik.irmp.modules.base.vo.ChartsVO;
 import com.cethik.irmp.modules.base.vo.MapVO;
 import com.cethik.irmp.modules.base.vo.StatisticVO;
 import com.cethik.irmp.modules.video.entity.ChannelEntity;
+import com.cethik.irmp.modules.video.entity.ServersEntity;
 import com.cethik.irmp.modules.video.manager.ChannelManager;
+import com.cethik.irmp.modules.video.manager.ServersManager;
 import com.cethik.irmp.modules.video.service.ChannelService;
 import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
@@ -17,7 +19,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -34,12 +35,36 @@ public class ChannelServiceImpl implements ChannelService {
     @Autowired
     private ChannelManager channelManager;
 
+    @Autowired
+    private ServersManager serversManager;
+
     @Override
     public Page<ChannelEntity> listChannel(Map<String, Object> params) {
-        Query form = new Query(params);
-        Page<ChannelEntity> page = new Page<>(form);
-        channelManager.listChannel(page, form);
-        return page;
+        try {
+            Query form = new Query(params);
+            Page<ChannelEntity> page = new Page<>(form);
+            channelManager.listChannel(page, form);
+            for (ChannelEntity channelEntity : page.getRows()) {
+                //根据StreamServerId获取流媒体服务器名称
+                if (channelEntity.getStreamServerId() != null) {
+                    ServersEntity streamServerEntity = serversManager.getServersById(channelEntity.getStreamServerId().longValue());
+                    if (null != streamServerEntity) {
+                        channelEntity.setStreamServerName(streamServerEntity.getName());
+                    }
+                }
+                 //根据registerServerId获取注册服务器名称
+                if (channelEntity.getRegisterServerId() != null) {
+                    ServersEntity registerServerEntity = serversManager.getServersById(channelEntity.getRegisterServerId().longValue());
+                    if (null != registerServerEntity) {
+                        channelEntity.setRegisterServerName(registerServerEntity.getName());
+                    }
+                }
+            }
+            return page;
+        } catch (Exception ex) {
+            return null;
+        }
+
     }
 
     @Override
@@ -58,6 +83,12 @@ public class ChannelServiceImpl implements ChannelService {
     @Override
     public R getChannelById(Long id) {
         ChannelEntity channelEntity = channelManager.getChannelById(id);
+        //根据StreamServerId获取流媒体服务器名称
+        String streamServerName = serversManager.getServersById(channelEntity.getStreamServerId().longValue()).getName();
+        //根据registerServerId获取注册服务器名称
+        String registerServerName = serversManager.getServersById(channelEntity.getRegisterServerId().longValue()).getName();
+        channelEntity.setStreamServerName(streamServerName);
+        channelEntity.setRegisterServerName(registerServerName);
         return CommonUtils.msg(channelEntity);
     }
 
@@ -90,7 +121,7 @@ public class ChannelServiceImpl implements ChannelService {
         List<StatisticVO> statisticVOList = channelManager.getStatisticChannelStatus();
         List<ChartsVO> chartsVOList = new ArrayList<>();
         for (StatisticVO statisticVO : statisticVOList) {
-            ChartsVO a = new ChartsVO(statisticVO.getNum(), StringUtils.equals(statisticVO.getName(),"1") ? "在线" : "离线");
+            ChartsVO a = new ChartsVO(statisticVO.getNum(), StringUtils.equals(statisticVO.getName(), "1") ? "在线" : "离线");
             chartsVOList.add(a);
         }
 
@@ -120,7 +151,7 @@ public class ChannelServiceImpl implements ChannelService {
         List<MapVO> mapVOList = new ArrayList<>();
         if (!channelEntityList.isEmpty()) {
             for (ChannelEntity channelEntity : channelEntityList) {
-                MapVO a = new MapVO( StringUtils.isBlank(channelEntity.getLongitude()) ? 0 : Double.valueOf(channelEntity.getLongitude()),
+                MapVO a = new MapVO(StringUtils.isBlank(channelEntity.getLongitude()) ? 0 : Double.valueOf(channelEntity.getLongitude()),
                         StringUtils.isBlank(channelEntity.getLatitude()) ? 0 : Double.valueOf(channelEntity.getLatitude()),
                         channelEntity.getName(), channelEntity.getIp(), channelEntity.getChannelCode());
                 mapVOList.add(a);

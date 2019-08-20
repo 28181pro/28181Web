@@ -49,7 +49,7 @@
 
 
     <select id="listForPage" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
-        SELECT  id, channel_code, gbdevice_code, name, ip, port, online_status, manufacturer, longitude, latitude 
+        SELECT  id, channel_code,gbdevice_code,name,ip,port,online_status,manufacturer,address,stream_server_id,register_way,model,longitude,latitude,register_server_id
         FROM
         channel
         <where>
@@ -63,7 +63,7 @@
 
 
     <select id="list" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
-        SELECT  id, channel_code, gbdevice_code, name, ip, port, online_status, manufacturer, longitude, latitude
+        SELECT  id, channel_code,gbdevice_code,name,ip,port,online_status,manufacturer,address,stream_server_id,register_way,model,longitude,latitude,register_server_id
         FROM
         channel
         <where>
@@ -137,6 +137,7 @@
             <if test="model != null">model = #{model},</if>
             <if test="longitude != null">longitude = #{longitude},</if>
             <if test="latitude != null">latitude = #{latitude},</if>
+            <if test="registerServerId != null">register_server_id = #{registerServerId},</if>
         </set>
         WHERE
         id = #{id}

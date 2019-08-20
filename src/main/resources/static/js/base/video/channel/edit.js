@@ -5,7 +5,11 @@ var vm = new Vue({
     el:'#dpLTE',
     data: {
         channel: {
-            id: 0
+            id: 0,
+            registerServerId: 0,
+            registerServerName: null,
+            streamServerId: 0,
+            streamServerName: null
         },
         longitude: '',
         latitude: ''
@@ -38,7 +42,7 @@ var vm = new Vue({
             dialogOpen({
                 id: 'layerStreamServerTree',
                 title: '选择流媒体服务器',
-                url: 'video/channel/registerServer.html?_' + $.now(),
+                url: 'video/channel/streamServer.html?_' + $.now(),
                 scroll : true,
                 width: "300px",
                 height: "450px",

@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -29,7 +30,24 @@ public class ServersController extends AbstractController {
      */
     @RequestMapping("/list")
     public List<ServersEntity> list() {
-        return serversService.listServers();
+        try {
+            List<ServersEntity> serversEntityList=serversService.listServers();
+            return serversEntityList;
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+            return new ArrayList<>();
+        }
+
+    }
+
+
+    /**
+     * 服务器列表
+     * @return
+     */
+    @RequestMapping("/select")
+    public R select() {
+        return serversService.selectServers();
     }
 
 

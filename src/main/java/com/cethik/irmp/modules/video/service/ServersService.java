@@ -15,6 +15,8 @@ import java.util.List;
  */
 public interface ServersService {
 
+	R selectServers();
+
 	List<ServersEntity> listServers();
 	
 	List<ServersEntity> listRegisterServerTree();

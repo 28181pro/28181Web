@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:include="include/header_css::header('选择注册服务器')"></head>
+<head th:include="include/header_css::header('选择流媒体服务器')"></head>
 <body>
 <div id="dpLTE" class="container-fluid" v-cloak>
     <ul id="serversTree" class="ztree"></ul>
@@ -15,6 +15,7 @@
                 pIdKey : "parentId",
                 rootPId : 0
             }
+
         }
     };
     var ztree;
@@ -27,14 +28,14 @@
                     if(top.layerForm.vm.channel.id != 0) {
                         var node = ztree.getNodeByParam("id", top.layerForm.vm.channel.id);
                         ztree.selectNode(node);
-                        top.layerForm.vm.channel.registerServerName = node.name;
+                        top.layerForm.vm.channel.streamServerName = node.name;
                     }
                 })
             },
             acceptClick: function() {
                 var node = ztree.getSelectedNodes();
-                top.layerForm.vm.channel.registerServerId = node[0].id;
-                top.layerForm.vm.channel.registerServerName = node[0].name;
+                top.layerForm.vm.channel.streamServerId = node[0].id;
+                top.layerForm.vm.channel.streamServerName = node[0].name;
                 dialogClose();
             }
         },
