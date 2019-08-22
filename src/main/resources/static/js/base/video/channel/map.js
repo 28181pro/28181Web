@@ -17,20 +17,18 @@ function markerMouseOver(marker, id, name) {
 
 function markerClicked(channelId) {
     return function () {
-       // window.open('play.html?id=' + channelId, '_blank');
          dialogOpen({
              title: '播放',
              url : 'video/channel/video.html?_' + $.now(),
              width: '650px',
-             height: '550px',
+             height: '500px',
              scroll: true,
              success: function (iframeId) {
-                 console.log('[MAP] Setting channnel id to play video:', channelId);
                  top.frames[iframeId].vm.channel.id = channelId;
                  top.frames[iframeId].vm.setForm();
              },
              yes: function (iframeId) {
-                 top.frames[iframeId].vm.acceptClick();
+                  top.frames[iframeId].vm.acceptClick();
              },
          });
     }
