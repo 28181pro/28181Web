@@ -4,9 +4,9 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         druid:
             first:
-                url: jdbc:mysql://47.96.115.217:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                url: jdbc:mysql://192.10.1.221:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: 123456
+                password: hndky2019.
             second:
                 url: jdbc:mysql://47.96.115.217:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root

@@ -1,5 +1,5 @@
 // 函数 创建多个标注
-
+/*
 function markerMouseOverOnline(marker, id, name) {
     return function () {
         var label = new BMap.Label( '名称：' + name, { offset: new BMap.Size(20, -10) });
@@ -14,6 +14,12 @@ function markerMouseOverOnline(marker, id, name) {
             padding: "5px"
         });
         marker.setLabel(label);
+    }
+}
+
+function markerClicked(channelId) {
+    return function () {
+
     }
 }
 
@@ -137,9 +143,9 @@ var vm = new Vue({
 
     }
 });
-
+*/
 //离线地图，请打开这里
-/*
+
 function markerMouseOver(marker, id, name) {
     return function () {
         var label = new BMapGL.Label( '名称：' + name, { offset: new BMapGL.Size(20, -10) });
@@ -159,22 +165,6 @@ function markerMouseOver(marker, id, name) {
 function markerClicked(channelId) {
     return function () {
         // window.open('play.html?id=' + channelId, '_blank');
-        dialogOpen({
-            title: '播放',
-            url : 'video/channel/video.html?_' + $.now(),
-
-            width: '650px',
-            height: '378px',
-            scroll: true,
-            success: function (iframeId) {
-                console.log('[MAP] Setting channnel id to play video:', channelId);
-                top.frames[iframeId].vm.channel.id = channelId;
-                top.frames[iframeId].vm.setForm();
-            },
-            yes: function (iframeId) {
-                top.frames[iframeId].vm.acceptClick();
-            },
-        });
     }
 }
 
@@ -302,11 +292,3 @@ var vm = new Vue({
 
     }
 });
-
-*/
-
-
-
-
-
-
