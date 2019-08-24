@@ -3,14 +3,14 @@ spring:
         type: com.alibaba.druid.pool.DruidDataSource
         driverClassName: com.mysql.jdbc.Driver
         druid:
-            first:
-                url: jdbc:mysql://47.96.115.217:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+            masterDataSource:
+                url: jdbc:mysql://22.56.192.133:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: 123456
-            second:
-                url: jdbc:mysql://47.96.115.217:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                password: QWER1234
+            slaveDataSource:
+                url: jdbc:mysql://22.56.192.133:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: 123456
+                password: QWER1234
             initial-size: 10
             max-active: 100
             min-idle: 10
