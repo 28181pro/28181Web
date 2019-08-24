@@ -13,7 +13,7 @@
         视频无法正常播放，请点击下方启用flash
     </div>
     <video id="my-video" class="video-js vjs-default-skin" controls preload="auto" autoplay="true" fluid="true" width="650" height="500"
-           poster="/images/face.jpg" data-setup="{}" notSupportedMessage="此视频暂无法播放，检查视频设备状态是否正常或请查看是否安装flash">
+           poster="http://vjs.zencdn.net/v/oceans.png" data-setup="{}" notSupportedMessage="此视频暂无法播放，检查视频设备状态是否正常或请查看是否安装flash">
         <!--<source src="rtmp://58.200.131.2:1935/livetv/hunantv" type="rtmp/flv">-->
         <p class="vjs-no-js">To view this video please enable JavaScript, and consider upgrading to a web browser that
             <a href="http://videojs.com/html5-video-support/" target="_blank">supports HTML5 video</a></p>
@@ -40,8 +40,7 @@
         methods: {
             setForm: function () {
                 $.SetForm({
-                   // url: '../../video/channel/info?_' + $.now(),
-                    url: '../../video/channel/getChannelInfo?_' + $.now(),
+                    url: '../../video/channel/info?_' + $.now(),
                     param: vm.channel.id,
                     success: function (data) {
                         vm.channel = data;
@@ -66,12 +65,10 @@
             var elevCode = vm.channel.channelCode;
             var regSvrIp = vm.channel.regWanIp;
             var regSvrPort = vm.channel.regWanPort;
-            var streamSvrPort = 1935;
-            //  var rtmpurl = "rtmp://47.96.115.217:2131/live/34020000001320000012";
-             var rtmpurl = 'rtmp://'+regSvrIp+':'+streamSvrPort+'/live/' + elevCode;
-            //var rtmpurl = "rtmp://58.200.131.2:1935/livetv/hunantv";
+          //  var rtmpurl = "rtmp://47.96.115.217:2131/live/34020000001320000012";
+             var rtmpurl = 'rtmp://'+streamSvrIp+':'+streamSvrPort+'/live/' + elevCode;
+           // var rtmpurl = "rtmp://58.200.131.2:1935/livetv/hunantv";
             // var myPlayer = this;
-            console.log(rtmpurl);
             myPlayer.src({src: rtmpurl, type: "rtmp/flv"});
             this.play();
         });

@@ -18,8 +18,7 @@ var vm = new Vue({
                 }
             });
         }
-    }
-    /*,
+    },
     mounted: function () {
         var channelId = this.channel.id;
         console.log("Channel id=", channelId);
@@ -32,5 +31,5 @@ var vm = new Vue({
                 }
             });
         }
-    }*/
+    }
 })

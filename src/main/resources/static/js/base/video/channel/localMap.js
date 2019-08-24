@@ -26,7 +26,6 @@ function markerClicked(channelId) {
              height: '378px',
              scroll: true,
              success: function (iframeId) {
-                 console.log('[MAP] Setting channnel id to play video:', channelId);
                  top.frames[iframeId].vm.channel.id = channelId;
                  top.frames[iframeId].vm.setForm();
              },

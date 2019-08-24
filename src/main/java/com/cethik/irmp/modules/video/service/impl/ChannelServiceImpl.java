@@ -79,17 +79,9 @@ public class ChannelServiceImpl implements ChannelService {
     public R getChannelById(Long id) {
         ChannelEntity channelEntity = channelManager.getChannelById(id);
         //根据StreamServerId获取流媒体服务器名称
-        Integer strid =  channelEntity.getStreamServerId();
-        String streamServerName = "";
-        if(  strid != null )
-             streamServerName = serversManager.getServersById(strid.longValue()).getName();
-
+        String streamServerName = serversManager.getServersById(channelEntity.getStreamServerId().longValue()).getName();
         //根据registerServerId获取注册服务器名称
-        String registerServerName = "";
-        Integer regid = channelEntity.getRegisterServerId();
-        if(  regid != null )
-            registerServerName = serversManager.getServersById(strid.longValue()).getName();
-
+        String registerServerName = serversManager.getServersById(channelEntity.getRegisterServerId().longValue()).getName();
         channelEntity.setStreamServerName(streamServerName);
         channelEntity.setRegisterServerName(registerServerName);
         return CommonUtils.msg(channelEntity);

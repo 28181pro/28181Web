@@ -18,8 +18,8 @@ var vm = new Vue({
                 }
             });
         }
-    }
-  /* ,mounted: function () {
+    },
+    mounted: function () {
         var channelId = this.channel.id;
         console.log("Channel id=", channelId);
         if (channelId) {
@@ -32,5 +32,4 @@ var vm = new Vue({
             });
         }
     }
-    */
 })

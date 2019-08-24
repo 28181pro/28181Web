@@ -20,14 +20,16 @@ function markerClicked(channelId) {
          dialogOpen({
              title: '播放',
              url : 'video/channel/video.html?_' + $.now(),
-
              width: '650px',
              height: '500px',
              scroll: true,
              success: function (iframeId) {
                  top.frames[iframeId].vm.channel.id = channelId;
                  top.frames[iframeId].vm.setForm();
-             }
+             },
+             yes: function (iframeId) {
+                  top.frames[iframeId].vm.acceptClick();
+             },
          });
     }
 }
