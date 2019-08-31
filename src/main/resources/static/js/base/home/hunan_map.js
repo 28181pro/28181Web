@@ -1,5 +1,5 @@
 // 函数 创建多个标注
-
+/*
 function markerMouseOverOnline(marker, id, name) {
     return function () {
         var label = new BMap.Label( '名称：' + name, { offset: new BMap.Size(20, -10) });
@@ -14,6 +14,12 @@ function markerMouseOverOnline(marker, id, name) {
             padding: "5px"
         });
         marker.setLabel(label);
+    }
+}
+
+function markerClicked(channelId) {
+    return function () {
+
     }
 }
 
@@ -137,9 +143,9 @@ var vm = new Vue({
 
     }
 });
-
+*/
 //离线地图，请打开这里
-/*
+
 function markerMouseOver(marker, id, name) {
     return function () {
         var label = new BMapGL.Label( '名称：' + name, { offset: new BMapGL.Size(20, -10) });
@@ -159,22 +165,6 @@ function markerMouseOver(marker, id, name) {
 function markerClicked(channelId) {
     return function () {
         // window.open('play.html?id=' + channelId, '_blank');
-        dialogOpen({
-            title: '播放',
-            url : 'video/channel/video.html?_' + $.now(),
-
-            width: '650px',
-            height: '378px',
-            scroll: true,
-            success: function (iframeId) {
-                console.log('[MAP] Setting channnel id to play video:', channelId);
-                top.frames[iframeId].vm.channel.id = channelId;
-                top.frames[iframeId].vm.setForm();
-            },
-            yes: function (iframeId) {
-                top.frames[iframeId].vm.acceptClick();
-            },
-        });
     }
 }
 
@@ -267,14 +257,14 @@ var vm = new Vue({
         var that = this;
         //百度地图API功能
         //创建地图
-        this.map =  new BMap.ETMap("chart_map");
+        this.map =  new BMapGL.ETMap("chart_map");
         //设置地图样
-        this.map.setMapStyle({style: 'midnight'});
+        //this.map.setMapStyle({style: 'midnight'});
 
         //创建地图坐标点,一般首次创建的这个点为地图的中心坐标点 杭州经纬度:(120.20000,30.26667)，长沙经纬度:(113.00000,28.21667)
-
+		var point=new BMapGL.Point(12529157.6, 3217853.21);
         //初始化地图，设置中心坐标点和地图级数
-        this.map.centerAndZoom(new BMapGL.Point(12529157.6, 3217853.21), 11);
+        this.map.centerAndZoom(point, 11);
 
         //创建标注
         var marker =  new BMapGL.Marker(point, { icon: cameraIcon }); //new BMap.Marker(point);
@@ -284,29 +274,21 @@ var vm = new Vue({
         //在PC端可以通过滚轮放大缩小地图，移动端关闭该功能
         this.map.enableScrollWheelZoom(true);
         //缩略图控件 默认右下角且呈可折叠状态（点击隐藏和显示）
-        this.map.addControl(new BMapGL.OverviewMapControl());
+        //this.map.addControl(new BMapGL.OverviewMapControl());
         //地图类型控件 默认右上角可切换地图/卫星/三维三种状态
         this.map.addControl(new BMapGL.MapTypeControl({
             mapTypes: [
-                BMAP_NORMAL_MAP,
-                BMAP_HYBRID_MAP
+                BMAPGL_NORMAL_MAP,
+                BMAPGL_HYBRID_MAP
             ]
         }));
         this.map.addControl(new BMapGL.ScaleControl({anchor: BMAP_ANCHOR_TOP_LEFT}));
         //addControl()向地图添加控件 平移和缩放控件 PC端默认左上角 移动端默认右下角且只有缩放功能
         this.map.addControl(new BMapGL.NavigationControl());
         //定位控件 默认左下角
-        this.map.addControl(new BMapGL.GeolocationControl());
+        //this.map.addControl(new BMapGL.GeolocationControl());
 
         markerPoints(this.map, this.mapList);
 
     }
 });
-
-*/
-
-
-
-
-
-
