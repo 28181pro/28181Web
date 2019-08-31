@@ -123,7 +123,7 @@ var vm = new Vue({
                 dialogOpen({
                     title : '播放',
                     //url : 'video/channel/play.html?_' + $.now(),
-					url : 'video/channel/video.html?_' + $.now(),
+					url : 'video/channel/video2.html?_' + $.now(),
                     width : '500px',
                     height : '420px',
                     scroll : true,

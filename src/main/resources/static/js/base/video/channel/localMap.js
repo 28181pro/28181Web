@@ -20,10 +20,9 @@ function markerClicked(channelId) {
        // window.open('play.html?id=' + channelId, '_blank');
          dialogOpen({
              title: '播放',
-             url : 'video/channel/video.html?_' + $.now(),
-
-             width: '650px',
-             height: '378px',
+             url : 'video/channel/video2.html?_' + $.now(),
+             width : '500px',
+             height : '420px',
              scroll: true,
              success: function (iframeId) {
                  top.frames[iframeId].vm.channel.id = channelId;
