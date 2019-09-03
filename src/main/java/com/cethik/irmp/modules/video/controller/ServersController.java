@@ -2,6 +2,7 @@ package com.cethik.irmp.modules.video.controller;
 
 
 import com.cethik.irmp.common.annotation.SysLog;
+import com.cethik.irmp.common.entity.Page;
 import com.cethik.irmp.common.entity.R;
 import com.cethik.irmp.common.utils.CommonUtils;
 import com.cethik.irmp.modules.sys.controller.AbstractController;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 
 @RestController
@@ -24,6 +26,16 @@ public class ServersController extends AbstractController {
 
 
 
+    @RequestMapping("/listpage")
+    Page<ServersEntity> listpage(@RequestBody Map<String, Object> params) {
+        try {
+            Page<ServersEntity> pages = serversService.listServersPage(params);
+            return pages;
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+            return new Page<ServersEntity>();
+        }
+    }
     /**
      * 服务器列表
      * @return
@@ -101,7 +113,22 @@ public class ServersController extends AbstractController {
         }
     }
 
-
+    /**
+     * 批量删除服务
+     *
+     * @param id
+     * @return
+     */
+    @SysLog("删除服务")
+    @RequestMapping("/remove")
+    public R batchRemove(@RequestBody Long[] id) {
+        try {
+            return serversService.batchRemove(id);
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+            return CommonUtils.msg("系统异常");
+        }
+    }
 
 
 }

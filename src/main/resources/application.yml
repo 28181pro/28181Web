@@ -4,7 +4,7 @@ server:
         uri-encoding: UTF-8
         max-threads: 1000
         min-spare-threads: 30
-    port: 8089
+    port: 8090
     #打开注释，则通过【http://localhost/irmp】访问
     #context-path: /irmp
 

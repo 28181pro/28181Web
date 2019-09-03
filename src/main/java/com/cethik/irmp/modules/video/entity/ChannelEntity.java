@@ -15,7 +15,7 @@ public class ChannelEntity implements Serializable {
     private String      address;
     private Integer     streamServerId;
     private String      streamServerName;
-    private Integer registerWay;
+    private Integer     registerWay;
     private String      model;
     private String      longitude;
     private String      latitude;

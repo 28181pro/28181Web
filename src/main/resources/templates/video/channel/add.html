@@ -16,12 +16,6 @@
 					<input type="text" class="form-control"  v-model="channel.gbdeviceCode" isvalid="yes" checkexpession="NotNull">
 	            </td>
         	</tr>
-			<tr>
-				<td class="formTitle">注册服务器<font face="宋体">*</font></td>
-				<td class="formValue">
-					<input type="text" class="form-control pointer" placeholder="选择所属注册服务器" v-model="channel.registerServerName" @click="registerServerTree" isvalid="yes" checkexpession="NotNull" readonly="readonly">
-				</td>
-			</tr>
         	<tr>
 	            <td class="formTitle">名称<font face="宋体">*</font></td>
 	            <td class="formValue">
@@ -41,9 +35,23 @@
 				</td>
 			</tr>
 			<tr>
+				<td class="formTitle">注册服务器<font face="宋体">*</font></td>
+				<td class="formValue">
+					<input type="text" class="form-control pointer" placeholder="选择所属注册服务器" v-model="channel.registerServerName" @click="registerServerTree" isvalid="yes" checkexpession="NotNull" readonly="readonly">
+				</td>
+			</tr>
+			<tr>
 				<td class="formTitle">流媒体服务器<font face="宋体">*</font></td>
 				<td class="formValue">
 					<input type="text" class="form-control pointer" placeholder="选择所属流媒体服务器" v-model="channel.streamServerName" @click="streamServerTree" isvalid="yes" checkexpession="NotNull" readonly="readonly">
+				</td>
+		     </tr>
+			<tr>
+				<td class="formTitle">注册线路<font face="宋体">*</font></td>
+				<td class="formValue">
+					<select class="choice"  v-model="channel.registerWay">
+						　　<option :value="line.index" v-for="line in lines">{{line.name}}</option>
+					</select>
 				</td>
 			</tr>
 			<tr>

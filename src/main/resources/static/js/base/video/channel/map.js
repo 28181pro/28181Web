@@ -24,7 +24,6 @@ function markerClicked(channelId) {
              height : '420px',
             // width: '650px',
            //  height: '500px',
-
              scroll: true,
              success: function (iframeId) {
                  top.frames[iframeId].vm.channel.id = channelId;

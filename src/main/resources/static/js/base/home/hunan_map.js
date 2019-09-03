@@ -1,5 +1,5 @@
 // 函数 创建多个标注
-/*
+
 function markerMouseOverOnline(marker, id, name) {
     return function () {
         var label = new BMap.Label( '名称：' + name, { offset: new BMap.Size(20, -10) });
@@ -143,9 +143,9 @@ var vm = new Vue({
 
     }
 });
-*/
-//离线地图，请打开这里
 
+//离线地图，请打开这里
+/*
 function markerMouseOver(marker, id, name) {
     return function () {
         var label = new BMapGL.Label( '名称：' + name, { offset: new BMapGL.Size(20, -10) });
@@ -292,3 +292,4 @@ var vm = new Vue({
 
     }
 });
+*/
