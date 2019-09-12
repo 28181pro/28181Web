@@ -10,7 +10,9 @@ import com.cethik.irmp.modules.sys.dao.SysRoleMenuMapper;
 import com.cethik.irmp.modules.sys.dao.SysUserMapper;
 import com.cethik.irmp.modules.sys.entity.SysMenuEntity;
 import com.cethik.irmp.modules.sys.manager.SysMenuManager;
+import com.cethik.irmp.modules.video.dao.ChannelMapper;
 import com.cethik.irmp.modules.video.dao.LocationMapper;
+import com.cethik.irmp.modules.video.entity.ChannelEntity;
 import com.cethik.irmp.modules.video.entity.GbDeviceEntity;
 import com.cethik.irmp.modules.video.entity.LocationEntity;
 import com.cethik.irmp.modules.video.manager.LocationManager;
@@ -35,21 +37,23 @@ public class LocationManagerImpl implements LocationManager {
 	@Autowired
 	private LocationMapper locationMapper;
 
+	@Autowired
+	private ChannelMapper channelMapper;
 
 	@Override
 	public List<LocationEntity> listUserLocation(Long userId) {
-		//List<Long> menuIdList = locationMapper.list(userId);
-		return null;
+		List<Long> locationuIdList = locationMapper.listAllLocationId(userId);
+		return getAllLocationList(locationuIdList);
 	}
 
-	/**
+	/**locationuList
 	 * 获取所有菜单列表
 	 */
-	private List<LocationEntity> getAllMenuList(List<Long> menuIdList){
+	private List<LocationEntity> getAllLocationList(List<Long> menuIdList){
 		//查询根菜单列表
 		List<LocationEntity> menuList = listParentId(0L, menuIdList);
 		//递归获取子菜单
-		getMenuTreeList(menuList, menuIdList);
+		getLocationTreeList(menuList, menuIdList);
 
 		return menuList;
 	}
@@ -57,12 +61,18 @@ public class LocationManagerImpl implements LocationManager {
 	/**
 	 * 递归
 	 */
-	private List<LocationEntity> getMenuTreeList(List<LocationEntity> menuList, List<Long> menuIdList){
+	private List<LocationEntity> getLocationTreeList(List<LocationEntity> menuList, List<Long> menuIdList){
 		List<LocationEntity> subMenuList = new ArrayList<LocationEntity>();
 
 		for(LocationEntity entity : menuList){
-			if(entity.getType() == SystemConstant.LocationType.CITY.getValue()){//目录
-				entity.setList(getMenuTreeList(listParentId(entity.getLocationId(), menuIdList), menuIdList));
+			if(entity.getType() != SystemConstant.LocationType.LINE.getValue()){//目录
+				entity.setList(getLocationTreeList(listParentId(entity.getLocationId(), menuIdList), menuIdList));
+			}
+			else
+			{
+				List<ChannelEntity>   channellist = channelMapper.listChannelbylocation( entity.getLocationId() );
+				entity.setList( channellist);
+
 			}
 			subMenuList.add(entity);
 		}

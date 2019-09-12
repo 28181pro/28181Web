@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
-
+import java.util.List;
 
 @RestController
 @RequestMapping("/video/channel")
@@ -151,6 +151,12 @@ public class ChannelController extends AbstractController {
             logger.error(ex.getMessage());
             return CommonUtils.msg("系统异常");
         }
+    }
+
+    @RequestMapping("/listBylocation")
+    List<ChannelEntity> getchannelbylocation( @RequestBody Long id) {
+        List<ChannelEntity> list = channelService.listChannelbylocation(id);
+        return list;
     }
 
 }

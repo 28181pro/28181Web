@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+<style>
+    .video-window{
+        float: left;
+        margin-left: 1%;
+        margin-bottom: 1%;
+        width: 48%;
+        height: 0;
+        position: relative;
+        padding-bottom: 25%;
+        background-color: #000;
+    }
+</style>
+
+    <script th:src="@{../../plugins/cyberplayer/cyberplayer.js}"></script>
+</head>
+<body>
+<div class="row col-sm-9 video-show">
+        <div id="playercontainer1" class="col-md-6 window1 video-window" alt="1" ></div>
+        <div id="playercontainer2" class="col-md-6 window2 video-window" alt="2" ></div>
+        <div id="playercontainer3" class="col-md-6 window3 video-window" alt="3" ></div>
+        <div id="playercontainer4" class="col-md-6 window4 video-window" alt="4" ></div>
+</div>
+<script>
+ var size = 4;
+ var playtable = new Array();
+ playtable[0] = 0;
+ playtable[1] = 0;
+ playtable[2] = 0;
+ playtable[3] = 0;
+
+ function startplay(wind, rtmpurl) {
+
+         var player = cyberplayer(wind).setup({
+             width: 480,
+             height: 300,
+             file: rtmpurl, // <—rtmp直播地址
+             autostart: true,
+             stretching: "uniform",
+             volume: 100,
+             controls: true,
+             rtmp: {
+                 reconnecttime: 5, // rtmp直播的重连次数
+                 bufferlength: 1 // 缓冲多少秒之后开始播放 默认1秒
+             },
+             ak: ""//"cc94de6803904f2ca7159eedeaced55d" // 公有云平台注册即可获得accessKey
+         });
+
+     }
+
+ function findUnused() {
+     var index = 0;
+     for(i=0;i<4;i++) {
+         if (playtable[i] == 0) {
+             index = i;
+             break;
+         }
+     }
+     var wind = "playercontainer"+index;
+
+ }
+
+
+     var line = vm.channel.registerWay;
+
+     var elevCode = vm.channel.channelCode;
+     var regSvrIp = vm.channel.regWanIp;
+     var regSvrPort = vm.channel.regWanPort;
+
+     var strSvrIp = vm.channel.strmWanIp;
+     var strSvrPort = vm.channel.strmWanPort;
+
+     var regSvrIp_lan = vm.channel.regLanIp;
+     var regSvrPort_lan = vm.channel.regLanPort;
+
+     var strSvrIp_lan = vm.channel.strmLanIp;
+     var strSvrPort_lan = vm.channel.strmLanPort;
+
+     var rtmpPort = 1935;
+
+     var domain = document.domain;
+     // var rtmpurl = 'rtmp://'+domain+':'+rtmpPort+'/live/' + elevCode;
+
+     //34020000001320000012?124.91.150.149&9310&124.91.150.149&9210&0
+     var rtmpurl = 'rtmp://'+regSvrIp+':'+rtmpPort+'/live/' + elevCode+'?'+strSvrIp+'&'+strSvrPort+'&'+regSvrIp+'&'+regSvrPort+'&'+line;
+     //var rtmpurl = "rtmp://58.200.131.2:1935/livetv/hunantv";
+     // var myPlayer = this;
+     console.log(rtmpurl);
+     console.log( domain );
+     var player = cyberplayer("playercontainer").setup({
+         width: 480,
+         height: 300,
+         file: rtmpurl, // <—rtmp直播地址
+         autostart: true,
+         stretching: "uniform",
+         volume: 100,
+         controls: true,
+         rtmp: {
+             reconnecttime: 5, // rtmp直播的重连次数
+             bufferlength: 1 // 缓冲多少秒之后开始播放 默认1秒
+         },
+         ak: ""//"cc94de6803904f2ca7159eedeaced55d" // 公有云平台注册即可获得accessKey
+     });
+ }
+
+</script>
+
+</body>
+</html>

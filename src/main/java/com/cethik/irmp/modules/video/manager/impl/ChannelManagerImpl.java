@@ -89,5 +89,9 @@ public class ChannelManagerImpl implements ChannelManager {
     public List<ChannelEntity> listChannel(Query search) {
         return channelMapper.list(search);
     }
+    @Override
+    public List<ChannelEntity> listChannelbylocation(Long locationId) {
+        return channelMapper.listChannelbylocation(locationId);
+    }
 
 }

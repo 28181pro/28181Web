@@ -16,7 +16,7 @@ import java.util.List;
 public interface LocationMapper extends BaseMapper<LocationEntity> {
 	
 	List<LocationEntity> listParentId(Long parentId);
-	
+	List<Long> listAllLocationId( Long userid);
 	List<LocationEntity> listNotLine();
 	
 	List<String> listUserPerms(Long userId);

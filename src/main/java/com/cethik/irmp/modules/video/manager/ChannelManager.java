@@ -37,4 +37,5 @@ public interface ChannelManager {
 
     List<ChannelEntity> listChannel(Query search);
 
+    List<ChannelEntity> listChannelbylocation(Long locationId);
 }

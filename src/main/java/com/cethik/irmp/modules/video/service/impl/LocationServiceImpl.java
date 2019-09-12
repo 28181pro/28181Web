@@ -33,7 +33,7 @@ public class LocationServiceImpl implements LocationService {
 
 	@Override
 	public R listUserLocation(Long userId) {
-		return R.ok().put("locationuList", locationManager.listUserLocation(userId));
+		return R.ok().put("locationList", locationManager.listUserLocation(userId));
 	}
 
 	@Override

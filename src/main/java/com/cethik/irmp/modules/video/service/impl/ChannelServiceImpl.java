@@ -163,5 +163,12 @@ public class ChannelServiceImpl implements ChannelService {
         return CommonUtils.msgNotCheckNull(mapVOList);
     }
 
+    @Override
+    public List<ChannelEntity> listChannelbylocation(Long locationId) {
+
+        return channelManager.listChannelbylocation( locationId );
+
+    }
+
 
 }

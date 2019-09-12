@@ -19,4 +19,5 @@ public interface ChannelMapper extends BaseMapper<ChannelEntity> {
 
     List<StatisticVO> getStatisticOnlineNumByGbdevices();
 
+    List<ChannelEntity> listChannelbylocation( Long locationId);
 }

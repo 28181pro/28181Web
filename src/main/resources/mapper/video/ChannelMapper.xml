@@ -164,5 +164,13 @@
             #{id}
         </foreach>
     </update>
+    <select id="listChannelbylocation" resultType="com.cethik.irmp.modules.video.entity.ChannelEntity">
+		SELECT
+		id,channel_code,name,type
+		FROM
+			channel
+		WHERE
+			location_id = #{value}
+	</select>
 
 </mapper>

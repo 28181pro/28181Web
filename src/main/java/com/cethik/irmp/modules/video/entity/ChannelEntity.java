@@ -19,16 +19,17 @@ public class ChannelEntity implements Serializable {
     private String      model;
     private String      longitude;
     private String      latitude;
-    private Integer registerServerId;
+    private Integer     registerServerId;
     private String      registerServerName;
-    private String            regLanIp;
-    private Integer          regLanPort;
-    private String            regWanIp;
-    private Integer          regWanPort;
-    private String            strmLanIp;
-    private Integer          strmLanPort;
-    private String            strmWanIp;
-    private Integer          strmWanPort;
+    private String      regLanIp;
+    private Integer     regLanPort;
+    private String      regWanIp;
+    private Integer     regWanPort;
+    private String      strmLanIp;
+    private Integer     strmLanPort;
+    private String      strmWanIp;
+    private Integer     strmWanPort;
+    private Integer     type;
 
     public Integer getRegisterServerId() {
         return registerServerId;
@@ -231,7 +232,14 @@ public class ChannelEntity implements Serializable {
     }
 
 
-/*
+    public void setType( Integer t){
+        type = t;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+    /*
     public ServersEntity getStreaminfo() {
         return streaminfo;
     }
