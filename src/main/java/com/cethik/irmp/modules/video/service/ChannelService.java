@@ -40,4 +40,6 @@ public interface ChannelService {
     R  listChannelQuery(Map<String, Object> params);
 
     List<ChannelEntity> listChannelbylocation(Long id);
+
+    R getChannelInfoByID( Long channelid);
 }

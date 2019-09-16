@@ -40,7 +40,7 @@ var menuItem = Vue
 					'<menu-item :item="item" v-for="item in item.list"></menu-item>',
 					'</ul>',
 
-					'<a v-if="item.type === 4" :href="\'#\'+item.channelcode" id="channel" @click.native="play(item.id)"> {{item.name}}</a>',
+					'<a v-if="item.type === 4" :href="\'#\'+item.channelCode" id="channel" @click="play(item.id)" > {{item.name}}</a>',
 
 					'</li>'
 			].join('')
@@ -83,25 +83,6 @@ var vm = new Vue({
 				console.log( r.locationList);
 				vm.locationList = r.locationList;
 			});
-		},
-		play:function (id) {
-
-			$.getJSON("video/location/user?_" + $.now(), function(r) {
-				console.log( r.locationList);
-				vm.locationList = r.locationList;
-			});
-
-
-			$.ajax({
-				url: '../../video/channel/getChannelInfo?_' + $.now(),
-				data:{id: id},
-			}).done( function (data) {
-				console.log('success,' + data);
-
-			}).fail( function (res) {
-				console.log('fail: ' + res);
-
-			})
 		}
 	},
 	created : function() {
@@ -202,4 +183,54 @@ function removeScroll() {
 	$('.sidebar').append($('#sidebar-menu'));
 	$('#sidebar-menu').removeAttr('style');
 	$('.slimScrollDiv').remove();
+}
+
+function play(channelId) {
+	console.log('play:' + channelId);
+	var rtmpurl;
+	$.ajax({
+		type: 'get',
+		async: false,
+		contentType: 'application/json',
+		url: '/video/channel/getChannelInfoByID?_' + $.now(),
+		data: {id:channelId},
+		success: function (r) {
+
+			var line = r.rows.registerWay;
+
+			var elevCode = r.rows.channelCode;
+			var regSvrIp = r.rows.regWanIp;
+			var regSvrPort = r.rows.regWanPort;
+
+			var strSvrIp = r.rows.strmWanIp;
+			var strSvrPort = r.rows.strmWanPort;
+
+			var regSvrIp_lan = r.rows.regLanIp;
+			var regSvrPort_lan = r.rows.regLanPort;
+
+			var strSvrIp_lan = r.rows.strmLanIp;
+			var strSvrPort_lan = r.rows.strmLanPort;
+
+			var rtmpPort = 1935;
+
+			var domain = document.domain;
+
+			rtmpurl = 'rtmp://'+regSvrIp+':'+rtmpPort+'/live/' + elevCode+'?'+strSvrIp+'&'+strSvrPort+'&'+regSvrIp+'&'+regSvrPort+'&'+line;
+			console.log( rtmpurl );
+		},
+		dataType: 'json'
+	});
+
+
+	var iframe = document.getElementById("main").contentWindow;
+
+	iframe.startplay(rtmpurl);
+	/*
+	var msg = {data:rtmpurl,action:startplay};
+	var childDomain = "video/screen.html";
+	iframe.postMessage(msg,childDomain);
+	window.addEventListener("message",function(obj){
+		console.log("message：" + obj );
+	});
+*/
 }

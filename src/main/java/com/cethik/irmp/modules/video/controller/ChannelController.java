@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 import java.util.List;
-
 @RestController
 @RequestMapping("/video/channel")
 public class ChannelController extends AbstractController {
@@ -159,4 +158,15 @@ public class ChannelController extends AbstractController {
         return list;
     }
 
+    @RequestMapping("/getChannelInfoByID")
+    public R getChannelInfoByID(Long id) {
+        try {
+
+            return channelService.getChannelInfoByID( id);
+
+        } catch (Exception ex) {
+            logger.error(ex.getMessage());
+            return null;
+        }
+    }
 }

@@ -170,5 +170,11 @@ public class ChannelServiceImpl implements ChannelService {
 
     }
 
+    @Override
+    public  R getChannelInfoByID( Long channelid){
+
+        ChannelEntity channel = channelManager.getByChannelCode(channelid);
+        return CommonUtils.msgNotCheckNull(channel);
+    }
 
 }
