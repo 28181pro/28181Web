@@ -4,11 +4,11 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         druid:
             masterDataSource:  #主库数据源
-              url: jdbc:mysql://22.56.192.133:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+              url: jdbc:mysql://47.96.115.217:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
               username: root
               password: QWER1234
             slaveDataSource:  #从库数据源
-              url: jdbc:mysql://22.56.192.133:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+              url: jdbc:mysql://47.96.115.217:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
               username: root
               password: QWER1234
             initial-size: 10
