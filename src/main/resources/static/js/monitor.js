@@ -80,7 +80,7 @@ var vm = new Vue({
 		},
 		getMenuList : function(event) {
 			$.getJSON("video/location/user?_" + $.now(), function(r) {
-				console.log( r.locationList);
+				//console.log( r.locationList);
 				vm.locationList = r.locationList;
 			});
 		}
