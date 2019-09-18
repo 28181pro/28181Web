@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('编辑-服务器管理')"></head>
+<body>
+<div id="dpLTE" class="container-fluid" v-cloak>
+    <table class="form" id="form">
+        <tr>
+            <td class="formTitle">名称<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="服务名称" v-model="servers.name" isvalid="yes" checkexpession="NotNull">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">内网IP<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control"  v-model="servers.lanIp" isvalid="yes" checkexpession="NotNull">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">内网端口<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control pointer" placeholder="内网端口" v-model="servers.lanPort"  isvalid="yes" checkexpession="NotNull" >
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">外网IP<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control " placeholder="外网IP" v-model="servers.wanIp"  isvalid="yes"  >
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">外网端口<font face="宋体">*</font></td>
+            <td class="formValue">
+                <input type="text" class="form-control" placeholder="外网端口" v-model="servers.wanPort"  isvalid="yes" >
+            </td>
+        </tr>
+    </table>
+</div>
+<div th:include="include/footer_js::footer"></div>
+<script th:src="@{/js/base/video/servers/edit.js}"></script>
+</body>
+</html>

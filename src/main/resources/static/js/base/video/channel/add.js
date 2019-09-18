@@ -1,6 +1,15 @@
 /**
  * 新增-通道管理js
  */
+
+index: [{
+    "indexId":0,
+    "name": "内网"
+}, {
+    "indexId":1,
+    "name": "外网"
+    }]
+
 var vm = new Vue({
     el:'#dpLTE',
     data: {
@@ -8,8 +17,17 @@ var vm = new Vue({
             registerServerId: 0,
             registerServerName: null,
             streamServerId: 0,
-            streamServerName: null
-        }
+            streamServerName: null,
+            registerWay:null
+        },
+        lines:[{
+            "index":0,
+            "name": "内网"
+        }, {
+            "index":1,
+            "name": "外网"
+            }
+        ]
     },
     methods : {
         registerServerTree: function() {

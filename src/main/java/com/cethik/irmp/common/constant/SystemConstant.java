@@ -22,7 +22,42 @@ public class SystemConstant {
 	 * 未授权错误代码
 	 */
 	public static final int UNAUTHORIZATION_CODE = 401;
-	
+
+
+	/**
+	 *
+	 * 市公司：：：
+	 *
+	 */
+	public enum LocationType {
+		/**
+		 * 市公司
+		 */
+		CITY(0),
+		/**
+		 * 县公司
+		 */
+		COUNTY(1),
+		/**
+		 * 供电所
+		 */
+		TOWN(2),
+		/**
+		 * 线路
+		 */
+		LINE(3);
+
+		private int value;
+
+		private LocationType(int value) {
+			this.value = value;
+		}
+
+		public int getValue() {
+			return value;
+		}
+	}
+
 	/**
 	 * 菜单类型
 	 *

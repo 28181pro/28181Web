@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>视频播放</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script th:src="@{../../plugins/cyberplayer/cyberplayer.js}"></script>
+</head>
+<body>
+<div id="dpLTE" class="container-fluid" v-cloak>
+    <div class="openFlashTips" style="width:300px;position:absolute;top:20px;left:225px;z-Index:9999;color:white">
+        视频无法正常播放，请点击下方启用flash
+    </div>
+
+    <div id="playercontainer"></div>
+
+</div>
+<div th:include="include/footer_js::footer"></div>
+
+<embed width="300" height="70" class="openFlash" style="position:absolute;top:130px;left:225px;z-Index:9999;"
+       type="application/x-shockwave-flash">
+<script type="text/javascript" language="JavaScript">
+
+    var vm = new Vue({
+        el: '#dpLTE',
+        data: {
+            channel: {
+                id: 0,
+                channelCode: null,
+                regLanIp:null,
+                regLanPort:null,
+
+                regWanIp: null,
+                regWanPort: null,
+
+                strmLanIp:null,
+                strmLanPort:null,
+
+                strmWanIp:null,
+                strmWanPort:null,
+                registerWay:0
+            }
+        },
+        methods: {
+            setForm: function () {
+                $.SetForm({
+                    // url: '../../video/channel/info?_' + $.now(),
+                    url: '../../video/channel/getChannelInfo?_' + $.now(),
+                    param: vm.channel.id,
+                    success: function (data) {
+                        vm.channel = data;
+                        startplay();
+                    }
+                });
+            },
+            acceptClick: function () {
+
+            },
+            mounted: function () {
+
+            }
+        }
+    })
+
+    /*视频播放*/
+    function startplay() {
+
+        var line = vm.channel.registerWay;
+
+        var elevCode = vm.channel.channelCode;
+        var regSvrIp = vm.channel.regWanIp;
+        var regSvrPort = vm.channel.regWanPort;
+
+        var strSvrIp = vm.channel.strmWanIp;
+        var strSvrPort = vm.channel.strmWanPort;
+
+        var regSvrIp_lan = vm.channel.regLanIp;
+        var regSvrPort_lan = vm.channel.regLanPort;
+
+        var strSvrIp_lan = vm.channel.strmLanIp;
+        var strSvrPort_lan = vm.channel.strmLanPort;
+
+        var rtmpPort = 1935;
+
+        var domain = document.domain;
+       // var rtmpurl = 'rtmp://'+domain+':'+rtmpPort+'/live/' + elevCode;
+
+        //34020000001320000012?124.91.150.149&9310&124.91.150.149&9210&0
+        var rtmpurl = 'rtmp://'+regSvrIp+':'+rtmpPort+'/live/' + elevCode+'?'+strSvrIp+'&'+strSvrPort+'&'+regSvrIp+'&'+regSvrPort+'&'+line;
+        //var rtmpurl = "rtmp://58.200.131.2:1935/livetv/hunantv";
+        // var myPlayer = this;
+        console.log(rtmpurl);
+        console.log( domain );
+        var player = cyberplayer("playercontainer").setup({
+            width: 480,
+            height: 300,
+            file: rtmpurl, // <—rtmp直播地址
+            autostart: true,
+            stretching: "uniform",
+            volume: 100,
+            controls: true,
+            rtmp: {
+                reconnecttime: 5, // rtmp直播的重连次数
+                bufferlength: 1 // 缓冲多少秒之后开始播放 默认1秒
+            },
+            ak: ""//"cc94de6803904f2ca7159eedeaced55d" // 公有云平台注册即可获得accessKey
+        });
+    }
+
+
+    function flashChecker() {
+        var hasFlash = 0; //是否安装了flash
+        var flashVersion = 0; //flash版本
+        var isIE = /*@cc_on!@*/0; //是否IE浏览器
+        if (isIE) {
+            var swf = new ActiveXObject('ShockwaveFlash.ShockwaveFlash');
+            if (swf) {
+                hasFlash = 1;
+                VSwf = swf.GetVariable("$version");
+                flashVersion = parseInt(VSwf.split(" ")[1].split(",")[0]);
+            }
+        } else {
+            if (navigator.plugins && navigator.plugins.length > 0) {
+                var swf = navigator.plugins["Shockwave Flash"];
+                if (swf) {
+                    hasFlash = 1;
+                    var words = swf.description.split(" ");
+                    for (var i = 0; i < words.length; ++i) {
+                        if (isNaN(parseInt(words[i]))) continue;
+                        flashVersion = parseInt(words[i]);
+                    }
+                }
+            }
+        }
+        return {f: hasFlash, v: flashVersion};
+    }
+
+    var fls = flashChecker();
+    if (fls.f) {
+        //安装了flash,当前flash版本为
+        document.getElementsByClassName("openFlash")[0].style.display = "none";
+        document.getElementsByClassName("openFlashTips")[0].style.display = "none";
+    }
+    else {
+        //没有安装flash
+        document.getElementsByClassName("openFlash")[0].style.display = "block";
+        document.getElementsByClassName("openFlashTips")[0].style.display = "block";
+    }
+</script>
+
+
+</body>
+
+</html>

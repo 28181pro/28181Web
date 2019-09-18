@@ -1,6 +1,14 @@
 /**
  * 编辑-通道管理js
  */
+index: [{
+    "indexId":0,
+    "name": "内网"
+}, {
+    "indexId":1,
+    "name": "外网"
+}]
+
 var vm = new Vue({
     el:'#dpLTE',
     data: {
@@ -12,7 +20,14 @@ var vm = new Vue({
             streamServerName: null
         },
         longitude: '',
-        latitude: ''
+        latitude: '',
+        lines:[{
+            "index":0,
+            "name": "内网"
+        }, {
+            "index":1,
+            "name": "外网"
+        }]
     },
     methods : {
         setForm: function() {
@@ -68,7 +83,8 @@ var vm = new Vue({
             dialogOpen({
                 id: 'mapLocation',
                 title: '选择坐标',
-                url: '../../video/channel/localMap.html?_' + $.now(),
+                //url: '../../video/channel/localMap.html?_' + $.now(),
+                url: '../../video/channel/map.html?_' + $.now(),
                 scroll : true,
                 width: "500px",
                 height: "450px",

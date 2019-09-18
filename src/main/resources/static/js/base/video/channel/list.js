@@ -41,7 +41,7 @@ function getGrid() {
             field : "name",
             title : "名称",
             width : "300px"
-        }, {
+        }/*, {
             field : "ip",
             title : "出口IP",
             width : "130px"
@@ -49,7 +49,7 @@ function getGrid() {
             field : "port",
             title : "端口",
             width : "100px"
-        },  {
+        }*/,  {
             field : "onlineStatus",
             title : "状态",
             width : "60px",
@@ -69,6 +69,17 @@ function getGrid() {
             title : "流媒体服务器",
             width : "150px"
         },{
+			field : "registerWay",
+			title : "注册线路",
+			width : "150px",
+			formatter : function(value, row, index) {
+				if (value == '0') {
+					return '内网';
+				} else if (value == '1') {
+					return '外网';
+				}
+			}
+		},{
             field : "manufacturer",
             title : "厂商",
             width : "0px"
@@ -123,7 +134,7 @@ var vm = new Vue({
                 dialogOpen({
                     title : '播放',
                     //url : 'video/channel/play.html?_' + $.now(),
-					url : 'video/channel/video.html?_' + $.now(),
+					url : 'video/channel/video2.html?_' + $.now(),
                     width : '500px',
                     height : '420px',
                     scroll : true,

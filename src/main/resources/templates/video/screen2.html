@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>屏幕监控</title>
+    <link th:href="@{../../css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{../../css/responsive.css}" rel="stylesheet"/>
+    <link th:href="@{../../css/font-awesome.min.css}" rel="stylesheet"/>
+    <style>
+        .video-window {
+            min-width: 350px;
+            min-height: 150px;
+            background-color: #000;
+        }
+       .row div {
+            border-style: solid;
+            border-width: 2px;
+            border-color: #cccccc;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container-fluid">
+    <div class="row" id="screenWindow">
+        <div class="col-md-4 video-window">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+        <div class="col-md-4 video-window">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+        <div class="col-md-4 video-window">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+        <div class="col-md-4 video-window">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+        <div class="col-md-4 video-window">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+    </div>
+
+
+    <nav class="navbar navbar-default navbar-fixed-bottom" style="vertical-align: center">
+        <button type="button" class="btn btn-primary" id="btnThreeColumn">
+            <span class="glyphicon glyphicon-th"></span>
+        </button>
+        <button type="button" class="btn btn-success" id="btnTwoColumn">
+            <span class="glyphicon glyphicon-th-large"></span>
+        </button>
+        <button type="button" class="btn btn-info" id="btnOneColumn">
+            <span class="glyphicon glyphicon-align-justify"></span>
+        </button>
+    </nav>
+</div>
+<script th:src="@{../../libs/jquery.min.js}"></script>
+<script th:src="@{../../plugins/cyberplayer/cyberplayer.js}"></script>
+<script>
+    $(function(){
+        // 三列
+        $("#btnThreeColumn").click(function(){
+            $("#screenWindow >div").each(function(){
+                if($(this).hasClass("col-md-6") || $(this).hasClass("col-md-12")){
+                    $(this).removeClass("col-md-6");
+                    $(this).removeClass("col-md-12");
+                    $(this).addClass("col-md-4");
+                }else{
+                    $(this).addClass("col-md-4");
+                }
+            });
+        });
+        // 两列
+        $("#btnTwoColumn").click(function(){
+            $("#screenWindow >div").each(function(){
+                if($(this).hasClass("col-md-4") || $(this).hasClass("col-md-12")){
+                    $(this).removeClass("col-md-4");
+                    $(this).removeClass("col-md-12");
+                    $(this).addClass("col-md-6");
+                }else{
+                    $(this).addClass("col-md-6");
+                }
+            });
+        });
+        // 一列
+        $("#btnOneColumn").click(function(){
+            $("#screenWindow >div").each(function(){
+                if($(this).hasClass("col-md-6") || $(this).hasClass("col-md-4")){
+                    $(this).removeClass("col-md-6");
+                    $(this).removeClass("col-md-4");
+                    $(this).addClass("col-md-12");
+                }else{
+                    $(this).addClass("col-md-12");
+                }
+            });
+        });
+    });
+</script>
+
+
+
+</body>
+</html>

@@ -1,6 +1,8 @@
 package com.cethik.irmp.modules.video.entity;
 
-public class ServersEntity {
+import java.io.Serializable;
+
+public class ServersEntity  implements Serializable {
     private Integer id;
     private  String lanIp;
     private  Integer lanPort;

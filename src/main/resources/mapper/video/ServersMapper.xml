@@ -15,8 +15,22 @@
 			servers
 		ORDER BY
 			id ASC
-	</select>	
-		
+	</select>
+
+	<select id="listForPage" resultType="com.cethik.irmp.modules.video.entity.ServersEntity">
+		SELECT
+			id,
+			lan_ip,
+			lan_port,
+			name,
+			wan_ip,
+			wan_port
+		FROM
+			servers
+		ORDER BY
+			id ASC
+	</select>
+
 	<insert id="save">
 		INSERT INTO servers (
 			lan_ip,
@@ -53,7 +67,16 @@
 		</set>
 		where id = #{id}
 	</update>
-	
 
+	<delete id="batchRemove">
+		DELETE
+		FROM
+		servers
+		WHERE
+		id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
 	
 </mapper>

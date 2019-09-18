@@ -5,6 +5,7 @@ import com.cethik.irmp.common.entity.R;
 import com.cethik.irmp.modules.sys.entity.SysUserEntity;
 import com.cethik.irmp.modules.video.entity.ChannelEntity;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,4 +38,8 @@ public interface ChannelService {
     R  getStatisticOnlineNumByGbdevices();
 
     R  listChannelQuery(Map<String, Object> params);
+
+    List<ChannelEntity> listChannelbylocation(Long id);
+
+    R getChannelInfoByID( Long channelid);
 }

@@ -81,15 +81,15 @@ public class ChannelServiceImpl implements ChannelService {
         //根据StreamServerId获取流媒体服务器名称
         Integer strid =  channelEntity.getStreamServerId();
         String streamServerName = "";
-        if(strid != null){
-            streamServerName = serversManager.getServersById(strid.longValue()).getName();
-        }
+        if(  strid != null )
+             streamServerName = serversManager.getServersById(strid.longValue()).getName();
+
         //根据registerServerId获取注册服务器名称
         String registerServerName = "";
         Integer regid = channelEntity.getRegisterServerId();
-        if(regid != null ){
-            registerServerName = serversManager.getServersById(strid.longValue()).getName();
-        }
+        if(  regid != null )
+            registerServerName = serversManager.getServersById(regid.longValue()).getName();
+
         channelEntity.setStreamServerName(streamServerName);
         channelEntity.setRegisterServerName(registerServerName);
         return CommonUtils.msg(channelEntity);
@@ -163,5 +163,18 @@ public class ChannelServiceImpl implements ChannelService {
         return CommonUtils.msgNotCheckNull(mapVOList);
     }
 
+    @Override
+    public List<ChannelEntity> listChannelbylocation(Long locationId) {
+
+        return channelManager.listChannelbylocation( locationId );
+
+    }
+
+    @Override
+    public  R getChannelInfoByID( Long channelid){
+
+        ChannelEntity channel = channelManager.getByChannelCode(channelid);
+        return CommonUtils.msgNotCheckNull(channel);
+    }
 
 }

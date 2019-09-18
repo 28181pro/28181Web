@@ -1,5 +1,7 @@
 package com.cethik.irmp.modules.video.manager.impl;
 
+import com.cethik.irmp.common.entity.Page;
+import com.cethik.irmp.common.entity.Query;
 import com.cethik.irmp.modules.video.dao.ServersMapper;
 import com.cethik.irmp.modules.video.entity.ServersEntity;
 import com.cethik.irmp.modules.video.manager.ServersManager;
@@ -20,6 +22,10 @@ public class ServersManagerImpl implements ServersManager {
     @Autowired
     private ServersMapper serversMapper;
 
+    @Override
+    public List<ServersEntity> listServersPage(Page<ServersEntity> page, Query search){
+        return serversMapper.listForPage(page, search);
+    }
 
     @Override
     public List<ServersEntity> listServers() {
@@ -38,6 +44,11 @@ public class ServersManagerImpl implements ServersManager {
 
     @Override
     public int updateServers(ServersEntity serversEntity) {
-        return 0;
+        return serversMapper.update(serversEntity);
+    }
+    @Override
+    public int batchRemove(Long[] id) {
+        int count=serversMapper.batchRemove(id);
+        return count;
     }
 }

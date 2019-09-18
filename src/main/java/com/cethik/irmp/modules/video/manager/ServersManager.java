@@ -1,5 +1,8 @@
 package com.cethik.irmp.modules.video.manager;
 
+import com.cethik.irmp.common.entity.Page;
+import com.cethik.irmp.common.entity.Query;
+
 import com.cethik.irmp.modules.video.entity.ServersEntity;
 
 import java.util.List;
@@ -12,6 +15,7 @@ import java.util.List;
  */
 public interface ServersManager {
     // List<ServersEntity> listServers(Page<ServersEntity> page, Query search);
+    List<ServersEntity> listServersPage(Page<ServersEntity> page, Query search);
 
     List<ServersEntity> listServers();
 
@@ -21,5 +25,5 @@ public interface ServersManager {
 
     int updateServers(ServersEntity serversEntity);
 
-
+    int batchRemove(Long[] id);
 }

@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.cethik.irmp.modules.video.dao.LocationMapper">
+
+	<select id="list" resultType="com.cethik.irmp.modules.video.entity.LocationEntity">
+		SELECT
+			m.location_id,
+			m.parent_id,
+			(
+				SELECT
+					p.name
+				FROM
+					location  p
+				WHERE
+					p.location_id = m.parent_id
+			) AS parentName,
+			m.name,
+			m.type,
+			m.icon,
+			m.order_num
+		FROM
+			location m
+		ORDER BY
+			m.order_num ASC
+	</select>
+
+	<select id="listNotLine" resultType="com.cethik.irmp.modules.video.entity.LocationEntity">
+		SELECT
+			location_id,
+			parent_id,
+			name,
+			type,
+			order_num
+		FROM
+			location
+		WHERE
+			type != 3
+		ORDER BY
+			order_num ASC
+	</select>
+
+	<insert id="save">
+		INSERT INTO location (
+			parent_id,
+			name,
+			type,
+			icon,
+			order_num,
+			gmt_create
+		)
+		VALUES (
+			#{parentId},
+			#{name},
+			#{type},
+			#{icon},
+			#{orderNum},
+			NOW()
+		)
+	</insert>
+
+	<select id="getObjectById" resultType="com.cethik.irmp.modules.video.entity.LocationEntity">
+		SELECT
+			m.location_id,
+			m.parent_id,
+			(
+				SELECT
+					p.name
+				FROM
+					location p
+				WHERE
+					p.location_id = m.parent_id
+			) AS parentName,
+			m.name,
+			m.type,
+			m.icon,
+			m.order_num
+		FROM
+			location m
+		WHERE
+			location_id = #{value}
+	</select>
+
+	<update id="update">
+		UPDATE location
+		<set>
+			<if test="parentId != null">parent_id = #{parentId}, </if>
+			<if test="name != null">name = #{name}, </if>
+			<if test="type != null">type = #{type}, </if>
+			<if test="icon != null">icon = #{icon}, </if>
+			<if test="orderNum != null">order_num = #{orderNum}, </if>
+			gmt_modify = NOW()
+		</set>
+		where location_id = #{locationId}
+	</update>
+
+	<delete id="batchRemove">
+		DELETE
+		FROM
+		location
+		WHERE
+		location_id IN
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+	<select id="countLocationChildren" resultType="int">
+		SELECT
+			COUNT(*)
+		FROM
+			location
+		WHERE
+			parent_id = #{value}
+	</select>
+	<select id="listAllLocationId" resultType="long">
+		SELECT
+			location_id
+		FROM
+			location
+	</select>
+
+	<select id="listParentId" resultType="com.cethik.irmp.modules.video.entity.LocationEntity">
+		SELECT
+			location_id,
+			parent_id,
+			name,
+			type,
+			icon,
+			order_num
+		FROM
+			location
+		WHERE
+			parent_id = #{parentId} order by order_num asc
+	</select>
+</mapper>
