@@ -63,7 +63,7 @@ var vm = new Vue({
 	data : {
 		user : {},
 		locationList : {},
-		main : "video/screen.html",
+		main : "video/screen2.html",
 		pswd : null,
 		newPswd : null,
 		navTitle : "控制台"
