@@ -24,23 +24,39 @@
 
 <div class="container-fluid">
     <div class="row" id="screenWindow">
-        <div class="col-md-4 video-window">
+        <div class="col-md-4 video-window" id="playercontainer1">
             <h3>Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet ... </p>
         </div>
-        <div class="col-md-4 video-window">
+        <div class="col-md-4 video-window" id="playercontainer2">
             <h3>Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet ... </p>
         </div>
-        <div class="col-md-4 video-window">
+        <div class="col-md-4 video-window" id="playercontainer3">
             <h3>Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet ... </p>
         </div>
-        <div class="col-md-4 video-window">
+        <div class="col-md-4 video-window" id="playercontainer4">
             <h3>Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet ... </p>
         </div>
-        <div class="col-md-4 video-window">
+        <div class="col-md-4 video-window" id="playercontainer5">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+        <div class="col-md-4 video-window" id="playercontainer6">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+        <div class="col-md-4 video-window" id="playercontainer7">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+        <div class="col-md-4 video-window" id="playercontainer8">
+            <h3>Post Title 1</h3>
+            <p>Lorem ipsum dolor sit amet ... </p>
+        </div>
+        <div class="col-md-4 video-window" id="playercontainer9">
             <h3>Post Title 1</h3>
             <p>Lorem ipsum dolor sit amet ... </p>
         </div>
@@ -48,10 +64,10 @@
 
 
     <nav class="navbar navbar-default navbar-fixed-bottom" style="vertical-align: center">
-        <button type="button" class="btn btn-primary" id="btnThreeColumn">
+        <button type="button" class="btn btn-primary" id="btnNineColumn">
             <span class="glyphicon glyphicon-th"></span>
         </button>
-        <button type="button" class="btn btn-success" id="btnTwoColumn">
+        <button type="button" class="btn btn-success" id="btnFourColumn">
             <span class="glyphicon glyphicon-th-large"></span>
         </button>
         <button type="button" class="btn btn-info" id="btnOneColumn">
@@ -63,43 +79,55 @@
 <script th:src="@{../../plugins/cyberplayer/cyberplayer.js}"></script>
 <script>
     $(function(){
-        // 三列
-        $("#btnThreeColumn").click(function(){
-            $("#screenWindow >div").each(function(){
-                if($(this).hasClass("col-md-6") || $(this).hasClass("col-md-12")){
-                    $(this).removeClass("col-md-6");
-                    $(this).removeClass("col-md-12");
-                    $(this).addClass("col-md-4");
-                }else{
-                    $(this).addClass("col-md-4");
-                }
-            });
+        // 九宫格
+        $("#btnNineColumn").click(function(){
+            // 移除所有子节点
+            removeChildrenDiv();
+            for (var i = 1; i <= 9; i++) {
+                createNineDiv(i);
+            }
         });
-        // 两列
-        $("#btnTwoColumn").click(function(){
-            $("#screenWindow >div").each(function(){
-                if($(this).hasClass("col-md-4") || $(this).hasClass("col-md-12")){
-                    $(this).removeClass("col-md-4");
-                    $(this).removeClass("col-md-12");
-                    $(this).addClass("col-md-6");
-                }else{
-                    $(this).addClass("col-md-6");
-                }
-            });
+
+        // 生成宽度为4格的9宫格
+        function createNineDiv(i){
+            $("#screenWindow").append('<div class="col-md-4 video-window" id="playercontainer'+i+'">' +
+                    '<h3>Post Title 1</h3><p>Lorem ipsum dolor sit amet ... </p>' +
+                    '</div>');
+        }
+       // 生成宽度为6格的4宫格
+        function createFourDiv(i){
+            $("#screenWindow").append('<div class="col-md-6 video-window" id="playercontainer'+i+'">' +
+                '<h3>Post Title 1</h3> <p>Lorem ipsum dolor sit amet ... </p>' +
+                '</div>');
+        }
+        // 生成宽度为12格的1宫格
+        function createOneDiv(i){
+            $("#screenWindow").append('<div class="col-md-12 video-window" id="playercontainer'+i+'">' +
+                '<h3>Post Title 1</h3><p>Lorem ipsum dolor sit amet ... </p>' +
+                '</div>');
+        }
+        // 移除所有子节点
+        function removeChildrenDiv(){
+            $("#screenWindow").empty();
+        }
+
+
+        // 四宫格
+        $("#btnFourColumn").click(function(){
+            removeChildrenDiv();
+            for (var i = 1; i <= 4; i++) {
+                createFourDiv(i);
+            }
         });
-        // 一列
+        // 一宫格
         $("#btnOneColumn").click(function(){
-            $("#screenWindow >div").each(function(){
-                if($(this).hasClass("col-md-6") || $(this).hasClass("col-md-4")){
-                    $(this).removeClass("col-md-6");
-                    $(this).removeClass("col-md-4");
-                    $(this).addClass("col-md-12");
-                }else{
-                    $(this).addClass("col-md-12");
-                }
-            });
+            removeChildrenDiv();
+            for (var i = 1; i <= 1; i++) {
+                createOneDiv(i);
+            }
         });
     });
+
 </script>
 
 
