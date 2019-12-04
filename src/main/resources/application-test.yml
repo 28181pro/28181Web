@@ -4,13 +4,13 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         druid:
             masterDataSource:
-                url: jdbc:mysql://22.56.192.133:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                url: jdbc:mysql://127.0.0.1:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: QWER1234
+                password: hik2019
             slaveDataSource:
-                url: jdbc:mysql://22.56.192.133:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+                url: jdbc:mysql://127.0.0.1:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: QWER1234
+                password: hik2019
             initial-size: 10
             max-active: 100
             min-idle: 10

@@ -1,6 +1,7 @@
 function markerMouseOver(marker, id, name) {
     return function () {
-        var label = new BMapGL.Label('编号：' + id + '，名称：' + name, { offset: new BMapGL.Size(20, -10) });
+        //var label = new BMapGL.Label('编号：' + id + '，名称：' + name, { offset: new BMapGL.Size(20, -10) });
+        var label = new BMap.Label('编号：' + id + '，名称：' + name, { offset: new BMap.Size(20, -10) });
         label.setStyle({
             color: '#fff',
             background: '#3c8dbc',
@@ -38,7 +39,8 @@ function markerClicked(channelId) {
 
 
 function showDevices(map, devices) {
-    var cameraIcon = new BMapGL.Icon("/images/32.png", new BMapGL.Size(32, 32));
+    //var cameraIcon = new BMapGL.Icon("/images/32.png", new BMapGL.Size(32, 32));
+    var cameraIcon = new BMap.Icon("/images/32.png", new BMap.Size(32, 32));
     var zoomLevel = localStorage.getItem('zoomLevel');
 
     var lat=0, lng=0, num = 0; 
@@ -50,9 +52,11 @@ function showDevices(map, devices) {
             lat += parseFloat(device.latitude);
             lng += parseFloat(device.longitude);
            // var point = new BMapGL.Point.fromLngLat(device.longitude, device.latitude);
-            var point = new BMapGL.Point(device.longitude, device.latitude);
+           // var point = new BMapGL.Point(device.longitude, device.latitude);
+           // var marker = new BMapGL.Marker(point, { icon: cameraIcon });
 
-            var marker = new BMapGL.Marker(point, { icon: cameraIcon });
+            var point = new BMap.Point(device.longitude, device.latitude);
+            var marker = new BMap.Marker(point, { icon: cameraIcon });
             marker.addEventListener('click', markerClicked(device.id));
             map.addOverlay(marker);
 
@@ -65,7 +69,9 @@ function showDevices(map, devices) {
         }
     }
 
-    var center = new BMapGL.Point( lng / num, lat / num);
+   // var center = new BMapGL.Point( lng / num, lat / num);
+
+    var center = new BMap.Point( lng / num, lat / num);
     if (zoomLevel !== null) {
         map.centerAndZoom(center, zoomLevel);
     } else {
@@ -84,6 +90,7 @@ var vm = new Vue({
 
     mounted: function () {
         var self = this;
+        /*
         this.map = new BMapGL.ETMap('allmap');
         // this.map.setMapStyle({style:'light'});
         this.map.centerAndZoom(new BMapGL.Point(12529157.6, 3217853.21), 11);
@@ -93,12 +100,29 @@ var vm = new Vue({
             	BMAPGL_HYBRID_MAP
             ]
         }));
+        */
+
+        // 2019.10.14  地图方改版
+        this.map = new BMap.Map('allmap');
+        this.map.centerAndZoom(new BMap.Point(12529157.6, 3217853.21), 11);
+        this.map.addControl(new BMap.MapTypeControl({
+            mapTypes: [
+                BMAP_NORMAL_MAP,
+                BMAP_HYBRID_MAP
+            ]
+        }));
+        //////
 
         this.map.enableScrollWheelZoom(true);
 
         this.map.addEventListener('zoomend', function (type) {
             localStorage.setItem('zoomLevel', self.map.getViewport().zoom);
         });
+        // 2019.10.14  地图方改版
+        var elecMap = new ETMap.ElecMap();
+        elecMap.addToMap( this.map );
+        /////////////
+
 
         let request = {
             pageNumber: 1,
@@ -129,7 +153,8 @@ var vm = new Vue({
                 if (self.currentMarker != null) {
                     self.map.removeOverlay(self.currentMarker);
                 }
-                self.currentMarker = new BMapGL.Marker(e.point);
+               // self.currentMarker = new BMapGL.Marker(e.point);
+                self.currentMarker = new BMap.Marker(e.point);
                 self.map.addOverlay(self.currentMarker);
             });
 

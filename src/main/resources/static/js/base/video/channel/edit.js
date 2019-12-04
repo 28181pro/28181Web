@@ -83,8 +83,8 @@ var vm = new Vue({
             dialogOpen({
                 id: 'mapLocation',
                 title: '选择坐标',
-                //url: '../../video/channel/localMap.html?_' + $.now(),
-                url: '../../video/channel/map.html?_' + $.now(),
+                url: '../../video/channel/localMap.html?_' + $.now(),
+                //url: '../../video/channel/map.html?_' + $.now(),
                 scroll : true,
                 width: "500px",
                 height: "450px",

@@ -1,112 +1,281 @@
 <!DOCTYPE html>
-<html lang="en">
+<html html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-<style>
-    .video-window{
-        float: left;
-        margin-left: 1%;
-        margin-bottom: 1%;
-        width: 350px;
-        height: 150px;
-        position: relative;
-        background-color: #000;
-    }
-</style>
+    <title>屏幕监控</title>
+    <link th:href="@{../../css/bootstrap.min.css}" rel="stylesheet"/>
+    <link th:href="@{../../css/responsive.css}" rel="stylesheet"/>
+    <link th:href="@{../../css/font-awesome.min.css}" rel="stylesheet"/>
+    <style>
+        .video-window-1 {
+            min-width: 840px;
+            min-height: 450px;
+            background-color: #000;
 
-    <script th:src="@{../../plugins/cyberplayer/cyberplayer.js}"></script>
+            border-style: solid;
+            border-width: 1px;
+            border-color: #cccccc;
+        }
+        .video-window-4 {
+            min-width: 420px;
+            min-height: 225px;
+            background-color: #000;
+
+            border-style: solid;
+            border-width: 1px;
+            border-color: #cccccc;
+        }
+        .video-window-9 {
+            min-width: 280px;
+            min-height: 150px;
+            background-color: #000;
+
+            border-style: solid;
+            border-width: 1px;
+            border-color: #cccccc;
+        }
+
+        .container {
+             width: 840px;
+         }
+    </style>
+
 </head>
 <body>
-<div class="row col-sm-9">
-    <table>
-        <tr>
-            <td>
-                <div id="playercontainer1" class="video-window" alt="1" ></div>
-            </td>
-            <td>
-                <div id="playercontainer2" class="video-window"  alt="2" ></div>
-            </td>
-            <td>
-                <div id="playercontainer3" class="video-window"  alt="3" ></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="playercontainer4" class="video-window" alt="4" ></div>
-            </td>
-            <td>
-                <div id="playercontainer5" class="video-window" alt="5" ></div>
-            </td>
-            <td>
-                <div id="playercontainer6" class="video-window"  alt="6" ></div>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <div id="playercontainer7" class="video-window" alt="7" ></div>
-            </td>
-            <td>
-                <div id="playercontainer8" class="video-window" alt="8" ></div>
-            </td>
-            <td>
-                <div id="playercontainer9" class="video-window"  alt="9" ></div>
-            </td>
-        </tr>
-    </table>
+
+<div class="container">
+    <div class="row" id="screenWindow">
+        <table id="table">
+            <tr>
+                <td>
+                    <div class="col-md-12 video-window-1" id="playercontainer1">  </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="row" >
+        <nav class="navbar navbar-default " style="vertical-align: center">
+            <button type="button" class="btn btn-primary" id="btnNineColumn">
+                <span class="glyphicon glyphicon-th"></span>
+            </button>
+            <button type="button" class="btn btn-success" id="btnFourColumn">
+                <span class="glyphicon glyphicon-th-large"></span>
+            </button>
+            <button type="button" class="btn btn-danger" id="btnOneColumn">
+                <span class="glyphicon glyphicon-unchecked"></span>
+            </button>
+            <button type="button" class="btn btn-inverse" id="btnStop">
+                <span class="glyphicon glyphicon-sound-6-1"></span>
+            </button>
+
+        </nav>
+    </div>
+
 
 </div>
+<script th:src="@{../../libs/jquery.min.js}"></script>
+<script th:src="@{../../plugins/cyberplayer/cyberplayer.js}"></script>
 <script>
 
-     var current = 0;
-     var size = 9;
-     var playtable = new Array();
-     var playerid = new Array();
-     playtable[0] = 0;
-     playtable[1] = 0;
-     playtable[2] = 0;
-     playtable[3] = 0;
-     playtable[4] = 0;
-     playtable[5] = 0;
-     playtable[6] = 0;
-     playtable[7] = 0;
-     playtable[8] = 0;
+    //navbar-fixed-bottom
+    var size = 9;
+    var current = 0;
+
+    var playtable = new Array();
+    var playerid = new Array();
+    var playerArray = new Array();
+    playtable[0] = 0;
+    playtable[1] = 0;
+    playtable[2] = 0;
+    playtable[3] = 0;
+    playtable[4] = 0;
+    playtable[5] = 0;
+    playtable[6] = 0;
+    playtable[7] = 0;
+    playtable[8] = 0;
 
 
-     playerid[0] = 'playercontainer1';
-     playerid[1] = 'playercontainer2';
-     playerid[2] = 'playercontainer3';
-     playerid[3] = 'playercontainer4';
-     playerid[4] = 'playercontainer5';
-     playerid[5] = 'playercontainer6';
-     playerid[6] = 'playercontainer7';
-     playerid[7] = 'playercontainer8';
-     playerid[8] = 'playercontainer9';
+    playerid[0] = 'playercontainer1';
+    playerid[1] = 'playercontainer2';
+    playerid[2] = 'playercontainer3';
+    playerid[3] = 'playercontainer4';
+    playerid[4] = 'playercontainer5';
+    playerid[5] = 'playercontainer6';
+    playerid[6] = 'playercontainer7';
+    playerid[7] = 'playercontainer8';
+    playerid[8] = 'playercontainer9';
 
 
-     var currentPlay;
+    var currentPlay;
+
+    $(function(){
+
+        function createNineDiv(){
+
+            $("#screenWindow").append(
+                '<table>' +
+                    '<tr>' +
+                         '<td>'+
+                           '<div class="col-md-4 video-window-9" id="playercontainer1">' +
+                           '</div>'+
+                         '</td>' +
+                         '<td>'+
+                           '<div class="col-md-4 video-window-9" id="playercontainer2">' +
+                           '</div>'+
+                          '</td>' +
+                          '<td>'+
+                            '<div class="col-md-4 video-window-9" id="playercontainer3">' +
+                            '</div>'+
+                          '</td>' +
+                     '</tr>' +
+                     '<tr>' +
+                           '<td>' +
+                             '<div class="col-md-4 video-window-9" id="playercontainer4">' +
+                             '</div>'+
+                           '</td>' +
+                           '<td>'+
+                              '<div class="col-md-4 video-window-9" id="playercontainer5">' +
+                              '</div>'+
+                           '</td>' +
+                           '<td>'+
+                               '<div class="col-md-4 video-window-9" id="playercontainer6">' +
+                               '</div>'+
+                           '</td>' +
+                     '</tr>' +
+                     '<tr>' +
+                            '<td>'+
+                              '<div class="col-md-4 video-window-9" id="playercontainer7">' +
+                               '</div>'+
+                            '</td>' +
+                            '<td>'+
+                                '<div class="col-md-4 video-window-9" id="playercontainer8">' +
+                                '</div>'+
+                            '</td>' +
+                             '<td>'+
+                                 '<div class="col-md-4 video-window-9" id="playercontainer9">' +
+                                 '</div>'+
+                              '</td>' +
+                       '</tr>' +
+                '</table>');
+        }
+
+        function createFourDiv(){
+
+
+           $("#screenWindow").append('<table>' +
+           '<tr>' +
+               '<td>' +
+                    '<div class="col-md-6 video-window-4" id="playercontainer1">' +
+                    '</div>'+
+               '</td>' +
+               '<td>' +
+                    '<div class="col-md-6 video-window-4" id="playercontainer2">' +
+                    '</div>'+
+               '</td>' +
+           '</tr>' +
+           '<tr>' +
+                '<td>'+
+                     '<div class="col-md-6 video-window-4" id="playercontainer3">' +
+                     '</div>'+
+                '</td>' +
+                '<td>' +
+                     '<div class="col-md-6 video-window-4" id="playercontainer4">' +
+                     '</div>'+
+                '</td>' +
+           '</tr>' +
+        '</table>');
+        }
+        // 生成宽度为12格的1宫格
+
+        function createOneDiv(){
+
+            $("#screenWindow").append('<table>' +
+             '<tr>' +
+             '<td>'+
+                '<div class="col-md-12 video-window-1" id="playercontainer1">' +
+                '</div>'+
+           '</td>' +
+           '</tr>' +
+           '</table>');
+        }
+        // 移除所有子节点
+        function removeChildrenDiv(){
+            $("#screenWindow").empty();
+        }
+        // 九宫格
+        $("#btnNineColumn").click(function(){
+            // 移除所有子节点
+            stopall();
+            removeChildrenDiv();
+            createNineDiv(i);
+
+            size =  9;
+        });
+
+        // 四宫格
+        $("#btnFourColumn").click(function(){
+            stopall();
+            removeChildrenDiv();
+            createFourDiv();
+
+            size = 4;
+        });
+        // 一宫格
+        $("#btnOneColumn").click(function(){
+            stopall();
+            removeChildrenDiv();
+            createOneDiv();
+
+            size = 1;
+        });
+        $("#btnStop").click(function(){
+            stopall();
+        });
+
+    });
+
+    function stopall(){
+        for( i = 0; i < size; i++){
+
+            if( playtable[i] == 1){
+                if(  playerArray[i] != null){
+                    playerArray[i].stop();
+                    //playerArray[i].remove();
+                }
+
+            }
+        }
+    }
 
     function startplay( rtmpurl) {
 
-         var wind = findUnused();
-         var player = cyberplayer(wind).setup({
-             width: 350,
-             height: 150,
-             file: rtmpurl, // <—rtmp直播地址
-             autostart: true,
-             stretching: "uniform",
-             volume: 100,
-             controls: true,
-             controlbar: {
-                 barLogo: false
-             },
-             rtmp: {
-                 reconnecttime: 5, // rtmp直播的重连次数
-                 bufferlength: 1 // 缓冲多少秒之后开始播放 默认1秒
-             },
-             ak: ""//"cc94de6803904f2ca7159eedeaced55d" // 公有云平台注册即可获得accessKey
-            
-         });
+        var index  = findUnused();
+        var wind = "playercontainer"+index;
+        console.log( wind );
+        var div = document.getElementById(wind);
+        var windHeight =div.offsetHeight;
+        var windWidth = div.offsetWidth;
+
+        var player = cyberplayer(wind).setup({
+            width: windWidth,
+            height: windHeight,
+            file: rtmpurl, // <—rtmp直播地址
+            autostart: true,
+            //stretching: "uniform",
+            volume: 100,
+            controls: true,
+            controlbar: {
+                barLogo: false
+            },
+            rtmp: {
+                reconnecttime: 5, // rtmp直播的重连次数
+                bufferlength: 1 // 缓冲多少秒之后开始播放 默认1秒
+            },
+            ak: ""//"cc94de6803904f2ca7159eedeaced55d" // 公有云平台注册即可获得accessKey
+
+        });
+
+        playerArray[ index -1] = player;
 
         player.onBeforeComplete( function () {
             console.log("结束播放之前");
@@ -156,13 +325,15 @@
         });
         player.onStop(function () {
             console.log("视频停止播放");
+            var i = 0;
             for( i = 0; i < size; i++){
 
                 if( player.id == playerid[i]){
                     playtable[i] = 0;
+                    break;
                 }
             }
-
+            playerArray[i] = null;
             this.remove();
         });
         /*
@@ -173,29 +344,29 @@
             console.log("监听直播流的状态，无直播流时触发");
         });
         */
-     }
+    }
 
     function findUnused() {
-     var index = 0;
-     for(i=0; i< size ;i++) {
-         if (playtable[i] == 0) {
-             index = i + 1;
-             playtable[i] = 1;
-             current = index;
-             break;
-         }
-     }
-     if( index == 0){
-         index = (current + 1)%size;
-         if( index == 0)
-             index = size;
-         current = index;
-     }
-     var wind = "playercontainer"+index;
-     console.log( wind );
-     return wind;
- }
+        var index = 0;
+        for(i=0; i< size ;i++) {
+            if (playtable[i] == 0) {
+                index = i + 1;
+                playtable[i] = 1;
+                current = index;
+                break;
+            }
+        }
+        if( index == 0){
+            index = (current + 1)%size;
+            if( index == 0)
+                index = size;
+            current = index;
+        }
+
+        return index;
+    }
 </script>
+
 
 </body>
 </html>

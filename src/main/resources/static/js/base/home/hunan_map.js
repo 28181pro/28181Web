@@ -262,7 +262,7 @@ var vm = new Vue({
         //this.map.setMapStyle({style: 'midnight'});
 
         //创建地图坐标点,一般首次创建的这个点为地图的中心坐标点 杭州经纬度:(120.20000,30.26667)，长沙经纬度:(113.00000,28.21667)
-		var point=new BMapGL.Point(12529157.6, 3217853.21);
+		    var point=new BMapGL.Point(12529157.6, 3217853.21);
         //初始化地图，设置中心坐标点和地图级数
         this.map.centerAndZoom(point, 11);
 
