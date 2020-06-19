@@ -72,17 +72,31 @@
             </td>
         </tr>
         <tr>
+            <td class="formTitle"></td>
+            <td class="formValue">
+                <a class="btn btn-default"  @click="sellocation"><i
+                        class="fa fa-address-book"></i>&nbsp;选择坐标</a>
+            </td>
+        </tr>
+        <tr>
             <td class="formTitle">通道经度<font face="宋体">*</font></td>
             <td class="formValue">
                 <input type="text" v-model="channel.longitude" class="form-control" placeholder="通道经度" value=""
-                       @click="sellocation" isvalid="yes" checkexpession="NotNull" readonly="readonly">
+                      isvalid="yes" checkexpession="NotNull" >
             </td>
         </tr>
         <tr>
             <td class="formTitle">通道纬度</td>
             <td class="formValue">
-                <input type="text" v-model="channel.latitude" class="form-control" placeholder="通道纬度"
-                       readonly="readonly">
+                <input type="text" v-model="channel.latitude" class="form-control" placeholder="通道纬度" value=""
+                       checkexpession="NotNull">
+            </td>
+        </tr>
+        <tr>
+            <td class="formTitle">绑定线路</td>
+            <td class="formValue">
+                <input type="text" v-model="channel.locationName" class="form-control pointer" placeholder="线路名称"
+                       @click="selLine"   readonly="readonly" isvalid="yes">
             </td>
         </tr>
         <tr>

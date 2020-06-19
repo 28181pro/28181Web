@@ -18,7 +18,7 @@ public interface LocationMapper extends BaseMapper<LocationEntity> {
 	List<LocationEntity> listParentId(Long parentId);
 	List<Long> listAllLocationId( Long userid);
 	List<LocationEntity> listNotLine();
-	
+	List<LocationEntity> listLine();
 	List<String> listUserPerms(Long userId);
 	
 	int countLocationChildren(Long parentId);

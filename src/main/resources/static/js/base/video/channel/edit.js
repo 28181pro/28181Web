@@ -21,6 +21,8 @@ var vm = new Vue({
         },
         longitude: '',
         latitude: '',
+        locationName: '',
+        locationId: 0,
         lines:[{
             "index":0,
             "name": "内网"
@@ -28,6 +30,7 @@ var vm = new Vue({
             "index":1,
             "name": "外网"
         }]
+
     },
     methods : {
         setForm: function() {
@@ -83,8 +86,8 @@ var vm = new Vue({
             dialogOpen({
                 id: 'mapLocation',
                 title: '选择坐标',
-                url: '../../video/channel/localMap.html?_' + $.now(),
-                //url: '../../video/channel/map.html?_' + $.now(),
+                //url: '../../video/channel/localMap.html?_' + $.now(),
+                url: '../../video/channel/map.html?_' + $.now(),
                 scroll : true,
                 width: "500px",
                 height: "450px",
@@ -92,6 +95,19 @@ var vm = new Vue({
                     top.frames[iframeId].vm.registerClick();
                 },
                 yes : function(iframeId) {               
+                    top.frames[iframeId].vm.acceptClick();
+                }
+            })
+        },
+        selLine:function(){
+            dialogOpen({
+                id: 'layerMenuTree',
+                title: '选择线路',
+                url: 'video/location/linetree.html?_' + $.now(),
+                scroll : true,
+                width: "300px",
+                height: "450px",
+                yes : function(iframeId) {
                     top.frames[iframeId].vm.acceptClick();
                 }
             })

@@ -40,6 +40,20 @@
 			order_num ASC
 	</select>
 
+	<select id="listLine" resultType="com.cethik.irmp.modules.video.entity.LocationEntity">
+		SELECT
+			location_id,
+			parent_id,
+			name,
+			type,
+			order_num
+		FROM
+			location
+
+		ORDER BY
+			order_num ASC
+	</select>
+
 	<insert id="save">
 		INSERT INTO location (
 			parent_id,

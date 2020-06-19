@@ -107,6 +107,11 @@ public class LocationManagerImpl implements LocationManager {
 	}
 
 	@Override
+	public List<LocationEntity> listLine() {
+		return locationMapper.listLine();
+	}
+
+	@Override
 	public int saveLocation(LocationEntity menu) {
 		return locationMapper.save(menu);
 	}

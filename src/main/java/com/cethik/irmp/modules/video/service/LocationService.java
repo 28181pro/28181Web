@@ -23,7 +23,9 @@ public interface LocationService {
 	List<LocationEntity> listLocation(Map<String, Object> params);
 	
 	R listNotLine();
-	
+
+	R listLine();
+
 	R saveLocation(LocationEntity menu);
 
 	R getLocationById(Long id);

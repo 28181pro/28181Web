@@ -83,7 +83,11 @@ function getGrid() {
             field : "manufacturer",
             title : "厂商",
             width : "0px"
-        }]
+        }, {
+			field : "locationName",
+			title : "地理线路",
+			width : "0px"
+		}]
     })
 }
 
@@ -148,6 +152,25 @@ var vm = new Vue({
                 });
             }
         },
+        playimage : function() {
+			var ck = $('#dataGrid').bootstrapTable('getSelections');
+			if (checkedRow(ck)) {
+				dialogOpen({
+					title : '播放图片',
+					url : 'video/channel/playImage.html?_' + $.now(),
+					width : '730px',
+					height : '520px',
+					scroll : true,
+					success : function(iframeId) {
+						top.frames[iframeId].vm.channel.channelCode = ck[0].channelCode;
+						top.frames[iframeId].vm.setDiv();
+					},
+					yes : function(iframeId) {
+
+					},
+				});
+			}
+		},
 		remove : function() {
 			var ck = $('#dataGrid').bootstrapTable('getSelections'), ids = [];
 			if (checkedArray(ck)) {

@@ -4,7 +4,7 @@ spring:
         driverClassName: com.mysql.jdbc.Driver
         druid:
             masterDataSource:  #主库数据源
-              url: jdbc:mysql://127.0.0.1:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
+              url: jdbc:mysql://49.235.134.57:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
               username: root
               password: QWER!@#$
             slaveDataSource:  #从库数据源

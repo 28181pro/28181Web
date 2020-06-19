@@ -54,6 +54,17 @@ public class LocationServiceImpl implements LocationService {
 		menuList.add(root);
 		return CommonUtils.msgNotCheckNull(menuList);
 	}
+	@Override
+	public R listLine() {
+		List<LocationEntity> menuList = locationManager.listLine();
+		LocationEntity root = new LocationEntity();
+		root.setLocationId(0L);
+		root.setName("市公司");
+		root.setParentId(-1L);
+		root.setOpen(true);
+		menuList.add(root);
+		return CommonUtils.msgNotCheckNull(menuList);
+	}
 
 	@Override
 	public R saveLocation(LocationEntity menu) {

@@ -63,6 +63,15 @@ public class  LocationController extends AbstractController {
 	public R select() {
 		return locationService.listNotLine();
 	}
+
+	/**
+	 * 选择菜单(添加、修改)
+	 * @return
+	 */
+	@RequestMapping("/selectline")
+ 	public R selectline() {
+		return locationService.listLine();
+	}
 	
 	/**
 	 * 新增菜单

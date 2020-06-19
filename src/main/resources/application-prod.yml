@@ -6,11 +6,11 @@ spring:
             masterDataSource:
                 url: jdbc:mysql://127.0.0.1:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: hik2019
+                password: QWER!@#$
             slaveDataSource:
                 url: jdbc:mysql://127.0.0.1:3306/irmp?allowMultiQueries=true&useUnicode=true&characterEncoding=UTF-8
                 username: root
-                password: hik2019
+                password: QWER!@#$
             initial-size: 10
             max-active: 100
             min-idle: 10

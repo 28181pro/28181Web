@@ -29,8 +29,10 @@ spring:
         mode: LEGACYHTML5
         encoding: UTF-8
         content-type: text/html
+    mvc:
+        static-path-pattern: /**
     resources: # 指定静态资源的路径
-        static-locations: classpath:/static/,classpath:/templates/
+        static-locations: classpath:/static/,classpath:/templates/,file:D:/Upload/
 
 # Mybatis配置
 mybatis:

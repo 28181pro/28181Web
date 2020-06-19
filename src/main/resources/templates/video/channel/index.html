@@ -30,6 +30,8 @@
                             class="fa fa-play"></i>&nbsp;启用</a>
                     <a v-if="hasPermission('video:channel:play')" class="btn btn-default" @click="play"><i
                             class="fa fa-address-book"></i>&nbsp;播放</a>
+                    <a v-if="hasPermission('video:channel:playimage')" class="btn btn-default" @click="playimage"><i
+                            class="fa fa-address-book"></i>&nbsp;播放图片</a>
                 </div>
             </div>
         </div>

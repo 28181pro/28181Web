@@ -23,7 +23,9 @@ public interface LocationManager {
 	List<LocationEntity> listLocation( Query search);
 
 	List<LocationEntity> listNotLine();
-	
+
+	List<LocationEntity> listLine();
+
 	int saveLocation(LocationEntity menu);
 
 	LocationEntity getLocationById(Long id);

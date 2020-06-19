@@ -71,6 +71,7 @@ public class ShiroConfig {
         filterMap.put("/swagger/**", "anon");
         filterMap.put("/favicon.ico", "anon");
         filterMap.put("/", "anon");
+        filterMap.put("/photo/**", "anon");
         filterMap.put("/**", "oauth2");
 
 

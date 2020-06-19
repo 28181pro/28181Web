@@ -29,6 +29,8 @@
         <result column="reg_wan_ip" jdbcType="VARCHAR" property="regWanIp"/>
         <result column="reg_wan_port" jdbcType="INTEGER" property="regWanPort"/>
         <result column="register_server_id" jdbcType="INTEGER" property="registerServerId"/>
+
+        <result column="location_id" jdbcType="INTEGER" property="locationId"/>
     </resultMap>
 
     <resultMap id="rmStatistic" type="com.cethik.irmp.modules.base.vo.StatisticVO">
@@ -114,7 +116,7 @@
 
 		SELECT
 		id,channel_code,gbdevice_code,name,ip,port,online_status,manufacturer,address,stream_server_id,
-        register_way,model,longitude,latitude,register_server_id
+        register_way,model,longitude,latitude,register_server_id,location_id
 		FROM
 			channel
 		WHERE
@@ -138,6 +140,7 @@
             <if test="longitude != null">longitude = #{longitude},</if>
             <if test="latitude != null">latitude = #{latitude},</if>
             <if test="registerServerId != null">register_server_id = #{registerServerId},</if>
+            <if test="locationId != null">location_id = #{locationId},</if>
         </set>
         WHERE
         id = #{id}

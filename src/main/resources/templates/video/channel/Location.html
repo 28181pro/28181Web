@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('选择地理线程')"></head>
+<body>
+<div id="dpLTE" class="container-fluid" v-cloak>
+    <ul id="locationTree" class="ztree"></ul>
+</div>
+<div th:include="include/footer_js::footer"></div>
+<script type="text/javascript">
+    var setting = {
+        data : {
+            simpleData : {
+                enable : true,
+                idKey : "id",
+                pIdKey : "parentId",
+                rootPId : 0
+            }
+        }
+    };
+    var ztree;
+    var vm = new Vue({
+        el : '#dpLTE',
+        methods : {
+            getServers : function(id) {
+                $.get('../../video/servers/list', function(r) {
+                    ztree = $.fn.zTree.init($("#serversTree"), setting, r);
+                    if(top.layerForm.vm.channel.id != 0) {
+                        var node = ztree.getNodeByParam("id", top.layerForm.vm.channel.id);
+                        ztree.selectNode(node);
+                        top.layerForm.vm.channel.registerServerName = node.name;
+                    }
+                })
+            },
+            acceptClick: function() {
+                var node = ztree.getSelectedNodes();
+                top.layerForm.vm.channel.registerServerId = node[0].id;
+                top.layerForm.vm.channel.registerServerName = node[0].name;
+                dialogClose();
+            }
+        },
+        created : function() {
+            this.getServers();
+        }
+    })
+</script>
+</body>
+</html>

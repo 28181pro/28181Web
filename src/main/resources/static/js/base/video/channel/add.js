@@ -20,6 +20,10 @@ var vm = new Vue({
             streamServerName: null,
             registerWay:null
         },
+        longitude: '',
+        latitude: '',
+        locationName: '',
+        locationId: 0,
         lines:[{
             "index":0,
             "name": "内网"
@@ -67,6 +71,36 @@ var vm = new Vue({
                     $.currentIframe().vm.load();
                 }
             });
+        },
+        sellocation: function() {
+            dialogOpen({
+                id: 'mapLocation',
+                title: '选择坐标',
+                //url: '../../video/channel/localMap.html?_' + $.now(),
+                url: '../../video/channel/map.html?_' + $.now(),
+                scroll : true,
+                width: "500px",
+                height: "450px",
+                success : function(iframeId) {
+                    top.frames[iframeId].vm.registerClick();
+                },
+                yes : function(iframeId) {
+                    top.frames[iframeId].vm.acceptClick();
+                }
+            })
+        },
+        selLine:function(){
+            dialogOpen({
+                id: 'layerMenuTree',
+                title: '选择菜单',
+                url: 'video/location/linetree.html?_' + $.now(),
+                scroll : true,
+                width: "300px",
+                height: "450px",
+                yes : function(iframeId) {
+                    top.frames[iframeId].vm.acceptClick();
+                }
+            })
         }
     }
 })

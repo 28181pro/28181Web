@@ -30,7 +30,8 @@ public class ChannelEntity implements Serializable {
     private String      strmWanIp;
     private Integer     strmWanPort;
     private Integer     type;
-
+    private Integer     locationId;
+    private String      locationName;
     public Integer getRegisterServerId() {
         return registerServerId;
     }
@@ -238,6 +239,22 @@ public class ChannelEntity implements Serializable {
 
     public Integer getType() {
         return type;
+    }
+
+    public void setLocationId( Integer t){
+        locationId = t;
+    }
+
+    public Integer getLocationId() {
+        return locationId;
+    }
+
+    public void setLocationName( String t){
+        locationName = t;
+    }
+
+    public String getLocationName() {
+        return locationName;
     }
     /*
     public ServersEntity getStreaminfo() {

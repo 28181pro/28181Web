@@ -10,6 +10,7 @@ import com.cethik.irmp.modules.base.vo.StatisticVO;
 import com.cethik.irmp.modules.video.entity.ChannelEntity;
 import com.cethik.irmp.modules.video.entity.ServersEntity;
 import com.cethik.irmp.modules.video.manager.ChannelManager;
+import com.cethik.irmp.modules.video.manager.LocationManager;
 import com.cethik.irmp.modules.video.manager.ServersManager;
 import com.cethik.irmp.modules.video.service.ChannelService;
 import org.apache.commons.lang.StringUtils;
@@ -37,6 +38,9 @@ public class ChannelServiceImpl implements ChannelService {
 
     @Autowired
     private ServersManager serversManager;
+
+    @Autowired
+    private LocationManager locationManager;
 
     @Override
     public Page<ChannelEntity> listChannel(Map<String, Object> params) {
@@ -92,6 +96,12 @@ public class ChannelServiceImpl implements ChannelService {
         }
         channelEntity.setStreamServerName(streamServerName);
         channelEntity.setRegisterServerName(registerServerName);
+        String  locationName = "";
+        Integer locid = channelEntity.getLocationId();
+        if(locid != null) {
+            locationName = locationManager.getLocationById( locid.longValue() ).getName();
+        }
+        channelEntity.setLocationName( locationName );
         return CommonUtils.msg(channelEntity);
     }
 
