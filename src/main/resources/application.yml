@@ -32,7 +32,7 @@ spring:
     mvc:
         static-path-pattern: /**
     resources: # 指定静态资源的路径
-        static-locations: classpath:/static/,classpath:/templates/,file:D:/Upload/
+        static-locations: classpath:/static/,classpath:/templates/,file:/opt/
 
 # Mybatis配置
 mybatis:

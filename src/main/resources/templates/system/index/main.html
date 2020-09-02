@@ -1,14 +1,126 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.w3.org/1999/xhtml">
-<head th:include="include/header_css::header('欢迎页')"></head>
+<!--<html xmlns:th="http://www.w3.org/1999/xhtml">-->
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:include="include/header_css::header('欢迎页')">
+    <style>
+        label {
+            text-align: center;
+            line-height: 153px;
+            cursor: pointer;
+        }
+
+        #upload-tip {
+            border: 4px dashed #d9d9d9;
+            width: 135px;
+            height: 135px;
+            line-height: 135px;
+            cursor: pointer;
+            font-size: 50px;
+            color: #d9d9d9;
+        }
+
+        #img-show {
+            width: 135px;
+            height: 135px;
+            margin: 0 auto;
+            object-fit: cover;
+            box-shadow: 2px 10px 10px 2px rgba(149, 158, 159, 0.86);
+        }
+
+        #content {
+            position: absolute;
+            margin: 0;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+        }
+    </style>
+</head>
 <body>
 <div class="panel panel-default">
-    <div class="panel-heading">基本信息</div>
-    <div>
-        <h3>&nbsp;&nbsp;&nbsp;项目介绍</h3>
 
+    <h3>&nbsp;&nbsp;&nbsp;项目介绍</h3>-->
+    <div id="dpLTE">
+        <div id="wrap">
+            <div id="content">
+                <label for="imgfile">
+                    <div style="text-align: center">
+                        <div id="upload-tip">+</div>
+                        <img src="" alt="" id="img-show" style="display: none">
+                        <input type="file" id="imgfile" ref="myFile" style="display: none" onchange="imgfileChange()">
+                    </div>
+                </label>
+                <button type="button" @click="savePlaceInfo">提 交</button>&emsp;
+
+                <a class="s"> <img src="" alt="" id="imgretshow"/></a>
+
+            </div>
+        </div>
     </div>
+
+
 </div>
+
+
+<script th:src="@{../../libs/vue.min.js}"></script>
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+    function imgfileChange() {
+        var upload_tip = document.getElementById("upload-tip");
+        var img_show = document.getElementById("img-show");
+        var imgfile = document.getElementById("imgfile");
+        var freader = new FileReader();
+        //开始读取指定的Blob中的内容。一旦完成，result属性中将包含一个data: URL格式的Base64字符串以表示所读取文件的内容。
+        freader.readAsDataURL(imgfile.files[0]);
+        //处理load事件。该事件在读取操作完成时触发。
+        freader.onload = function (e) {
+            //  e.target.result;  就是data:image/jpeg;base64,+编码  就相当于直接解码
+            img_show.src = e.target.result;
+            /*console.log(e.target.result)*/
+            img_show.style.display = "block";
+            upload_tip.style.display = "none";
+        };
+
+    }
+
+    const app = new Vue({
+        el: "#dpLTE",
+        data: {
+            provinces: [],
+            place: {},
+            filename: "",
+        },
+        methods: {
+            savePlaceInfo() {
+                //保存图片的方法
+                //查找到存放文件的元素。
+                //输出 <input type="file" id="imgfile" onchange="imgfileChange()" style="display: none;">
+                let myFile = this.$refs.myFile;
+                //type 为 file 的 input 元素内部有一个 files数组，里边存放了所有选择的 file，由于文件上传时，文件可以多选，因此这里拿到的 files 对象是一个数组。
+                let files = myFile.files;
+                //拿到编码之后的图片数据
+                //从 files对象中，获取自己要上传的文件，由于这里是单选，所以其实就是数组中的第一项。
+                let file = files[0];
+                let formData = new FormData();
+                formData.append("file", file);
+                //axios
+                axios({
+                    method: 'post',
+                    url: '/base/home/uploadsave',
+                    data: formData,
+                    headers: {
+                        'Content-Type': 'multipart/form-data'
+                    }
+                }).then((res) => {
+                    var imgretshow = document.getElementById("imgretshow")
+                    imgretshow.src = res.data.filename;
+                });
+            },
+
+        }
+    })
+
+</script>
 </body>
 </html>
-
